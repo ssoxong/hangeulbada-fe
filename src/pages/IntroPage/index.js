@@ -10,12 +10,12 @@ const IntroPageLayout = styled.div`
   align-items: center;
 `;
 
-const index = () => {
+const IntroPage = () => {
     return (
       <IntroPageLayout>
-
+        Intro Page
       </IntroPageLayout>
     );
 };
 
-export default index;
+export default IntroPage;
