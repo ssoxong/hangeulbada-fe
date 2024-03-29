@@ -1,4 +1,5 @@
 import './App.css';
+import Navbar from './components/navbar/Navbar';
 import { 
   IntroPage,
   MainPage,
@@ -29,6 +30,7 @@ function App() {
       <BrowserRouter>
         <BodyInner>
           <WebAppContainer>
+            <Navbar />
             <Routes>
               <Route exact path="/" element={<IntroPage />} />
               <Route path="/main" element={<MainPage />} />
