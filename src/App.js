@@ -1,4 +1,7 @@
 import './App.css';
+import { IntroPage } from './pages';
+
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import styled from "styled-components";
 
@@ -20,11 +23,15 @@ const WebAppContainer = styled.div`
 function App() {
   return (
     <div className="App">
-      <BodyInner>
-        <WebAppContainer>
-          Body
-        </WebAppContainer>
-      </BodyInner>
+      <BrowserRouter>
+        <BodyInner>
+          <WebAppContainer>
+            <Routes>
+              <Route exact path="/" element={<IntroPage />} />
+            </Routes>
+          </WebAppContainer>
+        </BodyInner>
+      </BrowserRouter>
     </div>
   );
 }
