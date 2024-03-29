@@ -1,5 +1,8 @@
 import './App.css';
-import { IntroPage } from './pages';
+import { 
+  IntroPage,
+  MainPage,
+} from './pages';
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -28,6 +31,7 @@ function App() {
           <WebAppContainer>
             <Routes>
               <Route exact path="/" element={<IntroPage />} />
+              <Route path="/main" element={<MainPage />} />
             </Routes>
           </WebAppContainer>
         </BodyInner>
