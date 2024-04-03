@@ -3,6 +3,7 @@ import Navbar from './components/navbar/Navbar';
 import { 
   IntroPage,
   MainPage,
+  ClassListPage,
 } from './pages';
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -34,6 +35,7 @@ function App() {
             <Routes>
               <Route exact path="/" element={<IntroPage />} />
               <Route path="/main" element={<MainPage />} />
+              <Route path="/classList" element={<ClassListPage />} />
             </Routes>
           </WebAppContainer>
         </BodyInner>
