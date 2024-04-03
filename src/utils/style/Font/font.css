@@ -1,0 +1,21 @@
+@font-face {
+  font-family: "DXSamgakGimbap", sans-serif;
+}
+
+@font-face {
+  font-family: "DXSamgakGimbap-Light";
+  src: url('./DXSamgakGimbap/DXSamgakGimbapLight.ttf'
+  ); 
+}
+
+@font-face {
+  font-family: "DXSamgakGimbap-Medium";
+  src: url('./DXSamgakGimbap/DXSamgakGimbapMedium.ttf'
+  ); 
+}
+
+@font-face {
+  font-family: "DXSamgakGimbap-Bold";
+  src: url('./DXSamgakGimbap/DXSamgakGimbapBold.ttf'
+  ); 
+}
