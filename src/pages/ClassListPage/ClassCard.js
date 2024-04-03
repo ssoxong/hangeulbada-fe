@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import ContainedButton from '../../components/button/ContainedButton';
 
 const ClassCardLayout = styled.div`
   display: flex;
@@ -13,11 +14,6 @@ const ClassCardLayout = styled.div`
 const ClassCardInformation = styled.div`
   
 `
-const ClassCardCodeBtn = styled.button`
-  border: none;
-  border-radius: 10px;
-  background-color: yellow;
-`
 
 const ClassCard = ({title, desc, code}) => {
   return (
@@ -26,9 +22,13 @@ const ClassCard = ({title, desc, code}) => {
         <div>{title}</div>
         <div>{desc}</div>
       </ClassCardInformation>
-      <ClassCardCodeBtn>
+      <ContainedButton
+        btnType="tertialy"
+        size="large"
+        text={code}
+      >
         {code}
-      </ClassCardCodeBtn>
+      </ContainedButton>
     </ClassCardLayout>
   );
 };

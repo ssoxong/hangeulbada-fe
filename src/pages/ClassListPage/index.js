@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import ClassCard from './ClassCard';
+import ContainedButton from '../../components/button/ContainedButton';
 
 const ClassListPageLayout = styled.div`
   display: flex;
@@ -9,8 +10,27 @@ const ClassListPageLayout = styled.div`
   width: 100%;
   min-height: 100vh;
   position: relative;
-  align-items: center;
 `;
+const ClassListBox = styled.div`
+  margin: 10px 18px;
+`
+const ClassListHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 24px;
+`
+const ClassListTitle = styled.div`
+  font-size: 24px;
+  font-weight: 500;
+`
+const ClassListButtonBox = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 40%;
+`;
+
 
 const ClassListPage = () => {
   const dummies = [
@@ -37,9 +57,18 @@ const ClassListPage = () => {
   ]
   return (
     <ClassListPageLayout>
-      {dummies.map((dummy) => (
-        <ClassCard title={dummy.title} desc={dummy.desc} code={dummy.code} />
-      ))}      
+      <ClassListBox>
+        <ClassListHeader>
+          <ClassListTitle>나의 클래스</ClassListTitle>
+          <ClassListButtonBox>
+            <ContainedButton btnType="primary" size="mid" text="버튼1" />
+            <ContainedButton btnType="secondary" size="mid" text="버튼2" />
+          </ClassListButtonBox>
+        </ClassListHeader>
+        {dummies.map((dummy) => (
+          <ClassCard title={dummy.title} desc={dummy.desc} code={dummy.code} />
+        ))}      
+      </ClassListBox>
     </ClassListPageLayout>
   );
 };
