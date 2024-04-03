@@ -4,7 +4,6 @@ import styled from 'styled-components';
 const PrimaryButton = styled.button`
   min-width: ${({ size }) =>
     size === "large" ? "135px" : size === "mid" ? "71px" : "28px"};
-  width: ${({ size }) => (size === "large" ? "100%" : "")};
   height: ${({ size }) =>
     size === "large" ? "32px" : size === "mid" ? "32px" : "28px"};
 
@@ -18,7 +17,6 @@ const PrimaryButton = styled.button`
 const SecondaryButton = styled.button`
   min-width: ${({ size }) =>
       size === "large" ? "135px" : size === "mid" ? "71px" : "28px"};
-  width: ${({ size }) => (size === "large" ? "100%" : "")};
   height: ${({ size }) =>
       size === "large" ? "32px" : size === "mid" ? "32px" : "28px"};
 
@@ -32,7 +30,6 @@ const SecondaryButton = styled.button`
 const TertiaryButton = styled.button`
   min-width: ${({ size }) =>
     size === "large" ? "135px" : size === "mid" ? "71px" : "28px"};
-  width: ${({ size }) => (size === "large" ? "100%" : "")};
   height: ${({ size }) =>
       size === "large" ? "32px" : size === "mid" ? "32px" : "28px"};
 
