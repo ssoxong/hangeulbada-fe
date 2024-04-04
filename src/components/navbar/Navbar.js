@@ -1,35 +1,89 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Logo1 } from '../../assets/icons';
-
-import { NavLink } from 'react-router-dom';
+import { BackIcon, Logo1, UserIcon } from '../../assets/icons';
+import { Link, useNavigate } from 'react-router-dom';
 
 const NavbarLayout = styled.div`
-  display: flex;
   max-width: 500px;
-  justify-content: space-between;
-  align-items: center;
   padding-left: 15px;
   padding-right: 15px;
-  padding-top: 10px;
+  padding-top: 24px;
   padding-bottom: 10px;
   background: wheat;
 `;
-
+const BackButton = styled.button`
+  display: flex;
+  margin-bottom: 20px;
+  border-width: 0;
+  background-color: transparent;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+const HeaderBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 const LogoIcon = styled.img`
-  
-`
+  display: flex;
+  align-items: center;
+`;
 
-const Navbar = () => {
-    return (
-        <NavbarLayout>
-          <NavLink to="/">
-            <LogoIcon src={Logo1} />
-          </NavLink>
-          Nav Bar
-        </NavbarLayout>
-    );
+const UserInfoBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 35%;
+`;
+const UserRole = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  width: 52px;
+  height: 28px;
+  font-weight: 300;
+  font-size: 15px;
+  background-color: white;
+`;
+const UserName = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 300;
+  font-size: 20px;
+`;
+
+const Navbar = ({ role, userName, userId }) => {
+  const navigate = useNavigate();
+  const onClickBackButton = () => {
+    navigate(-1);
+  }
+
+  return (
+    <NavbarLayout>
+      <BackButton onClick={onClickBackButton}>
+        <img src={BackIcon} alt="Back button" />
+      </BackButton>
+      <HeaderBox>
+        <Link to="/">
+          <LogoIcon src={Logo1} />
+        </Link>
+        <UserInfoBox>
+          <UserRole>
+            {role === 'teacher' ? '선생님' : '학생'}
+          </UserRole>
+          <UserName>
+            {'나선생'}  {/* userName */}
+          </UserName>
+          <Link to="/">
+            <LogoIcon src={UserIcon} />
+          </Link>
+        </UserInfoBox>
+      </HeaderBox>
+    </NavbarLayout>
+  );
 };
 
 export default Navbar;
