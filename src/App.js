@@ -4,6 +4,7 @@ import {
   IntroPage,
   MainPage,
   ClassListPage,
+  ClassEnterPage,
 } from './pages';
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -36,6 +37,7 @@ function App() {
               <Route exact path="/" element={<IntroPage />} />
               <Route path="/main" element={<MainPage />} />
               <Route path="/classList" element={<ClassListPage />} />
+              <Route path="/classEnter" element={<ClassEnterPage />} />
             </Routes>
           </WebAppContainer>
         </BodyInner>
