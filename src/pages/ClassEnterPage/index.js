@@ -50,28 +50,35 @@ padding: 30px;
 `
 
 const StyledDone = styled.button`
-background-color: white;
+appearance: none;
+background-color: 
+// 값이 들어오면 파란색
+${props => props.inputcheck};
 width: 150px;
 height: 60px;
 border-radius: 10px;
 border-color: white;
 margin: 0 180px;
 font-size: 20px;
+color: ${props => props.fontColor};
 `
 
 const ClassEnterPage = () => {
   const [classcode, setClasscode] = useState('');
+  const [inputcheck, setInputcheck] = useState('white');
+  const [fontColor, setFontColor] = useState('black');
 
   const handleChange = (e) => {
     setClasscode(e.target.value);
+    setInputcheck('rgba(18, 127, 255)');
+    setFontColor('white');
   }
 
   const handleSubmit = (e) => {
     alert('입력한 코드: ' + classcode);
     e.preventDefault();
   }
-
-  return (
+   return (
 
     <ClassEnterPageLayout>
         <ClassListHeader>
@@ -80,10 +87,10 @@ const ClassEnterPage = () => {
         </ClassListHeader>
 
         <StyledForm onSubmit={handleSubmit}>
-          <StyledLabel> <SyltedInput type="text" placeholder="여기에 입력하세요." name="classcode" classcode={classcode} onChange={handleChange}/>
+          <StyledLabel> <SyltedInput type="text" placeholder="여기에 입력하세요." name="classcode" classcode={classcode} onChange={handleChange} inputcheck={inputcheck} />
             
           </StyledLabel>
-          <StyledDone type="submit" >완료</StyledDone>
+          <StyledDone fontColor={fontColor} inputcheck={inputcheck} type="submit" >완료</StyledDone>
         </StyledForm>
     </ClassEnterPageLayout>
   )
