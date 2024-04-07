@@ -62,7 +62,7 @@ const ClassListPage = () => {
           <ClassListTitle>나의 클래스</ClassListTitle>
           <ClassListButtonBox>
             <ContainedButton btnType="primary" size="mid" text="버튼1" />
-            <ContainedButton btnType="secondary" size="mid" text="버튼2" />
+            <ContainedButton btnType="secondary" size="mid" text="버튼2" outline />
           </ClassListButtonBox>
         </ClassListHeader>
         {dummies.map((dummy) => (
