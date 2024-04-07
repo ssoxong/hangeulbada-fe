@@ -4,3 +4,4 @@ export { default as UserIcon } from "./user-icon.svg";
 export { default as BackIcon } from "./back-icon.svg";
 export { default as ButtonIcon } from "./button-icon.svg";
 export { default as CopyButtonIcon } from "./copy-button-icon.svg";
+export { default as BottomTriangle } from "./bottom-triangle.svg";
