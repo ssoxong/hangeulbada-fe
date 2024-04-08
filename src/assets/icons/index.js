@@ -7,3 +7,5 @@ export { default as CopyButtonIcon } from "./copy-button-icon.svg";
 export { default as BottomTriangle } from "./bottom-triangle.svg";
 export { default as RightTriangle } from "./right-triangle.svg";
 export { default as StarIcon } from "./star-icon.svg";
+export { default as Circle } from "./circle.svg";
+export { default as XMark } from "./x-mark.svg";
