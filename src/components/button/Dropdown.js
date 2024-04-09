@@ -28,6 +28,7 @@ const DropdownButton = styled.button`
 const DropdownContent = styled.div`
   display: ${props => (props.isOpen ? 'block' : 'none')};
   position: absolute;
+  border-radius: 5px;
   background-color: #f9f9f9;
   min-width: 170px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -39,9 +40,8 @@ const DropdownItem = styled.a`
   padding: 12px 16px;
   text-decoration: none;
   display: block;
-
   &:hover {
-    background-color: #f1f1f1;
+    background-color: rgba(18, 127, 255, 0.3);
   }
 `;
 

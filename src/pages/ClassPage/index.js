@@ -95,9 +95,8 @@ const ClassPage = () => {
     },
   ]
   const items = [
-    { text: '메뉴 항목 1', link: '#' },
-    { text: '메뉴 항목 2', link: '#' },
-    { text: '메뉴 항목 3', link: '#' },
+    { text: '이름순', link: '#' },
+    { text: '성적순', link: '#' },
   ];
   return (
     <ClassPageLayout>
