@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { BottomTriangle } from '../../../assets/icons';
+import Dropdown from '../../../components/button/Dropdown';
 
 const StyledButton = styled.button`
   min-width: 170px;
   height: 40px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 300;
   border-radius: 6px;
   border: hidden;
@@ -21,12 +22,18 @@ const ButtonLayout = styled.div`
   justify-content: space-around;
 `;
 
-const SortButton = ({ onClick }) => {
+const SortButton = ({ items }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const onClickButton = () => {
+    setIsOpen(!isOpen);
+    console.log(isOpen)
+  }
+
   return (
-    <StyledButton onClick={onClick}>
+    <StyledButton onClick={onClickButton}>
       <ButtonLayout>
-        정렬 옵션
-        <img src={BottomTriangle} alt="bottom-triangle" />
+        <Dropdown text="정렬 옵션" items={items}/>
       </ButtonLayout>
     </StyledButton>
   );
