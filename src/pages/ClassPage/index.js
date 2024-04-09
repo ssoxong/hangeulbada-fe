@@ -19,20 +19,25 @@ const ClassHeader = styled.div`
   align-items: center;
   margin: 24px;
   font-size: 24px;
+  .title {
+    text-align: start;
+  }
+`;
+const ClassTitleBox = styled.div`
+  display: flex;
+  margin-right: 50px;
+  width: 100%;
 `;
 const CopyButton = styled.button`
   display: flex;
   border-width: 0;
   background-color: transparent;
-  margin-right: 33%;
   
   &:hover {
     cursor: pointer;
   }
 `;
 const HeaderButtonBox = styled.div`
-  display: flex;
-  flex-direction: column;
 `;
 const SetColums = styled.div`
   display: flex;
@@ -89,16 +94,23 @@ const ClassPage = () => {
       score: 'score4',
     },
   ]
+  const items = [
+    { text: '메뉴 항목 1', link: '#' },
+    { text: '메뉴 항목 2', link: '#' },
+    { text: '메뉴 항목 3', link: '#' },
+  ];
   return (
     <ClassPageLayout>
       <ClassHeader>
-        <div>클래스 1 {/*클래스 명*/}</div>
-        <CopyButton>
-          <img src={CopyButtonIcon} alt="copy" />
-        </CopyButton>
+        <ClassTitleBox>
+          <div className='title'>클래스 1 {/*클래스 명*/}</div>
+          <CopyButton>
+            <img src={CopyButtonIcon} alt="copy" />
+          </CopyButton>
+        </ClassTitleBox>
         <HeaderButtonBox>
           <ContainedButton btnType="primary" size="large" text="이 클래스 세트 보기" />
-          <SortButton />
+          <SortButton items={items} />
         </HeaderButtonBox>
       </ClassHeader>
       <SetColums>
