@@ -41,7 +41,7 @@ const DropdownItem = styled.a`
   display: block;
 
   &:hover {
-    background-color: #f1f1f1;
+    background-color: rgba(18, 127, 255, 0.3);
   }
 `;
 
