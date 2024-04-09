@@ -6,7 +6,8 @@ const PrimaryButton = styled.button`
     size === "large" ? "170px" : size === "mid" ? "90px" : "28px"};
   height: ${({ size }) =>
     size === "large" ? "40px" : size === "mid" ? "40px" : "28px"};
-
+  width: ${({ size }) =>
+    size === "large" ? "170px" : size === "mid" ? "90px" : "28px"};
   font-size: 18px;
   font-weight: 300;
   border-radius: 6px;
@@ -19,7 +20,8 @@ const SecondaryButton = styled.button`
     size === "large" ? "170px" : size === "mid" ? "90px" : "28px"};
   height: ${({ size }) =>
     size === "large" ? "40px" : size === "mid" ? "40px" : "28px"};
-
+  width: ${({ size }) =>
+    size === "large" ? "170px" : size === "mid" ? "90px" : "28px"};
   font-size: 18px;
   font-weight: 300;
   border-radius: 6px;
@@ -33,7 +35,8 @@ const TertiaryButton = styled.button`
     size === "large" ? "170px" : size === "mid" ? "90px" : "28px"};
   height: ${({ size }) =>
     size === "large" ? "40px" : size === "mid" ? "40px" : "28px"};
-  
+  width: ${({ size }) =>
+    size === "large" ? "170px" : size === "mid" ? "90px" : "28px"};
   font-size: 18px;
   font-weight: 300;
   border-radius: 6px;
