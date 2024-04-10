@@ -65,6 +65,7 @@ const ClassEnterPage = () => {
 
     const handleChange = (e) => {
         setClasscode(e.target.value);
+        setInputCheck(true);
     };
 
     const handleSubmit = (e) => {
