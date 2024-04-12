@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { BottomTriangle } from '../../../assets/icons';
 import Dropdown from '../../../components/button/Dropdown';
 
 const StyledButton = styled.button`
   min-width: 170px;
   height: 40px;
-  font-size: 16px;
-  font-weight: 300;
   border-radius: 6px;
   border: hidden;
   color: black;

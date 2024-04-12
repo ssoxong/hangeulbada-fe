@@ -12,15 +12,22 @@ const ClassCardLayout = styled.div`
   background-color: lavender;
 `;
 const ClassCardInformation = styled.div`
-  
+  .title {
+    font-family: 'DXSamgakGimbap Bold';
+    font-size: 18px;
+  }
+  .desc {
+    font-family: 'DXSamgakGimbap Light';
+    font-size: 16px;
+  }
 `
 
 const ClassCard = ({title, desc, code}) => {
   return (
     <ClassCardLayout>
       <ClassCardInformation>
-        <div>{title}</div>
-        <div>{desc}</div>
+        <div className='title'>{title}</div>
+        <div className='desc'>{desc}</div>
       </ClassCardInformation>
       <ContainedButton
         btnType="tertialy"

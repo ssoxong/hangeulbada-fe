@@ -25,20 +25,20 @@ const SetInformation = styled.div`
   text-align: start;
 
   .title {
-    /* Medium */
+    font-family: 'DXSamgakGimbap Medium';
     font-size: 24px;
   }
   .description {
-    /*light*/
+    font-family: 'DXSamgakGimbap Light';
     font-size : 16px;
   }
   .count {
-     /*light*/
-     font-size : 16px;
+    font-family: 'DXSamgakGimbap Light';
+    font-size : 16px;
   }
   .difficulty {
-     /*light*/
-     font-size : 16px;
+    font-family: 'DXSamgakGimbap Light';
+    font-size : 16px;
   }
 `;
 const HeaderButtonBox = styled.div`

@@ -15,15 +15,22 @@ const SetCardLayout = styled.div`
   }
 `;
 const SetCardInformation = styled.div`
-  
+  .title {
+    font-family: 'DXSamgakGimbap Bold';
+    font-size: 18px;
+  }
+  .desc {
+    font-family: 'DXSamgakGimbap Light';
+    font-size: 16px;
+  }
 `
 
 const SetCard = ({title, desc, onClick }) => {
   return (
     <SetCardLayout onClick={onClick}>
       <SetCardInformation>
-        <div>{title}</div>
-        <div>{desc}</div>
+        <div className='title'>{title}</div>
+        <div className='desc'>{desc}</div>
       </SetCardInformation>
     </SetCardLayout>
   );

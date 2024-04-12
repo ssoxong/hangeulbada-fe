@@ -13,10 +13,14 @@ const ProblemCardLayout = styled.div`
 `;
 const TextBox = styled.div`
   text-align: start;
+  font-family: 'DXSamgakGimbap Medium';
+  font-size: 16px;
 `;
 const AnswerBox = styled.div`
   flex-basis: 65%;
   text-align: start;
+  font-family: 'DXSamgakGimbap Light';
+  font-size: 16px;
 `
 const CorrectWrapper = styled.img`
   

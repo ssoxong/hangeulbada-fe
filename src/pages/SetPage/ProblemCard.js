@@ -18,7 +18,9 @@ const ProblemCardInformation = styled.div`
   flex-direction: row;
   align-items: center;
   width: 100%;
-
+  font-family: 'DXSamgakGimbap Light';
+  font-size: 16px;
+  
   .item-idx {
     margin-right: 30px;
   }

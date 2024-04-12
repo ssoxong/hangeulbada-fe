@@ -18,6 +18,7 @@ const ClassHeader = styled.div`
   flex-direction: row;
   align-items: center;
   margin: 24px;
+  font-family: 'DXSamgakGimbap Medium';
   font-size: 24px;
   .title {
     text-align: start;
@@ -51,7 +52,9 @@ const SetColums = styled.div`
   margin: 2px 15px;
   border-radius: 14px;
   background-color: transparent;
-
+  font-family: 'DXSamgakGimbap Light';
+  font-size: 15px;
+  
   .item-no {
     flex-basis: 7%;
   }

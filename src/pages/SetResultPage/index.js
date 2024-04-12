@@ -23,19 +23,19 @@ const SetInformation = styled.div`
   background-color: rgba(18, 127, 255, 0.27);
 
   .title {
-    /* Medium */
+    font-family: 'DXSamgakGimbap Medium';
     font-size: 24px;
   }
   .description {
-    /*light*/
+    font-family: 'DXSamgakGimbap Light';
     font-size : 16px;
   }
   .count {
-     /*light*/
-     font-size : 16px;
+    font-family: 'DXSamgakGimbap Light';
+    font-size : 16px;
   }
   .difficulty {
-     /*light*/
+     font-family: 'DXSamgakGimbap Light';
      font-size : 16px;
   }
 `;
@@ -48,23 +48,23 @@ const SetHeader = styled.div`
 `;
 const NameAndButtonBox = styled.div`
   .name {
-    /*Bold*/
     text-align: start;
-    font-size: 24px;
     margin-bottom: 12px;
+    font-family: 'DXSamgakGimbap Bold';
+    font-size: 24px;
   }
 `;
 const ScoreBox = styled.div`
   display: flex; 
   align-items: center;
   .text {
-    /*Medium*/
+    font-family: 'DXSamgakGimbap Medium';
     font-size: 20px;
     margin-right: 8px;
     background-color: transparent;
   }
   .score {
-    /*Medium*/
+    font-family: 'DXSamgakGimbap Medium';
     font-size: 24px;
     width: 62px;
     height: 57px;

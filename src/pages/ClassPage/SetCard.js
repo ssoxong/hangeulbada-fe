@@ -19,7 +19,9 @@ const SetCardInformation = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-
+  font-family: 'DXSamgakGimbap Light';
+  font-size: 16px;
+  
   .item-no {
     flex-basis: 7%;
   }

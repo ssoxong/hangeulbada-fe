@@ -10,8 +10,8 @@ const DropdownLayout = styled.div`
 const DropdownButton = styled.button`
   min-width: 170px;
   height: 40px;
-  font-size: 18px;
-  font-weight: 300;
+  font-family: 'DXSamgakGimbap Medium';
+  font-size: 16px;
   border-radius: 5px;
   border: hidden;
   color: black;
@@ -38,6 +38,7 @@ const DropdownContent = styled.div`
 const DropdownItem = styled.a`
   color: black;
   padding: 12px 16px;
+  font-family: 'DXSamgakGimbap Light';
   text-decoration: none;
   display: block;
   &:hover {
