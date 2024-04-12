@@ -38,6 +38,10 @@ const CopyButton = styled.button`
   }
 `;
 const HeaderButtonBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 `;
 const SetColums = styled.div`
   display: flex;
