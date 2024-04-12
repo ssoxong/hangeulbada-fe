@@ -22,8 +22,8 @@ const ClassListHeader = styled.div`
   margin: 24px;
 `
 const ClassListTitle = styled.div`
+  font-family: 'DXSamgakGimbap Medium';
   font-size: 24px;
-  font-weight: 500;
 `
 const ClassListButtonBox = styled.div`
   display: flex;

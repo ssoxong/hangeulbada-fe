@@ -8,8 +8,8 @@ const PrimaryButton = styled.button`
     size === "large" ? "40px" : size === "mid" ? "40px" : "28px"};
   width: ${({ size }) =>
     size === "large" ? "170px" : size === "mid" ? "90px" : "28px"};
-  font-size: 18px;
-  font-weight: 300;
+  font-family: 'DXSamgakGimbap Light';
+  font-size: 16px;
   border-radius: 6px;
   border: hidden;
   color: white;
@@ -22,8 +22,8 @@ const SecondaryButton = styled.button`
     size === "large" ? "40px" : size === "mid" ? "40px" : "28px"};
   width: ${({ size }) =>
     size === "large" ? "170px" : size === "mid" ? "90px" : "28px"};
-  font-size: 18px;
-  font-weight: 300;
+  font-family: 'DXSamgakGimbap Light';
+  font-size: 16px;
   border-radius: 6px;
   border: ${({ outline }) =>
     outline ? "2px #127FFF solid" : "hidden" };
@@ -37,8 +37,8 @@ const TertiaryButton = styled.button`
     size === "large" ? "40px" : size === "mid" ? "40px" : "28px"};
   width: ${({ size }) =>
     size === "large" ? "170px" : size === "mid" ? "90px" : "28px"};
-  font-size: 18px;
-  font-weight: 300;
+  font-family: 'DXSamgakGimbap Light';
+  font-size: 16px;
   border-radius: 6px;
   border: hidden;
   color: black;

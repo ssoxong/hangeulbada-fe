@@ -22,8 +22,8 @@ const SetListHeader = styled.div`
   margin: 24px;
 `
 const SetListTitle = styled.div`
+  font-family: 'DXSamgakGimbap Medium';
   font-size: 24px;
-  font-weight: 500;
 `
 const SetListButtonBox = styled.div`
   display: flex;
