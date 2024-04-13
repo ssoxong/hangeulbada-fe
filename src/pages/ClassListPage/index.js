@@ -27,8 +27,8 @@ const ClassListTitle = styled.div`
 `
 const ClassListButtonBox = styled.div`
   display: flex;
-  justify-content: space-around;
-  width: 40%;
+  justify-content: space-between;
+  width: 45%;
 `;
 
 
@@ -61,8 +61,8 @@ const ClassListPage = () => {
         <ClassListHeader>
           <ClassListTitle>나의 클래스</ClassListTitle>
           <ClassListButtonBox>
-            <ContainedButton btnType="primary" size="mid" text="버튼1" />
-            <ContainedButton btnType="secondary" size="mid" text="버튼2" outline />
+            <ContainedButton btnType="primary" size="mid" text="생성" />
+            <ContainedButton btnType="secondary" size="mid" text="삭제" outline />
           </ClassListButtonBox>
         </ClassListHeader>
         {dummies.map((dummy) => (

@@ -5,16 +5,18 @@ import ContainedButton from '../../components/button/ContainedButton';
 const ClassCardLayout = styled.div`
   display: flex;
   justify-content: space-between;
-  align-self: stretch;
+  align-items: center;
   padding: 8px 16px;
-  margin: 5px 15px;
+  margin: 12px 15px;
   border-radius: 14px;
   background-color: white;
 `;
 const ClassCardInformation = styled.div`
+  padding: 8px 12px;
   .title {
     font-family: 'DXSamgakGimbap Bold';
     font-size: 18px;
+    margin-bottom: 3px;
   }
   .desc {
     font-family: 'DXSamgakGimbap Light';
