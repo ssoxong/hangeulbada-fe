@@ -27,8 +27,8 @@ const SetListTitle = styled.div`
 `
 const SetListButtonBox = styled.div`
   display: flex;
-  justify-content: space-around;
-  width: 40%;
+  justify-content: space-between;
+  width: 45%;
 `;
 
 
