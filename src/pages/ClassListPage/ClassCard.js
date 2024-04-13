@@ -9,7 +9,7 @@ const ClassCardLayout = styled.div`
   padding: 8px 16px;
   margin: 5px 15px;
   border-radius: 14px;
-  background-color: lavender;
+  background-color: white;
 `;
 const ClassCardInformation = styled.div`
   .title {
@@ -31,7 +31,7 @@ const ClassCard = ({title, desc, code}) => {
       </ClassCardInformation>
       <ContainedButton
         btnType="tertialy"
-        size="large"
+        size="mid"
         text={code}
       >
         {code}
