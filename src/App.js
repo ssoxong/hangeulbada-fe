@@ -16,6 +16,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import styled from "styled-components";
 
+import { BackgroundImage } from './assets/images';
+
 const BodyInner = styled.div`
   display: flex;
   flex-direction: column;
@@ -29,6 +31,8 @@ const WebAppContainer = styled.div`
   max-width: 500px;
   height: 100%;
   background-color: white;
+  background-image: url(${BackgroundImage});
+  background-size: cover;
 `;
 
 function App() {
