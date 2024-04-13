@@ -39,6 +39,7 @@ const DropdownItem = styled.a`
   color: black;
   padding: 12px 16px;
   font-family: 'DXSamgakGimbap Light';
+  font-size: 16px;
   text-decoration: none;
   display: block;
   &:hover {

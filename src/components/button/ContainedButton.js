@@ -42,7 +42,7 @@ const TertiaryButton = styled.button`
   border-radius: 6px;
   border: hidden;
   color: black;
-  background-color: yellow;
+  background-color: #FFD912;
 `;
 
 const ContainedButton = ({ btnType, text, size, onClick, outline }) => {
