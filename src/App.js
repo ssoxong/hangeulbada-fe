@@ -13,6 +13,8 @@ import {
     ClassCreatePage,
 } from './pages';
 
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import styled from 'styled-components';
 
 import { BackgroundImage } from './assets/images';
