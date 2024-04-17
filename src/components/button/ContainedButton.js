@@ -2,40 +2,40 @@ import React from 'react';
 import styled from 'styled-components';
 
 const PrimaryButton = styled.button`
-    min-width: ${({ size }) => (size === 'large' ? '135px' : size === 'mid' ? '71px' : '28px')};
-    height: ${({ size }) => (size === 'large' ? '32px' : size === 'mid' ? '32px' : '28px')};
-
-    font-size: 13px;
-    font-weight: 300;
+    min-width: ${({ size }) => (size === 'large' ? '170px' : size === 'mid' ? '90px' : '28px')};
+    height: ${({ size }) => (size === 'large' ? '40px' : size === 'mid' ? '40px' : '28px')};
+    width: ${({ size }) => (size === 'large' ? '170px' : size === 'mid' ? '90px' : '28px')};
+    font-family: 'DXSamgakGimbap Light';
+    font-size: 16px;
     border-radius: 6px;
     border: hidden;
     color: white;
-    background-color: blue;
+    background-color: #127fff;
 `;
 const SecondaryButton = styled.button`
-    min-width: ${({ size }) => (size === 'large' ? '135px' : size === 'mid' ? '71px' : '28px')};
-    height: ${({ size }) => (size === 'large' ? '32px' : size === 'mid' ? '32px' : '28px')};
-
-    font-size: 13px;
-    font-weight: 300;
+    min-width: ${({ size }) => (size === 'large' ? '170px' : size === 'mid' ? '90px' : '28px')};
+    height: ${({ size }) => (size === 'large' ? '40px' : size === 'mid' ? '40px' : '28px')};
+    width: ${({ size }) => (size === 'large' ? '170px' : size === 'mid' ? '90px' : '28px')};
+    font-family: 'DXSamgakGimbap Light';
+    font-size: 16px;
     border-radius: 6px;
-    border: hidden;
+    border: ${({ outline }) => (outline ? '2px #127FFF solid' : 'hidden')};
     color: black;
-    background-color: wheat;
+    background-color: white;
 `;
 const TertiaryButton = styled.button`
-    min-width: ${({ size }) => (size === 'large' ? '135px' : size === 'mid' ? '71px' : '28px')};
-    height: ${({ size }) => (size === 'large' ? '32px' : size === 'mid' ? '32px' : '28px')};
-
-    font-size: 13px;
-    font-weight: 300;
+    min-width: ${({ size }) => (size === 'large' ? '170px' : size === 'mid' ? '90px' : '28px')};
+    height: ${({ size }) => (size === 'large' ? '40px' : size === 'mid' ? '40px' : '28px')};
+    width: ${({ size }) => (size === 'large' ? '170px' : size === 'mid' ? '90px' : '28px')};
+    font-family: 'DXSamgakGimbap Light';
+    font-size: 16px;
     border-radius: 6px;
     border: hidden;
     color: black;
     background-color: yellow;
 `;
 
-const ContainedButton = ({ btnType, text, size, onClick }) => {
+const ContainedButton = ({ btnType, text, size, onClick, outline }) => {
     return (
         <>
             {btnType === 'primary' ? (
@@ -43,7 +43,7 @@ const ContainedButton = ({ btnType, text, size, onClick }) => {
                     {text}
                 </PrimaryButton>
             ) : btnType === 'secondary' ? (
-                <SecondaryButton size={size} onClick={onClick}>
+                <SecondaryButton size={size} onClick={onClick} outline={outline}>
                     {text}
                 </SecondaryButton>
             ) : (

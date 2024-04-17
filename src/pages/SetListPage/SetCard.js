@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import ContainedButton from '../../components/button/ContainedButton';
 
-const ClassCardLayout = styled.div`
+const SetCardLayout = styled.div`
   display: flex;
   justify-content: space-between;
   align-self: stretch;
@@ -10,8 +9,12 @@ const ClassCardLayout = styled.div`
   margin: 5px 15px;
   border-radius: 14px;
   background-color: lavender;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
-const ClassCardInformation = styled.div`
+const SetCardInformation = styled.div`
   .title {
     font-family: 'DXSamgakGimbap Bold';
     font-size: 18px;
@@ -22,22 +25,15 @@ const ClassCardInformation = styled.div`
   }
 `
 
-const ClassCard = ({title, desc, code}) => {
+const SetCard = ({title, desc, onClick }) => {
   return (
-    <ClassCardLayout>
-      <ClassCardInformation>
+    <SetCardLayout onClick={onClick}>
+      <SetCardInformation>
         <div className='title'>{title}</div>
         <div className='desc'>{desc}</div>
-      </ClassCardInformation>
-      <ContainedButton
-        btnType="tertialy"
-        size="large"
-        text={code}
-      >
-        {code}
-      </ContainedButton>
-    </ClassCardLayout>
+      </SetCardInformation>
+    </SetCardLayout>
   );
 };
 
-export default ClassCard;
+export default SetCard;

@@ -43,7 +43,7 @@ const UserRole = styled.div`
   border-radius: 6px;
   width: 52px;
   height: 28px;
-  font-weight: 300;
+  font-family: 'DXSamgakGimbap Light';
   font-size: 15px;
   background-color: white;
 `;
@@ -51,7 +51,7 @@ const UserName = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: 300;
+  font-family: 'DXSamgakGimbap Light';
   font-size: 20px;
 `;
 

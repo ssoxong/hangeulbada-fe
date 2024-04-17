@@ -50,53 +50,68 @@ const StyledLabel = styled.label`
 `;
 
 const StyledDone = styled.button`
-    background-color: transparent;
-    // width: 150px;
-    // height: 60px;
-    // border-radius: 10px;
-    border-color: transparent;
-    // margin: 0 180px;
-    // font-size: 20px;
+    appearance: none;
+    background-color: 
+// 값이 들어오면 파란색
+        ${(props) => props.inputcheck};
+    width: 150px;
+    height: 60px;
+    border-radius: 10px;
+    border-color: white;
+    margin: 0 180px;
+    font-size: 20px;
+    color: ${(props) => props.fontColor};
 `;
 
 const ClassEnterPage = () => {
-    const [inputCheck, setInputCheck] = useState(false);
     const [classcode, setClasscode] = useState('');
+    const [inputcheck, setInputcheck] = useState('white');
+    const [fontColor, setFontColor] = useState('black');
 
     const handleChange = (e) => {
         setClasscode(e.target.value);
-        setInputCheck(true);
+        setInputcheck('rgba(18, 127, 255)');
+        setFontColor('white');
     };
 
     const handleSubmit = (e) => {
         alert('입력한 코드: ' + classcode);
         e.preventDefault();
     };
-
     return (
-        <ClassEnterPageLayout>
-            <ClassListHeader>
-                <ClassListTitle>나의 클래스</ClassListTitle>
-                <ClassListSubTitle>선생님의 클래스 코드를 입력하세요.</ClassListSubTitle>
-            </ClassListHeader>
+        <div>
+            <ClassEnterPageLayout>
+                <StyledForm onSubmit={handleSubmit}>
+                    <StyledLabel>
+                        {' '}
+                        <SyltedInput
+                            type="text"
+                            placeholder="여기에 입력하세요."
+                            name="classcode"
+                            classcode={classcode}
+                            onChange={handleChange}
+                        />
+                    </StyledLabel>
+                </StyledForm>
 
-            <StyledForm onSubmit={handleSubmit}>
-                <StyledLabel>
-                    {' '}
-                    <SyltedInput
-                        type="text"
-                        placeholder="여기에 입력하세요."
-                        name="classcode"
-                        classcode={classcode}
-                        onChange={handleChange}
-                    />
-                </StyledLabel>
-            </StyledForm>
-
-            <StyledDone>
-                <ContainedButton btnType="primary" size="mid" text="완료" />
-            </StyledDone>
-        </ClassEnterPageLayout>
+                <StyledForm onSubmit={handleSubmit}>
+                    <StyledLabel>
+                        {' '}
+                        <SyltedInput
+                            type="text"
+                            placeholder="여기에 입력하세요."
+                            name="classcode"
+                            classcode={classcode}
+                            onChange={handleChange}
+                            inputcheck={inputcheck}
+                        />
+                    </StyledLabel>
+                    <StyledDone fontColor={fontColor} inputcheck={inputcheck} type="submit">
+                        완료
+                    </StyledDone>
+                </StyledForm>
+            </ClassEnterPageLayout>
+        </div>
     );
 };
 
