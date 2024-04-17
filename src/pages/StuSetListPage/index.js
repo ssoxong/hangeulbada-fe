@@ -26,8 +26,9 @@ const ClassEnterPageLayout = styled.div`
 `;
 
 const StyledBoxLayout = styled.div`
-padding: 10px;
-margin: 10px`
+    padding: 10px;
+    margin: 10px;
+`;
 
 const dummy_set = [
     {
@@ -58,8 +59,8 @@ const StuSetListPage = () => {
         <ClassEnterPageLayout>
             <ClassListTitle>클래스명</ClassListTitle>
             {/* <StyledSetBox> */}
-                <StyledBoxLayout>
-                    {dummy_set.map((data) => (
+            <StyledBoxLayout>
+                {dummy_set.map((data) => (
                     <SetBox
                         key={data.setId}
                         title={data.title}
@@ -68,7 +69,7 @@ const StuSetListPage = () => {
                         deadline={data.deadline}
                     />
                 ))}
-                </StyledBoxLayout>
+            </StyledBoxLayout>
             {/* </StyledSetBox> */}
         </ClassEnterPageLayout>
     );

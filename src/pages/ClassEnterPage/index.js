@@ -60,18 +60,18 @@ const StyledDone = styled.button`
     border-color: white;
     margin: 0 180px;
     font-size: 20px;
-    color: ${(props) => props.fontColor};
+    color: ${(props) => props.fontcolor};
 `;
 
 const ClassEnterPage = () => {
     const [classcode, setClasscode] = useState('');
     const [inputcheck, setInputcheck] = useState('white');
-    const [fontColor, setFontColor] = useState('black');
+    const [fontcolor, setfontcolor] = useState('black');
 
     const handleChange = (e) => {
         setClasscode(e.target.value);
         setInputcheck('rgba(18, 127, 255)');
-        setFontColor('white');
+        setfontcolor('white');
     };
 
     const handleSubmit = (e) => {
@@ -90,23 +90,10 @@ const ClassEnterPage = () => {
                             name="classcode"
                             classcode={classcode}
                             onChange={handleChange}
-                        />
-                    </StyledLabel>
-                </StyledForm>
-
-                <StyledForm onSubmit={handleSubmit}>
-                    <StyledLabel>
-                        {' '}
-                        <SyltedInput
-                            type="text"
-                            placeholder="여기에 입력하세요."
-                            name="classcode"
-                            classcode={classcode}
-                            onChange={handleChange}
                             inputcheck={inputcheck}
                         />
                     </StyledLabel>
-                    <StyledDone fontColor={fontColor} inputcheck={inputcheck} type="submit">
+                    <StyledDone fontcolor={fontcolor} inputcheck={inputcheck} type="submit">
                         완료
                     </StyledDone>
                 </StyledForm>

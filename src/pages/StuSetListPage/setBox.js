@@ -17,7 +17,6 @@ const StyledSetBox = styled.div`
     margin: 20px;
     border-radius: 10px;
     padding: 10px;
-
 `;
 
 const StyledSetBoxTitle = styled.div`
@@ -37,9 +36,8 @@ const StyledSetOptions = styled.div`
 `;
 
 const StyledButton = styled.div`
-
-padding: 10px;
-`
+    padding: 10px;
+`;
 const SetBox = ({ title, desc, quesCnt, deadline }) => {
     SetBox.propTypes = {
         title: PropTypes.string.isRequired,
@@ -51,11 +49,11 @@ const SetBox = ({ title, desc, quesCnt, deadline }) => {
         <StyledSetBox>
             <StyledSetBoxTitle>{title}</StyledSetBoxTitle>
             <StyledSetBoxDescript>{desc}</StyledSetBoxDescript>
-            <StyledSetOptions>문제 수  {quesCnt}</StyledSetOptions>
+            <StyledSetOptions>문제 수 {quesCnt}</StyledSetOptions>
             <StyledSetOptions>마감일 {deadline}</StyledSetOptions>
             <StyledButton>
-              <ContainedButton btnType="primary" size="large" text="받아쓰기 시작하기"></ContainedButton>
-              </StyledButton>
+                <ContainedButton btnType="primary" size="large" text="받아쓰기 시작하기"></ContainedButton>
+            </StyledButton>
         </StyledSetBox>
     );
 };

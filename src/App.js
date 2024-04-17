@@ -11,7 +11,9 @@ import {
     SetPage,
     SetResultPage,
     ClassCreatePage,
+    StuSetListPage,
 } from './pages';
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
 
 import styled from 'styled-components';
 
@@ -47,6 +49,7 @@ function App() {
                             <Route path="/set" element={<SetPage />} />
                             <Route path="/setResultPage" element={<SetResultPage />} />
                             <Route path="/classCreate" element={<ClassCreatePage />} />
+                            <Route path="/StuSetListPage" element={<StuSetListPage />} />
                         </Routes>
                     </WebAppContainer>
                 </BodyInner>
