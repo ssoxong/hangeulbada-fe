@@ -23,27 +23,38 @@ const SetInformation = styled.div`
   display: flex;
   flex-direction: column;
   text-align: start;
-
+  
   .title {
     font-family: 'DXSamgakGimbap Medium';
     font-size: 24px;
+    margin-bottom: 8px;
   }
   .description {
     font-family: 'DXSamgakGimbap Light';
     font-size : 16px;
+    margin-bottom: 8px;
   }
   .count {
     font-family: 'DXSamgakGimbap Light';
     font-size : 16px;
+    margin-bottom: 8px;
   }
   .difficulty {
+    display: flex;
+    align-items: center;
+    .text {
+      margin-right: 12px;
+    }
     font-family: 'DXSamgakGimbap Light';
     font-size : 16px;
+    
   }
 `;
 const HeaderButtonBox = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  height: 90px;
 `;
 
 const SetPage = () => {
@@ -77,7 +88,7 @@ const SetPage = () => {
           <div className='description'>세트1에 대한 설명입니다.</div>
           <div className='count'>문제 수 8 {/*문제 수*/}</div>
           <div className='difficulty'>
-            난이도
+            <div className='text'>난이도</div>
             <img src={StarIcon} alt={'star'} />
           </div>
         </SetInformation>

@@ -10,7 +10,7 @@ const NavbarLayout = styled.div`
   padding-right: 15px;
   padding-top: 24px;
   padding-bottom: 10px;
-  background: wheat;
+  background: transparent;
 `;
 const BackButton = styled.button`
   display: flex;
