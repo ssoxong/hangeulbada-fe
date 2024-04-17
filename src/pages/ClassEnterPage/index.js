@@ -12,23 +12,6 @@ const ClassEnterPageLayout = styled.div`
     //align-items: center;
     background-color: rgba(74, 190, 255, 0.25);
 `;
-const ClassListHeader = styled.div`
-    display: flex;
-    flex-direction: column;
-    //align-items: center;
-    //justify-content: space-between;
-    margin: 24px;
-`;
-const ClassListTitle = styled.div`
-    display: flex;
-    font-size: 24px;
-    font-weight: 500;
-`;
-
-const ClassListSubTitle = styled.div`
-    display: flex;
-    margin: 2% 0;
-`;
 
 const StyledForm = styled.form`
     display: flex;
@@ -60,18 +43,18 @@ const StyledDone = styled.button`
     border-color: white;
     margin: 0 180px;
     font-size: 20px;
-    color: ${(props) => props.fontColor};
+    color: ${(props) => props.fontcolor};
 `;
 
 const ClassEnterPage = () => {
     const [classcode, setClasscode] = useState('');
     const [inputcheck, setInputcheck] = useState('white');
-    const [fontColor, setFontColor] = useState('black');
+    const [fontcolor, setfontcolor] = useState('black');
 
     const handleChange = (e) => {
         setClasscode(e.target.value);
         setInputcheck('rgba(18, 127, 255)');
-        setFontColor('white');
+        setfontcolor('white');
     };
 
     const handleSubmit = (e) => {
@@ -90,23 +73,10 @@ const ClassEnterPage = () => {
                             name="classcode"
                             classcode={classcode}
                             onChange={handleChange}
-                        />
-                    </StyledLabel>
-                </StyledForm>
-
-                <StyledForm onSubmit={handleSubmit}>
-                    <StyledLabel>
-                        {' '}
-                        <SyltedInput
-                            type="text"
-                            placeholder="여기에 입력하세요."
-                            name="classcode"
-                            classcode={classcode}
-                            onChange={handleChange}
                             inputcheck={inputcheck}
                         />
                     </StyledLabel>
-                    <StyledDone fontColor={fontColor} inputcheck={inputcheck} type="submit">
+                    <StyledDone fontcolor={fontcolor} inputcheck={inputcheck} type="submit">
                         완료
                     </StyledDone>
                 </StyledForm>

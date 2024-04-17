@@ -11,9 +11,10 @@ import {
     SetPage,
     SetResultPage,
     ClassCreatePage,
+    StuSetListPage,
 } from './pages';
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import styled from 'styled-components';
 
@@ -28,12 +29,12 @@ const BodyInner = styled.div`
     background-color: gray;
 `;
 const WebAppContainer = styled.div`
-  width: 100%;
-  max-width: 500px;
-  height: 100%;
-  background-color: white;
-  background-image: url(${BackgroundImage});
-  background-size: cover;
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    background-color: white;
+    background-image: url(${BackgroundImage});
+    background-size: cover;
 `;
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
                             <Route path="/set" element={<SetPage />} />
                             <Route path="/setResultPage" element={<SetResultPage />} />
                             <Route path="/classCreate" element={<ClassCreatePage />} />
+                            <Route path="/stusetlist" element={<StuSetListPage />} />
                         </Routes>
                     </WebAppContainer>
                 </BodyInner>
