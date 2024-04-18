@@ -20,88 +20,87 @@ const SetHeader = styled.div`
     font-size: 24px;
 `;
 const SetInformation = styled.div`
-  display: flex;
-  flex-direction: column;
-  text-align: start;
-  
-  .title {
-    font-family: 'DXSamgakGimbap Medium';
-    font-size: 24px;
-    margin-bottom: 8px;
-  }
-  .description {
-    font-family: 'DXSamgakGimbap Light';
-    font-size : 16px;
-    margin-bottom: 8px;
-  }
-  .count {
-    font-family: 'DXSamgakGimbap Light';
-    font-size : 16px;
-    margin-bottom: 8px;
-  }
-  .difficulty {
     display: flex;
-    align-items: center;
-    .text {
-      margin-right: 12px;
+    flex-direction: column;
+    text-align: start;
+
+    .title {
+        font-family: 'DXSamgakGimbap Medium';
+        font-size: 24px;
+        margin-bottom: 8px;
     }
-    font-family: 'DXSamgakGimbap Light';
-    font-size : 16px;
-    
-  }
+    .description {
+        font-family: 'DXSamgakGimbap Light';
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+    .count {
+        font-family: 'DXSamgakGimbap Light';
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+    .difficulty {
+        display: flex;
+        align-items: center;
+        .text {
+            margin-right: 12px;
+        }
+        font-family: 'DXSamgakGimbap Light';
+        font-size: 16px;
+    }
 `;
 const HeaderButtonBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90px;
 `;
 
 const SetPage = () => {
-  const dummies = [
-    {  
-     idx: '1번',
-     text: 'text1',
-     sound: 'sound1',
-    },
-    {  
-      idx: '2번',
-      text: 'text2',
-      sound: 'sound2',
-    },
-    {  
-      idx: '3번',
-      text: 'text3',
-      sound: 'sound3',
-    },
-    {  
-      idx: '4번',
-      text: 'text4',
-      sound: 'sound4',
-    },
-  ]
-  return (
-    <SetPageLayout>
-      <SetHeader>
-        <SetInformation>
-          <div className='title'>세트 1 {/*세트 명*/}</div>
-          <div className='description'>세트1에 대한 설명입니다.</div>
-          <div className='count'>문제 수 8 {/*문제 수*/}</div>
-          <div className='difficulty'>
-            <div className='text'>난이도</div>
-            <img src={StarIcon} alt={'star'} />
-          </div>
-        </SetInformation>
-        <HeaderButtonBox>
-          <ContainedButton btnType="primary" size="mid" text="문장 추가" />
-          <ContainedButton btnType="secondary" size="mid" text="문장 삭제" />
-        </HeaderButtonBox>
-      </SetHeader>
-      {dummies.map((dummy) => (
-          <ProblemCard idx={dummy.idx} text={dummy.text} sound={dummy.sound} />
-      ))}
-    </SetPageLayout>
-  );
+    const dummies = [
+        {
+            idx: '1번',
+            text: 'text1',
+            sound: 'sound1',
+        },
+        {
+            idx: '2번',
+            text: 'text2',
+            sound: 'sound2',
+        },
+        {
+            idx: '3번',
+            text: 'text3',
+            sound: 'sound3',
+        },
+        {
+            idx: '4번',
+            text: 'text4',
+            sound: 'sound4',
+        },
+    ];
+    return (
+        <SetPageLayout>
+            <SetHeader>
+                <SetInformation>
+                    <div className="title">세트 1 {/*세트 명*/}</div>
+                    <div className="description">세트1에 대한 설명입니다.</div>
+                    <div className="count">문제 수 8 {/*문제 수*/}</div>
+                    <div className="difficulty">
+                        <div className="text">난이도</div>
+                        <img src={StarIcon} alt={'star'} />
+                    </div>
+                </SetInformation>
+                <HeaderButtonBox>
+                    <ContainedButton btnType="primary" size="mid" text="문장 추가" />
+                    <ContainedButton btnType="secondary" size="mid" text="문장 삭제" />
+                </HeaderButtonBox>
+            </SetHeader>
+            {dummies.map((dummy) => (
+                <ProblemCard key={dummy.idx} idx={dummy.idx} text={dummy.text} sound={dummy.sound} />
+            ))}
+        </SetPageLayout>
+    );
 };
 
 export default SetPage;
