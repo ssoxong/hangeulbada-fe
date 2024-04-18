@@ -124,7 +124,7 @@ const SetResultPage = () => {
         </ScoreBox>
       </SetHeader>
       {dummies.map((dummy) => (
-          <ProblemCard studentAnswer={dummy.studentAnswer} answer={dummy.answer} correct={dummy.correct} />
+          <ProblemCard key={dummy.studentAnswer} studentAnswer={dummy.studentAnswer} answer={dummy.answer} correct={dummy.correct} />
         ))}      
     </SetResultPageLayout>
   );
