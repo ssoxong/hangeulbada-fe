@@ -61,8 +61,8 @@ const SetListPage = () => {
                         <ContainedButton btnType="secondary" size="mid" text="삭제" outline />
                     </SetListButtonBox>
                 </SetListHeader>
-                {dummies.map((dummy) => (
-                    <SetCard key={dummy.title} title={dummy.title} desc={dummy.desc} />
+                {dummies.map((dummy, index) => (
+                    <SetCard key={index} title={dummy.title} desc={dummy.desc} />
                 ))}
             </SetListBox>
         </SetListPageLayout>
