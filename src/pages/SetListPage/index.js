@@ -26,9 +26,10 @@ const SetListTitle = styled.div`
     font-size: 24px;
 `;
 const SetListButtonBox = styled.div`
-    display: flex;
-    justify-content: space-around;
-    width: 40%;
+  display: flex;
+  justify-content: space-between;
+  width: 45%;
+
 `;
 
 const SetListPage = () => {

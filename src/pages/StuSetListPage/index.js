@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import SetBox from '../StuSetListPage/SetBox';
+import SetBox from './SetBox';
 
 const ClassListHeader = styled.div`
     display: flex;

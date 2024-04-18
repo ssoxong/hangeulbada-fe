@@ -24,15 +24,18 @@ const SecondaryButton = styled.button`
     background-color: white;
 `;
 const TertiaryButton = styled.button`
-    min-width: ${({ size }) => (size === 'large' ? '170px' : size === 'mid' ? '90px' : '28px')};
-    height: ${({ size }) => (size === 'large' ? '40px' : size === 'mid' ? '40px' : '28px')};
-    width: ${({ size }) => (size === 'large' ? '170px' : size === 'mid' ? '90px' : '28px')};
-    font-family: 'DXSamgakGimbap Light';
-    font-size: 16px;
-    border-radius: 6px;
-    border: hidden;
-    color: black;
-    background-color: yellow;
+  min-width: ${({ size }) =>
+    size === "large" ? "170px" : size === "mid" ? "90px" : "28px"};
+  height: ${({ size }) =>
+    size === "large" ? "40px" : size === "mid" ? "40px" : "28px"};
+  width: ${({ size }) =>
+    size === "large" ? "170px" : size === "mid" ? "90px" : "28px"};
+  font-family: 'DXSamgakGimbap Light';
+  font-size: 16px;
+  border-radius: 6px;
+  border: hidden;
+  color: black;
+  background-color: #FFD912;
 `;
 
 const ContainedButton = ({ btnType, text, size, onClick, outline }) => {

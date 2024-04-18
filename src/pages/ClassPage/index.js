@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import SetCard from './SetCard';
 import { CopyButtonIcon } from '../../assets/icons';
 import ContainedButton from '../../components/button/ContainedButton';
-import SortButton from './components/SortButton';
+import Dropdown from '../../components/button/Dropdown';
 
 const ClassPageLayout = styled.div`
     display: flex;
@@ -41,7 +41,6 @@ const CopyButton = styled.button`
 const HeaderButtonBox = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
 `;
 const SetColums = styled.div`
@@ -116,7 +115,8 @@ const ClassPage = () => {
                 </ClassTitleBox>
                 <HeaderButtonBox>
                     <ContainedButton btnType="primary" size="large" text="이 클래스 세트 보기" />
-                    <SortButton items={items} />
+
+                    <Dropdown text="정렬 옵션" items={items} />
                 </HeaderButtonBox>
             </ClassHeader>
             <SetColums>

@@ -14,9 +14,12 @@ import {
     StuSetListPage,
     TestPage,
 } from './pages';
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
+
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import styled from 'styled-components';
+
+import { BackgroundImage } from './assets/images';
 
 const BodyInner = styled.div`
     display: flex;
@@ -31,6 +34,8 @@ const WebAppContainer = styled.div`
     max-width: 500px;
     height: 100%;
     background-color: white;
+    background-image: url(${BackgroundImage});
+    background-size: cover;
 `;
 
 function App() {

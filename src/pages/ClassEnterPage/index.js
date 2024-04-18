@@ -12,23 +12,6 @@ const ClassEnterPageLayout = styled.div`
     //align-items: center;
     background-color: rgba(74, 190, 255, 0.25);
 `;
-const ClassListHeader = styled.div`
-    display: flex;
-    flex-direction: column;
-    //align-items: center;
-    //justify-content: space-between;
-    margin: 24px;
-`;
-const ClassListTitle = styled.div`
-    display: flex;
-    font-size: 24px;
-    font-weight: 500;
-`;
-
-const ClassListSubTitle = styled.div`
-    display: flex;
-    margin: 2% 0;
-`;
 
 const StyledForm = styled.form`
     display: flex;

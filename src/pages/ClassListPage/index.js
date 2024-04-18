@@ -26,9 +26,9 @@ const ClassListTitle = styled.div`
     font-size: 24px;
 `;
 const ClassListButtonBox = styled.div`
-    display: flex;
-    justify-content: space-around;
-    width: 40%;
+  display: flex;
+  justify-content: space-between;
+  width: 45%;
 `;
 
 const ClassListPage = () => {
