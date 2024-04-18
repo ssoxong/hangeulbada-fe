@@ -17,7 +17,6 @@ const ClassHeader = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: 100px;
     margin: 24px;
     font-family: 'DXSamgakGimbap Medium';
     font-size: 24px;
@@ -42,8 +41,6 @@ const CopyButton = styled.button`
 const HeaderButtonBox = styled.div`
     display: flex;
     flex-direction: column;
-    height: 100%;
-    justify-content: space-around;
     align-items: center;
 `;
 const SetColums = styled.div`
@@ -118,6 +115,7 @@ const ClassPage = () => {
                 </ClassTitleBox>
                 <HeaderButtonBox>
                     <ContainedButton btnType="primary" size="large" text="이 클래스 세트 보기" />
+
                     <Dropdown text="정렬 옵션" items={items} />
                 </HeaderButtonBox>
             </ClassHeader>

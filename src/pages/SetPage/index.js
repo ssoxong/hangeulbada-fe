@@ -6,18 +6,18 @@ import ContainedButton from '../../components/button/ContainedButton';
 import { StarIcon } from '../../assets/icons';
 
 const SetPageLayout = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  min-height: 100vh;
-  position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
 `;
 const SetHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 24px;
-  font-size: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 24px;
+    font-size: 24px;
 `;
 const SetInformation = styled.div`
   display: flex;
