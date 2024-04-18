@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import QuestBox from './QuestBox';
-
+import ContainedButton from '../../components/button/ContainedButton';
 const SetListPageLayout = styled.div`
     display: flex;
     flex-direction: column;
@@ -35,6 +35,10 @@ const StyledQuestCol = styled.div`
     &:nth-child(1) {
         padding: 0 0 0 40px;
     }
+`;
+
+const StyledSubmitButton = styled.div`
+    padding: 10px;
 `;
 
 // cnt 문제수
@@ -103,6 +107,9 @@ const TestPage = () => {
                             ))}
                     </StyledQuestCol>
                 </StyledQuestLayout>
+                <StyledSubmitButton>
+                    <ContainedButton btnType="primary" size="large" text="사진 찍어 제출하기"></ContainedButton>
+                </StyledSubmitButton>
             </SetListPageLayout>
         </div>
     );

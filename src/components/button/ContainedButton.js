@@ -54,6 +54,7 @@ const ContainedButton = ({ btnType, text, size, onClick, outline }) => {
                     {text}
                 </TertiaryButton>
             )}
+            
         </>
     );
 };
