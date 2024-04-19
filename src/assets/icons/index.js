@@ -12,3 +12,4 @@ export { default as XMark } from './x-mark.svg';
 export { default as listenDone } from './listenDone.svg';
 export { default as listenInProgress } from './listenInProgress.svg';
 export { default as listenNotDone } from './listenNotDone.svg';
+export { default as RemoveIcon } from './remove-icon.svg';
