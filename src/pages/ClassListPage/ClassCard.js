@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ContainedButton from '../../components/button/ContainedButton';
+import { RemoveIcon } from '../../assets/icons';
 
 const ClassCardLayout = styled.div`
   display: flex;
@@ -23,21 +24,38 @@ const ClassCardInformation = styled.div`
     font-size: 16px;
   }
 `
+const RemoveButton = styled.button`
+  display: flex;
+  align-items: center;
+  border-width: 0;
+  background-color: transparent;
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
-const ClassCard = ({title, desc, code}) => {
+const ClassCard = ({title, desc, code, isRemove}) => {
+
   return (
     <ClassCardLayout>
       <ClassCardInformation>
         <div className='title'>{title}</div>
         <div className='desc'>{desc}</div>
       </ClassCardInformation>
-      <ContainedButton
-        btnType="tertialy"
-        size="mid"
-        text={code}
-      >
-        {code}
-      </ContainedButton>
+      {isRemove ? (
+        <RemoveButton>
+          <img src={RemoveIcon} alt="remove" />
+        </RemoveButton>
+      ) : (
+        <ContainedButton
+          btnType="tertialy"
+          size="mid"
+          text={code}
+        >
+          {code}
+        </ContainedButton>
+      )}
+      
     </ClassCardLayout>
   );
 };
