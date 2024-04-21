@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import ClassCard from './ClassCard';
@@ -103,6 +103,9 @@ const ClassListPage = () => {
     },
   ];
 
+  const createOnClick = () => {
+    window.location.href = "/classCreate";
+  }
   const removeOnClick = () => {
     setIsRemoveClicked(true);
   }
@@ -129,7 +132,12 @@ const ClassListPage = () => {
           <ClassListHeader>
             <ClassListTitle>나의 클래스</ClassListTitle>
             <ClassListButtonBox>
-              <ContainedButton btnType="primary" size="mid" text="생성" />
+              <ContainedButton 
+                btnType="primary" 
+                size="mid" 
+                text="생성" 
+                onClick={createOnClick}
+              />
               <ContainedButton 
                 btnType="secondary" 
                 size="mid" 
