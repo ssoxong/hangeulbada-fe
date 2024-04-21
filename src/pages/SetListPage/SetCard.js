@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { RemoveIcon } from '../../assets/icons';
 
 const SetCardLayout = styled.div`
   display: flex;
@@ -25,14 +26,28 @@ const SetCardInformation = styled.div`
     font-size: 16px;
   }
 `
+const RemoveButton = styled.button`
+  display: flex;
+  align-items: center;
+  border-width: 0;
+  background-color: transparent;
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
-const SetCard = ({title, desc, onClick }) => {
+const SetCard = ({title, desc, onClick, isRemove }) => {
   return (
     <SetCardLayout onClick={onClick}>
       <SetCardInformation>
         <div className='title'>{title}</div>
         <div className='desc'>{desc}</div>
       </SetCardInformation>
+      {isRemove && (
+        <RemoveButton>
+          <img src={RemoveIcon} alt="remove" />
+        </RemoveButton>
+      )}
     </SetCardLayout>
   );
 };
