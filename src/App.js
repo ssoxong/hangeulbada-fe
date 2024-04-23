@@ -14,6 +14,7 @@ import {
     StuSetListPage,
     TestPage,
     MyPage,
+    StuResultPage,
 } from './pages';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -59,6 +60,7 @@ function App() {
                             <Route path="/StuSetListPage" element={<StuSetListPage />} />
                             <Route path="/testPage" element={<TestPage />} />
                             <Route path="/MyPage" element={<MyPage />} />
+                            <Route path="/stuResult" element={<StuResultPage />} />
                         </Routes>
                     </WebAppContainer>
                 </BodyInner>
