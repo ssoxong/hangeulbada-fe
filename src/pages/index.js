@@ -9,4 +9,4 @@ export { default as SetResultPage } from './SetResultPage';
 export { default as ClassCreatePage } from './ClassCreatePage';
 export { default as StuSetListPage } from './StuSetListPage';
 export { default as TestPage } from './TestPage';
-
+export { default as MyPage } from './MyPage';

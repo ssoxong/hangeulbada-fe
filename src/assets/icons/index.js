@@ -13,3 +13,4 @@ export { default as listenDone } from './listenDone.svg';
 export { default as listenInProgress } from './listenInProgress.svg';
 export { default as listenNotDone } from './listenNotDone.svg';
 export { default as RemoveIcon } from './remove-icon.svg';
+export { default as stampGreen } from './stampGreen.svg';
