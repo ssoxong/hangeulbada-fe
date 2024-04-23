@@ -12,3 +12,4 @@ export { default as TestPage } from './TestPage';
 export { default as MyPage } from './MyPage';
 export { default as StuResultPage } from './StuResultPage';
 export { default as ShowPastTestPage } from './ShowPastTestPage';
+export { default as IntroSelectRolePage } from './IntroSelectRolePage';
