@@ -96,8 +96,8 @@ const SetPage = () => {
                     <ContainedButton btnType="secondary" size="mid" text="문장 삭제" />
                 </HeaderButtonBox>
             </SetHeader>
-            {dummies.map((dummy) => (
-                <ProblemCard key={dummy.idx} idx={dummy.idx} text={dummy.text} sound={dummy.sound} />
+            {dummies.map((dummy, index) => (
+                <ProblemCard key={index} idx={dummy.idx} text={dummy.text} sound={dummy.sound} />
             ))}
         </SetPageLayout>
     );
