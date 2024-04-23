@@ -11,3 +11,4 @@ export { default as StuSetListPage } from './StuSetListPage';
 export { default as TestPage } from './TestPage';
 export { default as MyPage } from './MyPage';
 export { default as StuResultPage } from './StuResultPage';
+export { default as ShowPastTestPage } from './ShowPastTestPage';

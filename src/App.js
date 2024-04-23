@@ -15,6 +15,7 @@ import {
     TestPage,
     MyPage,
     StuResultPage,
+    ShowPastTestPage,
 } from './pages';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -61,6 +62,7 @@ function App() {
                             <Route path="/testPage" element={<TestPage />} />
                             <Route path="/MyPage" element={<MyPage />} />
                             <Route path="/stuResult" element={<StuResultPage />} />
+                            <Route path="/showPastTestPage" element={<ShowPastTestPage />} />
                         </Routes>
                     </WebAppContainer>
                 </BodyInner>
