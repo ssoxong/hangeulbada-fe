@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import MyCalendar from './MyCalendar';
-import ContainedButton from '../../components/button/ContainedButton';
 
 const MyPageLayout = styled.div`
     display: flex;

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import SignUp from './SignUp';
+import IntroPage from '../IntroPage';
+import SelectRole from './SelectRole';
 
 const IntroPageLayout = styled.div`
     display: flex;
@@ -10,6 +11,7 @@ const IntroPageLayout = styled.div`
     position: relative;
     align-items: center;
 `;
+
 const IntroInputBox = styled.div`
     margin: 70%;
     height: 300px;
@@ -17,14 +19,14 @@ const IntroInputBox = styled.div`
     // background-color: red;
 `;
 
-const IntroPage = () => {
+const IntroSelectRolePage = () => {
     return (
         <IntroPageLayout>
             <IntroInputBox>
-                <SignUp />
+                <SelectRole />
             </IntroInputBox>
         </IntroPageLayout>
     );
 };
 
-export default IntroPage;
+export default IntroSelectRolePage;

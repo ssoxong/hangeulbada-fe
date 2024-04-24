@@ -15,6 +15,8 @@ import {
     TestPage,
     MyPage,
     StuResultPage,
+    ShowPastTestPage,
+    IntroSelectRolePage,
 } from './pages';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -22,6 +24,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { BackgroundImage } from './assets/images';
+import { introBk } from './assets/images';
 
 const BodyInner = styled.div`
     display: flex;
@@ -40,15 +43,30 @@ const WebAppContainer = styled.div`
     background-size: cover;
 `;
 
+const IntroContainer = styled.div`
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    background-color: white;
+    background-image: url(${introBk});
+    background-size: cover;
+`;
+
 function App() {
     return (
         <div className="App">
             <BrowserRouter>
                 <BodyInner>
+                    <IntroContainer>
+                        <Routes>
+                            <Route exact path="/" element={<IntroPage />} />
+                            <Route exact path="/selectRole" element={<IntroSelectRolePage />} />
+                        </Routes>
+                    </IntroContainer>
+
                     <WebAppContainer>
                         <Navbar />
                         <Routes>
-                            <Route exact path="/" element={<IntroPage />} />
                             <Route path="/main" element={<MainPage />} />
                             <Route path="/classList" element={<ClassListPage />} />
                             <Route path="/classEnter" element={<ClassEnterPage />} />
@@ -61,6 +79,7 @@ function App() {
                             <Route path="/testPage" element={<TestPage />} />
                             <Route path="/MyPage" element={<MyPage />} />
                             <Route path="/stuResult" element={<StuResultPage />} />
+                            <Route path="/showPastTestPage" element={<ShowPastTestPage />} />
                         </Routes>
                     </WebAppContainer>
                 </BodyInner>
