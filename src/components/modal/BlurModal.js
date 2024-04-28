@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import ContainedButton from '../button/ContainedButton';
 
 const BlurModalLayout = styled.div`
   box-sizing: border-box;
