@@ -3,53 +3,8 @@ import styled from "styled-components";
 
 import SetCard from "./SetCard";
 import ContainedButton from "../../components/button/ContainedButton";
+import BlurModal from "../../components/modal/BlurModal";
 
-const Blur = styled.div`
-  box-sizing: border-box;
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: rgba(255,255,255,0.15);
-  backdrop-filter: blur(5px);
-  animation: modal-bg-show 500ms;
-  @keyframes modal-bg-show {
-      from {
-          opacity: 0;
-      }
-      to {
-          opacity: 1;
-      }
-  }
-  z-index: 900;
-  overflow: hidden;
-`;
-const ModalLayout = styled.div`
-  width: 100%;
-  box-sizing: border-box;
-  display: block;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 901;
-  overflow: hidden;
-`;
-const ModalInner = styled.div`
-  box-sizing: border-box;
-  position: relative;
-  border-radius: 15px;
-  width: 100%;
-  max-width: 500px;
-  height: 100%;
-  margin: 0 auto;
-  margin-top: 20vh;
-  border: none;
-  background-color: transparent;
-`;
 const SetListPageLayout = styled.div`
   display: flex;
   flex-direction: column;
@@ -111,17 +66,17 @@ const SetListPage = () => {
   return (
     <>
       {isRemoveClicked && (
-          <Blur>
-            <ModalLayout>
-              <ModalInner>
-                {dummies.map((dummy) => (
+        <BlurModal
+          innerDatas={
+            <>
+              {dummies.map((dummy) => (
                   <SetCard key={dummy.title} title={dummy.title} desc={dummy.desc} code={dummy.code} isRemove />
-                ))}
-                <ContainedButton btnType="primary" size="mid" text="완료" onClick={submitOnClick}/>
-              </ModalInner>
-            </ModalLayout>
-          </Blur>
-        )}
+              ))}
+              <ContainedButton btnType="primary" size="mid" text="완료" onClick={submitOnClick}/>
+            </>
+          }
+        />
+      )}
       <SetListPageLayout>
         <SetListBox>
           <SetListHeader>
@@ -137,7 +92,6 @@ const SetListPage = () => {
                 btnType="secondary"
                 size="mid"
                 text="삭제"
-                outline
                 onClick={removeOnClick}
               />
             </SetListButtonBox>

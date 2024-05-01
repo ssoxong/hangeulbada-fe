@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import ProblemCard from './ProblemCard';
 import { StarIcon } from '../../assets/icons';
 import ContainedButton from '../../components/button/ContainedButton';
+import BlurModal from '../../components/modal/BlurModal';
 
 const SetResultPageLayout = styled.div`
   display: flex;
@@ -75,6 +76,8 @@ const ScoreBox = styled.div`
 `;
 
 const SetResultPage = () => {
+  const [openImage, setOpenImage] = useState(false);
+
   const dummies = [
     {  
      studentAnswer: 'studentAnswer1',
@@ -97,41 +100,60 @@ const SetResultPage = () => {
       correct: 'correct4',
     },
   ]
+  const imageOnClick = () => {
+    setOpenImage(true);
+  };
+  const closeOnClick = () => {
+    setOpenImage(false);
+  }
   return (
-    <SetResultPageLayout>
-      <SetInformation>
-        <div className='title'>세트명 {/*세트 명*/}</div>
-        <div className='description'>세트에 대한 설명</div>
-        <div className='count'>문제 수  {/*문제 수*/}</div>
-        <div className='difficulty'>
-          난이도{' '}
-          <img src={StarIcon} alt={'star'} />
-        </div>
-      </SetInformation>
-      <SetHeader>
-        <NameAndButtonBox>
-          <div className='name'>학생 명</div>
-          <ContainedButton 
-            btnType="primary" 
-            size="large" 
-            text="제출한 이미지 보기"
-            onClick={() => {}}
-          />
-        </NameAndButtonBox>
-        <ScoreBox>
-          <div className='text'>총점</div>
-          <div className='score'>80</div>
-        </ScoreBox>
-      </SetHeader>
-      {dummies.map((dummy, index) => (
-        <ProblemCard 
-          studentAnswer={dummy.studentAnswer} 
-          answer={dummy.answer} 
-          correct={dummy.correct} 
-          key={index}
+    <>
+      {openImage && (
+        <BlurModal
+          innerDatas={
+            <>
+              <div onClick={closeOnClick}>
+                image
+              </div>
+            </>
+          }
         />
-      ))}      
-    </SetResultPageLayout>
+      )}
+      <SetResultPageLayout>
+        <SetInformation>
+          <div className='title'>세트명 {/*세트 명*/}</div>
+          <div className='description'>세트에 대한 설명</div>
+          <div className='count'>문제 수  {/*문제 수*/}</div>
+          <div className='difficulty'>
+            난이도{' '}
+            <img src={StarIcon} alt={'star'} />
+          </div>
+        </SetInformation>
+        <SetHeader>
+          <NameAndButtonBox>
+            <div className='name'>학생 명</div>
+            <ContainedButton 
+              btnType="primary" 
+              size="large" 
+              text="제출한 이미지 보기"
+              onClick={imageOnClick}
+            />
+          </NameAndButtonBox>
+          <ScoreBox>
+            <div className='text'>총점</div>
+            <div className='score'>80</div>
+          </ScoreBox>
+        </SetHeader>
+        {dummies.map((dummy, index) => (
+          <ProblemCard 
+            studentAnswer={dummy.studentAnswer} 
+            answer={dummy.answer} 
+            correct={dummy.correct} 
+            key={index}
+          />
+        ))}      
+      </SetResultPageLayout>
+    </>
   );
 };
 
