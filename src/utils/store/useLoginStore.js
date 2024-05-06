@@ -7,7 +7,24 @@ export const useLoginState = create(
     setLogin: (state) => set({ isLogin: state }),
   }),
   {
-    name: 'isLoggedIn',
+    name: 'loginStore',
   },
   )
 );
+
+export const useOAuthState = create(
+  persist((set) => ({
+    cid : null,
+    name : null,
+    email : null,
+    role : null,
+    setCid: (state) => set({ cid: state }),
+    setName: (state) => set({ name: state }),
+    setEmail: (state) => set({ email: state }),
+    setRole: (state) => set({ role: state }),
+  }),
+  {
+    name: 'userDataStore'
+  }
+  )
+)

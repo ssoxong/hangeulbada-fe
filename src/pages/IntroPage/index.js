@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import SignUp from './SignUp';
 import LoginButton from './components/LoginButton';
-import { useLoginState } from '../../utils/store/useLoginStore';
+import { useLoginState, useOAuthState } from '../../utils/store/useLoginStore';
 import ContainedButton from '../../components/button/ContainedButton';
 import { requestLogin } from '../../utils/api/auth';
+import MainPage from '../MainPage';
 
 const IntroPageLayout = styled.div`
     display: flex;
@@ -69,10 +70,9 @@ const RoleButton = ({ role, clicked, onClick }) => {
 const IntroPage = () => {
     const [ leftBtnClicked, setLeftBtnClicked ] = useState(false);
     const [ rightBtnClicked, setRighttBtnClicked ] = useState(false);
-    const [ role, setRole ] = useState();
-    const [ userData, setUserData ] = useState();
 
-    const { isLogin } = useLoginState();
+    const { isLogin, setLogin } = useLoginState();
+    const { cid, name, email, role, setRole } = useOAuthState();
     
     const leftBtnOnClick = () => {
         setLeftBtnClicked(true);
@@ -87,44 +87,51 @@ const IntroPage = () => {
     }
 
     const submitOnClick = () => {
-        const requestGoogleLogin = async (userData) => {
-            console.log(userData.sub, userData.name, userData.email, role);
-            await requestLogin(userData.sub, userData.name, userData.email, role)
+        const requestGoogleLogin = async (cid, name, email) => {
+            console.log(cid, name, email, role);
+            await requestLogin(cid, name, email, role)
                 .then(res => {
                     console.log(res);
+                    window.location.href='/main';
                 })
         }
 
-        requestGoogleLogin(userData);
+        requestGoogleLogin(cid, name, email);
     }
 
     return (
         <IntroPageLayout>
-            {isLogin ? 
-            (
-            <IntroRoleLayout>
-                <IntroButtonBox>
-                    <RoleButton 
-                        role='teacher'
-                        clicked={leftBtnClicked}
-                        onClick={leftBtnOnClick}
-                    />
-                    <RoleButton 
-                        role='student'
-                        clicked={rightBtnClicked} 
-                        onClick={rightBtnOnClick}
-                    />
-                </IntroButtonBox>
-                <div>
-                    <ContainedButton btnType="secondary" size="mid" text="확인" onClick={submitOnClick} />
-                </div>
-            </IntroRoleLayout>) : 
-            (<IntroInputBox>
-                <SignUp />
-                <LoginButton setUserData={setUserData} />
-            </IntroInputBox>)}
+            {isLogin ? (
+                <IntroRoleLayout>
+                    <IntroButtonBox>
+                        <RoleButton 
+                            role='teacher'
+                            clicked={leftBtnClicked}
+                            onClick={leftBtnOnClick}
+                        />
+                        <RoleButton 
+                            role='student'
+                            clicked={rightBtnClicked} 
+                            onClick={rightBtnOnClick}
+                        />
+                    </IntroButtonBox>
+                    <div>
+                        <ContainedButton 
+                            btnType="secondary" 
+                            size="mid" 
+                            text="확인" 
+                            onClick={submitOnClick} 
+                        />
+                    </div>
+                </IntroRoleLayout>
+            ) : (
+                <IntroInputBox>
+                    <SignUp />
+                    <LoginButton />
+                </IntroInputBox>
+            )}
         </IntroPageLayout>
-    );
+      );
 };
 
 export default IntroPage;
