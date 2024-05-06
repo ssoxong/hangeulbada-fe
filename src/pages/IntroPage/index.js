@@ -4,6 +4,7 @@ import SignUp from './SignUp';
 import LoginButton from './components/LoginButton';
 import { useLoginState } from '../../utils/store/useLoginStore';
 import ContainedButton from '../../components/button/ContainedButton';
+import { requestLogin } from '../../utils/api/auth';
 
 const IntroPageLayout = styled.div`
     display: flex;
@@ -68,15 +69,33 @@ const RoleButton = ({ role, clicked, onClick }) => {
 const IntroPage = () => {
     const [ leftBtnClicked, setLeftBtnClicked ] = useState(false);
     const [ rightBtnClicked, setRighttBtnClicked ] = useState(false);
+    const [ role, setRole ] = useState();
+    const [ userData, setUserData ] = useState();
+
     const { isLogin } = useLoginState();
     
     const leftBtnOnClick = () => {
         setLeftBtnClicked(true);
         setRighttBtnClicked(false);
+        setRole('teacher');
     }
+    
     const rightBtnOnClick = () => {
         setLeftBtnClicked(false);
         setRighttBtnClicked(true);
+        setRole('student');
+    }
+
+    const submitOnClick = () => {
+        const requestGoogleLogin = async (userData) => {
+            console.log(userData.sub, userData.name, userData.email, role);
+            await requestLogin(userData.sub, userData.name, userData.email, role)
+                .then(res => {
+                    console.log(res);
+                })
+        }
+
+        requestGoogleLogin(userData);
     }
 
     return (
@@ -97,12 +116,12 @@ const IntroPage = () => {
                     />
                 </IntroButtonBox>
                 <div>
-                    <ContainedButton btnType="secondary" size="mid" text="확인" onClick={() => {}} />
+                    <ContainedButton btnType="secondary" size="mid" text="확인" onClick={submitOnClick} />
                 </div>
             </IntroRoleLayout>) : 
             (<IntroInputBox>
                 <SignUp />
-                <LoginButton />
+                <LoginButton setUserData={setUserData} />
             </IntroInputBox>)}
         </IntroPageLayout>
     );
