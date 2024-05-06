@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { GoogleLoginIcon } from '../../../assets/icons';
 import { useGoogleLogin } from '@react-oauth/google';
-import { useLoginState } from '../../../utils/store/useLoginStore';
+import { useLoginState, useOAuthState } from '../../../utils/store/useLoginStore';
 import axios from 'axios';
 import { requestLogin } from '../../../utils/api/auth';
 
@@ -17,7 +17,8 @@ const LoginButtonLayout = styled.button`
   }
 `;
 
-const LoginButton = ({ setUserData }) => {
+const LoginButton = () => {
+  const { setCid, setName, setEmail } = useOAuthState();
   const { setLogin } = useLoginState();
 
   const loginOnClick = useGoogleLogin({
@@ -27,7 +28,9 @@ const LoginButton = ({ setUserData }) => {
           Authorization: `Bearer ${res.access_token}`,
         },
       });
-      setUserData(userData.data);
+      setCid(userData.data.sub);
+      setName(userData.data.name);
+      setEmail(userData.data.email);
       setLogin(true);
       //window.location.reload();
       //localStorage.setItem("refreshToken", res.refreshToken);

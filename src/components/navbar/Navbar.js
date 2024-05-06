@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { BackIcon, Logo1, UserIcon } from '../../assets/icons';
 import { Link, useNavigate } from 'react-router-dom';
+import { useOAuthState } from '../../utils/store/useLoginStore';
 
 const NavbarLayout = styled.div`
   max-width: 500px;
@@ -55,7 +56,9 @@ const UserName = styled.div`
   font-size: 20px;
 `;
 
-const Navbar = ({ role, userName, userId }) => {
+const Navbar = () => {
+  const { cid, name, email, role } = useOAuthState();
+
   const navigate = useNavigate();
   const onClickBackButton = () => {
     navigate(-1);
@@ -75,7 +78,7 @@ const Navbar = ({ role, userName, userId }) => {
             {role === 'teacher' ? '선생님' : '학생'}
           </UserRole>
           <UserName>
-            {'나선생'}  {/* userName */}
+            {name}
           </UserName>
           <Link to="/">
             <LogoIcon src={UserIcon} />
