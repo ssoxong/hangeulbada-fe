@@ -22,25 +22,29 @@ const StyledRoleBox = styled.button`
         background-color: #127fff;
     }
 
-    // &:focus {
-    //     outline: none;
-    // }
+    &:focus {
+        border-color: #127fff;
+        color: white;
+        background-color: #127fff;
+    }
 `;
-const SelectRole = () => {
+const SelectRole = ({ active, setActive }) => {
+    const onClickHanlder = () => {
+        setActive(true);
+    };
     return (
         <div>
             <StyledRoleLayout>
-                <StyledRoleBox>
+                <StyledRoleBox onClick={onClickHanlder}>
                     선생님 <br /> 또는 <br />
                     학부모
                 </StyledRoleBox>
-                <StyledRoleBox>
+                <StyledRoleBox onClick={onClickHanlder}>
                     학생
                     <br /> 또는
                     <br /> 자녀
                 </StyledRoleBox>
             </StyledRoleLayout>
-            <ContainedButton btnType="secondary" size="mid" text="확인"></ContainedButton>
         </div>
     );
 };

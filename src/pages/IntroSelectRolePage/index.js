@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import IntroPage from '../IntroPage';
 import SelectRole from './SelectRole';
-
+import ContainedButton from '../../components/button/ContainedButton';
 const IntroPageLayout = styled.div`
     display: flex;
     flex-direction: column;
@@ -19,11 +19,17 @@ const IntroInputBox = styled.div`
     // background-color: red;
 `;
 
+const StyledButton = styled(ContainedButton)`
+    background-color: red;
+`;
 const IntroSelectRolePage = () => {
+    const [active, setActive] = useState(false);
+
     return (
         <IntroPageLayout>
             <IntroInputBox>
-                <SelectRole />
+                <SelectRole active={active} setActive={setActive} />
+                <StyledButton btnType="secondary" size="mid" text="확인" active={active} />
             </IntroInputBox>
         </IntroPageLayout>
     );
