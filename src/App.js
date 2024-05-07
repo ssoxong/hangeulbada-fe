@@ -20,6 +20,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { BackgroundImage } from './assets/images';
+import ImgSubmit from './pages/TestPage/ImgSumbit';
 
 const BodyInner = styled.div`
     display: flex;
@@ -57,6 +58,7 @@ function App() {
                             <Route path="/classCreate" element={<ClassCreatePage />} />
                             <Route path="/StuSetListPage" element={<StuSetListPage />} />
                             <Route path="/testPage" element={<TestPage />} />
+                            <Route path="/submitImg" element={<ImgSubmit/>}/>
                         </Routes>
                     </WebAppContainer>
                 </BodyInner>
