@@ -18,7 +18,7 @@ const HeaderBox = styled.div`
   margin-bottom: 0px;
   border-radius: 10px;
   background-color: transparent;
-  /* Medium */
+  font-family: 'DXSamgakGimbap Medium';
   font-size: 24px;
 `;
 const ClassInformation = styled.div`
@@ -28,7 +28,7 @@ const ClassInformation = styled.div`
   padding: 30px;
   margin: 24px;
   border-radius: 10px;
-  /* Light */
+  font-family: 'DXSamgakGimbap Light';
   font-size: 20px;
   background-color: white;
 `;
@@ -46,7 +46,7 @@ const ClassDesc = styled.div`
   }
 `;
 const InputContainer = styled.input`
-  /* Light */
+  font-family: 'DXSamgakGimbap Light';
   font-size: 20px;
   border: none;
   outline: none;

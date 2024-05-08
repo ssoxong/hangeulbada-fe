@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import ProblemCard from './ProblemCard';
 import { StarIcon } from '../../assets/icons';
 import ContainedButton from '../../components/button/ContainedButton';
+import BlurModal from '../../components/modal/BlurModal';
 
 const SetResultPageLayout = styled.div`
   display: flex;
@@ -75,6 +76,8 @@ const ScoreBox = styled.div`
 `;
 
 const SetResultPage = () => {
+  const [openImage, setOpenImage] = useState(false);
+
   const dummies = [
     {
       studentAnswer: 'studentAnswer1',

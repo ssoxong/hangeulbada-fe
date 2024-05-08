@@ -4,6 +4,7 @@ import QuestBox from './QuestBox';
 import ContainedButton from '../../components/button/ContainedButton';
 import { ImgSubmit } from '..';
 import { useNavigate } from 'react-router-dom';
+import AWS from 'aws-sdk';
 
 const SetListPageLayout = styled.div`
   display: flex;
@@ -42,6 +43,10 @@ const StyledQuestCol = styled.div`
 
 const StyledSubmitBtn = styled(ContainedButton)`
   margin: 20px;
+`;
+
+const StyledSubmitButton = styled.div`
+  padding: 10px;
 `;
 
 // cnt 문제수
@@ -89,6 +94,34 @@ const questDummy = [
 ];
 
 const TestPage = () => {
+  const REGION = process.env.REACT_APP_REGION;
+  const ACCESS_KEY_ID = process.env.REACT_APP_ACCESS_KEY;
+  const SECRET_ACCESS_KEY_ID = process.env.REACT_APP_SECRET_KEY;
+
+  const uploadS3 = (file) => {
+    AWS.config.update({
+      regin: process.env.REACT_APP_REGION,
+      accessKeyId: process.env.REACT_APP_ACCESS_KEY,
+      secretAccessKey: process.env.REACT_APP_SECRET_KEY,
+    });
+
+    const s3 = new AWS.S3();
+
+    const params = {
+      ACL: 'public-read',
+      Bucket: 'bada-static-bucket',
+      Key: 'upload/${file.name}',
+      Body: file,
+    };
+
+    s3.upload(params, (err, data) => {
+      if (err) {
+        console.log('Error uploading...', err);
+      } else {
+        console.log('File upload success. FILE URL:', data.Location);
+      }
+    });
+  };
   const [userImg, setUserImg] = useState('');
   const navigate = useNavigate();
 
@@ -96,18 +129,22 @@ const TestPage = () => {
     if (!userImg) {
       alert('이미지를 넣어주세요');
     }
-    
-    const formData = new FormData();
-    formData.append('file', userImg);
-    
+
+    // const formData = new FormData();
+    // formData.append('file', userImg);
+
+    uploadS3(userImg);
   };
 
   const handleCapture = (e) => {
+    //console.log('handlecpature');
     if (e.files) {
+      //console.log('e.file');
       if (e.files.length !== 0) {
         const file = e.files[0];
         const newUrl = URL.createObjectURL(file);
         setUserImg(newUrl);
+        //console.log('userimg');
       }
     }
   };
@@ -139,7 +176,7 @@ const TestPage = () => {
           size="large"
           text="사진 찍어 제출하기"
         ></StyledSubmitBtn>
-        {userImg && <img src={userImg} alt={'userPaper'} />}
+        {userImg && <img src={userImg} alt="userPaper" />}
         <input
           accept="image/*"
           id="testFile"

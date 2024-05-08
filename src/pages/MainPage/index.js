@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useOAuthState } from '../../utils/store/useLoginStore';
+import TeacherMain from './TeacherMain';
 
 const MainPageLayout = styled.div`
   display: flex;
@@ -11,9 +13,19 @@ const MainPageLayout = styled.div`
 `;
 
 const MainPage = () => {
+  const { cid, name, email, role } = useOAuthState();
+
     return (
         <MainPageLayout>
-          Main Page
+          {role === 'teacher' ? (
+            <TeacherMain>
+              
+            </TeacherMain>
+          ) : (
+            <>
+              student
+            </>
+          )}
         </MainPageLayout>
     );
 };

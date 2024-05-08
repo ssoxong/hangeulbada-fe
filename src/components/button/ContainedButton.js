@@ -11,6 +11,9 @@ const PrimaryButton = styled.button`
     border: hidden;
     color: white;
     background-color: #127fff;
+    &:hover {
+        cursor: pointer;
+    }
 `;
 const SecondaryButton = styled.button`
     min-width: ${({ size }) => (size === 'large' ? '170px' : size === 'mid' ? '90px' : '28px')};
@@ -22,6 +25,9 @@ const SecondaryButton = styled.button`
     border: ${({ outline }) => (outline ? '2px #127FFF solid' : 'hidden')};
     color: black;
     background-color: white;
+    &:hover {
+        cursor: pointer;
+    }
 `;
 const TertiaryButton = styled.button`
   min-width: ${({ size }) =>
@@ -36,6 +42,9 @@ const TertiaryButton = styled.button`
   border: hidden;
   color: black;
   background-color: #FFD912;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const ContainedButton = ({ btnType, text, size, onClick, outline }) => {
@@ -54,6 +63,7 @@ const ContainedButton = ({ btnType, text, size, onClick, outline }) => {
                     {text}
                 </TertiaryButton>
             )}
+            
         </>
     );
 };

@@ -9,4 +9,7 @@ export { default as SetResultPage } from './SetResultPage';
 export { default as ClassCreatePage } from './ClassCreatePage';
 export { default as StuSetListPage } from './StuSetListPage';
 export { default as TestPage } from './TestPage';
-export { default as ImgSubmit } from './TestPage';
+export { default as MyPage } from './MyPage';
+export { default as StuResultPage } from './StuResultPage';
+export { default as ShowPastTestPage } from './ShowPastTestPage';
+export { default as IntroSelectRolePage } from './IntroSelectRolePage';

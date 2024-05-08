@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 import SetCard from './SetCard';
-import { CopyButtonIcon } from '../../assets/icons';
 import ContainedButton from '../../components/button/ContainedButton';
 import Dropdown from '../../components/button/Dropdown';
+import CopyButton from './components/CopyButton';
 
 const ClassPageLayout = styled.div`
     display: flex;
@@ -28,15 +28,6 @@ const ClassTitleBox = styled.div`
     display: flex;
     margin-right: 50px;
     width: 100%;
-`;
-const CopyButton = styled.button`
-    display: flex;
-    border-width: 0;
-    background-color: transparent;
-
-    &:hover {
-        cursor: pointer;
-    }
 `;
 const HeaderButtonBox = styled.div`
     display: flex;
@@ -109,9 +100,7 @@ const ClassPage = () => {
             <ClassHeader>
                 <ClassTitleBox>
                     <div className="title">클래스 1 {/*클래스 명*/}</div>
-                    <CopyButton>
-                        <img src={CopyButtonIcon} alt="copy" />
-                    </CopyButton>
+                    <CopyButton />
                 </ClassTitleBox>
                 <HeaderButtonBox>
                     <ContainedButton btnType="primary" size="large" text="이 클래스 세트 보기" />
