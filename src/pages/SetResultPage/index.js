@@ -29,15 +29,15 @@ const SetInformation = styled.div`
   }
   .description {
     font-family: 'DXSamgakGimbap Light';
-    font-size : 16px;
+    font-size: 16px;
   }
   .count {
     font-family: 'DXSamgakGimbap Light';
-    font-size : 16px;
+    font-size: 16px;
   }
   .difficulty {
-     font-family: 'DXSamgakGimbap Light';
-     font-size : 16px;
+    font-family: 'DXSamgakGimbap Light';
+    font-size: 16px;
   }
 `;
 const SetHeader = styled.div`
@@ -56,7 +56,7 @@ const NameAndButtonBox = styled.div`
   }
 `;
 const ScoreBox = styled.div`
-  display: flex; 
+  display: flex;
   align-items: center;
   .text {
     font-family: 'DXSamgakGimbap Medium';
@@ -79,81 +79,56 @@ const SetResultPage = () => {
   const [openImage, setOpenImage] = useState(false);
 
   const dummies = [
-    {  
-     studentAnswer: 'studentAnswer1',
-     answer: 'answer1',
-     correct: 'correct1',
+    {
+      studentAnswer: 'studentAnswer1',
+      answer: 'answer1',
+      correct: 'correct1',
     },
-    {  
+    {
       studentAnswer: 'studentAnswer2',
       answer: 'answer2',
       correct: 'correct2',
     },
-    {  
+    {
       studentAnswer: 'studentAnswer3',
       answer: 'answer3',
       correct: 'correct3',
     },
-    {  
-     studentAnswer: 'studentAnswer4',
+    {
+      studentAnswer: 'studentAnswer4',
       answer: 'answer4',
       correct: 'correct4',
     },
-  ]
-  const imageOnClick = () => {
-    setOpenImage(true);
-  };
-  const closeOnClick = () => {
-    setOpenImage(false);
-  }
+  ];
   return (
-    <>
-      {openImage && (
-        <BlurModal
-          innerDatas={
-            <>
-              <div onClick={closeOnClick}>
-                image
-              </div>
-            </>
-          }
+    <SetResultPageLayout>
+      <SetInformation>
+        <div className="title">세트명 {/*세트 명*/}</div>
+        <div className="description">세트에 대한 설명</div>
+        <div className="count">문제 수 {/*문제 수*/}</div>
+        <div className="difficulty">
+          난이도 <img src={StarIcon} alt={'star'} />
+        </div>
+      </SetInformation>
+      <SetHeader>
+        <NameAndButtonBox>
+          <div className="name">학생 명</div>
+          <ContainedButton btnType="primary" size="large" text="제출한 이미지 보기" onClick={() => {}} />
+        </NameAndButtonBox>
+        <ScoreBox>
+          <div className="text">총점</div>
+          <div className="score">80</div>
+        </ScoreBox>
+      </SetHeader>
+      {dummies.map((dummy) => (
+        <ProblemCard
+          studentAnswer={dummy.studentAnswer}
+          key={dummy.studentAnswer}
+          answer={dummy.answer}
+          correct={dummy.correct}
         />
-      )}
-      <SetResultPageLayout>
-        <SetInformation>
-          <div className='title'>세트명 {/*세트 명*/}</div>
-          <div className='description'>세트에 대한 설명</div>
-          <div className='count'>문제 수  {/*문제 수*/}</div>
-          <div className='difficulty'>
-            난이도{' '}
-            <img src={StarIcon} alt={'star'} />
-          </div>
-        </SetInformation>
-        <SetHeader>
-          <NameAndButtonBox>
-            <div className='name'>학생 명</div>
-            <ContainedButton 
-              btnType="primary" 
-              size="large" 
-              text="제출한 이미지 보기"
-              onClick={imageOnClick}
-            />
-          </NameAndButtonBox>
-          <ScoreBox>
-            <div className='text'>총점</div>
-            <div className='score'>80</div>
-          </ScoreBox>
-        </SetHeader>
-        {dummies.map((dummy, index) => (
-          <ProblemCard 
-            studentAnswer={dummy.studentAnswer} 
-            answer={dummy.answer} 
-            correct={dummy.correct} 
-            key={index}
-          />
-        ))}      
-      </SetResultPageLayout>
-    </>
+      ))}
+    </SetResultPageLayout>
   );
 };
 
