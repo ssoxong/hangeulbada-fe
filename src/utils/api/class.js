@@ -21,3 +21,25 @@ export const getClassList = async () => {
     })
   return returnValue;
 }
+
+export const createClass = async (groupName) => {
+  let returnValue;
+
+  await client
+    .post(`/api/v1/group`,
+      {
+        groupName: groupName,
+      },
+      {
+        headers: privateHeaders
+      }
+    )
+    .then((res) => {
+      console.log(res);
+      returnValue = res;
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  return returnValue;
+}

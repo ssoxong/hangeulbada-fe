@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import ClassCard from './ClassCard';
 import ContainedButton from '../../components/button/ContainedButton';
 import BlurModal from '../../components/modal/BlurModal';
+import { getClassList } from '../../utils/api/class';
 
 
 const ClassListPageLayout = styled.div`
@@ -35,29 +36,19 @@ const ClassListButtonBox = styled.div`
 
 const ClassListPage = () => {
   const [isRemoveClicked, setIsRemoveClicked] = useState(false);
+  
+  const [classList, setClassList] = useState([]);
 
-  const dummies = [
-    {
-      title: 'title1',
-      desc: 'desc1',
-      code: 'code1',
-    },
-    {
-      title: 'title2',
-      desc: 'desc2',
-      code: 'code2',
-    },
-    {
-      title: 'title3',
-      desc: 'desc3',
-      code: 'code3',
-    },
-    {
-      title: 'title4',
-      desc: 'desc4',
-      code: 'code4',
-    },
-  ];
+  useEffect(() => {
+    const fetch = async () => {
+      await getClassList()
+        .then((res) => {
+          setClassList(res.data);
+        })
+    }
+
+    fetch();
+  }, [])
 
   const createOnClick = () => {
     window.location.href = "/classCreate";
@@ -75,8 +66,8 @@ const ClassListPage = () => {
         <BlurModal 
           innerDatas={
             <>
-              {dummies.map((dummy) => (
-                <ClassCard key={dummy.title} title={dummy.title} desc={dummy.desc} code={dummy.code} isRemove />
+              {classList.map((element) => (
+                <ClassCard key={element.id} title={element.groupName} desc={'desc'} code={element.groupCode} isRemove />
               ))}
               <ContainedButton btnType="primary" size="mid" text="완료" onClick={submitOnClick}/>
             </>
@@ -102,8 +93,8 @@ const ClassListPage = () => {
               />
             </ClassListButtonBox>
           </ClassListHeader>
-          {dummies.map((dummy) => (
-            <ClassCard key={dummy.title} title={dummy.title} desc={dummy.desc} code={dummy.code} />
+          {classList.map((element) => (
+            <ClassCard key={element.id} title={element.groupName} desc={'desc'} code={element.groupCode} />
           ))}
         </ClassListBox>
       </ClassListPageLayout>
