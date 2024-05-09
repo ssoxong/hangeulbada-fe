@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import ContainedButton from '../../components/button/ContainedButton';
+import { createClass } from '../../utils/api/class';
 
 const ClassCreatePageLayout = styled.div`
   display: flex;
@@ -57,7 +58,21 @@ const ButtonContainer = styled.div`
   justify-content: center;
 `;
 
-const CassCreatePage = () => {
+const ClassCreatePage = () => {
+  const [ className, setClassName ]  = useState();
+  const [ classDesc, setClassDesc ] = useState();
+
+  const requestCreate = async (className) => {
+    await createClass(className)
+      .then(res => {
+        window.location.href='/classList';
+      })
+  }
+  
+  const createOnClick = async (className) => {
+    requestCreate(className);
+  }
+
   return (
     <ClassCreatePageLayout>
       <HeaderBox>
@@ -66,20 +81,26 @@ const CassCreatePage = () => {
       <ClassInformation>
         <ClassTitle>
           <div className='title'>클래스 이름</div>
-          <InputContainer 
+          <InputContainer
+            type='text'
+            value={className}
+            onChange={(e) => setClassName(e.target.value)}
             placeholder='클래스A'
           />
         </ClassTitle>
         <ClassDesc>
           <div className='desc'>클래스 설명</div>
           <InputContainer 
+            type='text'
+            value={classDesc}
+            onChange={(e) => setClassDesc(e.target.value)}
             placeholder='클래스에 관한 설명 작성'
           />
         </ClassDesc>
       </ClassInformation>
       <ButtonContainer>
         <ContainedButton 
-          onClick={() => {}}
+          onClick={() => createOnClick(className)}
           btnType='primary' 
           size='mid' 
           text='완료' 
@@ -89,4 +110,4 @@ const CassCreatePage = () => {
   );
 };
 
-export default CassCreatePage;
+export default ClassCreatePage;
