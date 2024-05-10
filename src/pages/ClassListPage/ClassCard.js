@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import ContainedButton from '../../components/button/ContainedButton';
 import { RemoveIcon } from '../../assets/icons';
 import { ToastContainer, toast } from 'react-toastify';
+import { removeClass } from '../../utils/api/class';
 
 const ClassCardLayout = styled.div`
   display: flex;
@@ -15,6 +16,10 @@ const ClassCardLayout = styled.div`
 `;
 const ClassCardInformation = styled.div`
   padding: 8px 12px;
+
+  &:hover {
+    cursor: pointer;
+  }
   .title {
     font-family: 'DXSamgakGimbap Bold';
     font-size: 18px;
@@ -48,7 +53,7 @@ const CustomToast = () => (
 );
 
 
-const ClassCard = ({title, desc, code, isRemove}) => {
+const ClassCard = ({ id, title, desc, code, isRemove, classList, setClassList }) => {
 
   const notify = () => toast(<CustomToast />);
 
@@ -66,15 +71,34 @@ const ClassCard = ({title, desc, code, isRemove}) => {
     notify();
   }
 
+  const removeOnClick = () => {
+     const requestRemove = async (groupId) => {
+      await removeClass(groupId)
+        .then((res) => {
+          const filtered = classList.filter((value, idx, arr) => {
+            return value.id !== groupId;
+          })
+          setClassList(filtered);
+          console.log(classList)
+        })
+     }
+     requestRemove(id);
+
+  }
+
+  const classOnClick = () => {
+    window.location.href=`/class/${id}`;
+  }
+
   return (
     <>
       <ClassCardLayout>
-        <ClassCardInformation>
+        <ClassCardInformation onClick={classOnClick}>
           <div className='title'>{title}</div>
           <div className='desc'>{desc}</div>
         </ClassCardInformation>
         {isRemove ? (
-          <RemoveButton>
+          <RemoveButton onClick={removeOnClick}>
             <img src={RemoveIcon} alt="remove" />
           </RemoveButton>
         ) : (

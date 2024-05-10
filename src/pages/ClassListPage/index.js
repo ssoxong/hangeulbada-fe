@@ -67,7 +67,16 @@ const ClassListPage = () => {
           innerDatas={
             <>
               {classList.map((element) => (
-                <ClassCard key={element.id} title={element.groupName} desc={'desc'} code={element.groupCode} isRemove />
+                <ClassCard 
+                  key={element.id} 
+                  id={element.id} 
+                  title={element.groupName} 
+                  desc={element.description} 
+                  code={element.groupCode} 
+                  isRemove 
+                  classList={classList}
+                  setClassList={setClassList}
+                />
               ))}
               <ContainedButton btnType="primary" size="mid" text="완료" onClick={submitOnClick}/>
             </>
@@ -94,7 +103,13 @@ const ClassListPage = () => {
             </ClassListButtonBox>
           </ClassListHeader>
           {classList.map((element) => (
-            <ClassCard key={element.id} title={element.groupName} desc={'desc'} code={element.groupCode} />
+            <ClassCard 
+              key={element.id} 
+              id={element.id}
+              title={element.groupName} 
+              desc={element.description} 
+              code={element.groupCode} 
+            />
           ))}
         </ClassListBox>
       </ClassListPageLayout>
