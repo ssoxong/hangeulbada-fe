@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import SetCard from './SetCard';
 import ContainedButton from '../../components/button/ContainedButton';
 import Dropdown from '../../components/button/Dropdown';
 import CopyButton from './components/CopyButton';
+import { useParams } from 'react-router-dom';
+import { getClass } from '../../utils/api/class';
 
 const ClassPageLayout = styled.div`
     display: flex;
@@ -65,6 +67,22 @@ const SetColums = styled.div`
 `;
 
 const ClassPage = () => {
+    const [classData, setClassData] = useState();
+    const { id } = useParams();
+
+    const getClassData = async () => {
+        await getClass(id)
+            .then((res) => {
+                setClassData(res.data)
+                console.log(classData);
+            })
+    }
+
+    useEffect(() => {
+        console.log(id);
+        getClassData();
+    }, [])
+
     const dummies = [
         {
             no: '1',
@@ -100,7 +118,7 @@ const ClassPage = () => {
             <ClassHeader>
                 <ClassTitleBox>
                     <div className="title">클래스 1 {/*클래스 명*/}</div>
-                    <CopyButton />
+                    <CopyButton code={classData.groupCode} />
                 </ClassTitleBox>
                 <HeaderButtonBox>
                     <ContainedButton btnType="primary" size="large" text="이 클래스 세트 보기" />

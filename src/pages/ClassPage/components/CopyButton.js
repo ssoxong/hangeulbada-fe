@@ -28,7 +28,7 @@ const CustomToast = () => (
   </CustomToastLayout>
 );
 
-const CopyButton = () => {
+const CopyButton = ({ code }) => {
   const notify = () => toast(<CustomToast />);
 
   const onClick = () => {
@@ -41,7 +41,7 @@ const CopyButton = () => {
       document.execCommand("copy");
       document.body.removeChild(textarea);
     }
-    copyClassCode('123py');
+    copyClassCode(code);
     notify();
   }
 

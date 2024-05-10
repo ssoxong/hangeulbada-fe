@@ -70,7 +70,7 @@ function App() {
                             <Route path="/main" element={<MainPage />} />
                             <Route path="/classList" element={<ClassListPage />} />
                             <Route path="/classEnter" element={<ClassEnterPage />} />
-                            <Route path="/class" element={<ClassPage />} />
+                            <Route path="/class/:id" element={<ClassPage />} />
                             <Route path="/setList" element={<SetListPage />} />
                             <Route path="/set" element={<SetPage />} />
                             <Route path="/setResultPage" element={<SetResultPage />} />

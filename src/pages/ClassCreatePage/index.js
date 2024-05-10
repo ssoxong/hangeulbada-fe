@@ -62,15 +62,15 @@ const ClassCreatePage = () => {
   const [ className, setClassName ]  = useState();
   const [ classDesc, setClassDesc ] = useState();
 
-  const requestCreate = async (className) => {
-    await createClass(className)
+  const requestCreate = async (className, classDesc) => {
+    await createClass(className, classDesc)
       .then(res => {
         window.location.href='/classList';
       })
   }
   
-  const createOnClick = async (className) => {
-    requestCreate(className);
+  const createOnClick = async (className, classDesc) => {
+    requestCreate(className, classDesc);
   }
 
   return (
@@ -100,7 +100,7 @@ const ClassCreatePage = () => {
       </ClassInformation>
       <ButtonContainer>
         <ContainedButton 
-          onClick={() => createOnClick(className)}
+          onClick={() => createOnClick(className, classDesc)}
           btnType='primary' 
           size='mid' 
           text='완료' 
