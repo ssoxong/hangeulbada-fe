@@ -14,6 +14,7 @@ const SetListPageLayout = styled.div`
   position: relative;
 `;
 const ClassListTitle = styled.div`
+  font-family: 'DXSamgakGimbap Bold';
   font-size: 24px;
   font-weight: 500;
   display: flex;
@@ -21,6 +22,7 @@ const ClassListTitle = styled.div`
 `;
 
 const StyledWarningText = styled.div`
+font-family: "DXSamgakGimbap Light";
   padding: 10px;
   color: red;
 `;
