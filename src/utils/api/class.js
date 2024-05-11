@@ -78,3 +78,19 @@ export const removeClass = async (groupId) => {
     })
     return returnValue;
 }
+
+export const getClassSet = async (groupId) => {
+  let returnValue;
+
+  await client
+    .get(`/api/v1/group/${groupId}/submit`, {
+      headers: privateHeaders,
+    })
+    .then((res) => {
+      returnValue = res;
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    return returnValue;
+}
