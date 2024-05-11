@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import SignUp from './SignUp';
 import LoginButton from './components/LoginButton';
 import { useLoginState, useOAuthState } from '../../utils/store/useLoginStore';
 import ContainedButton from '../../components/button/ContainedButton';
 import { requestLogin } from '../../utils/api/auth';
-import MainPage from '../MainPage';
 
 const IntroPageLayout = styled.div`
     display: flex;
@@ -16,10 +14,13 @@ const IntroPageLayout = styled.div`
     align-items: center;
 `;
 const IntroInputBox = styled.div`
-    margin: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 55%;
     height: 300px;
     width: 100%;
-    // background-color: red;
 `;
 const IntroRoleLayout = styled.div`
     display: flex;
@@ -55,6 +56,13 @@ const RoleButtonLayout = styled.button`
   &:hover {
     cursor: pointer;
   }
+`;
+
+const TextBox = styled.div`
+    margin-bottom: 40px;
+    color: white;
+    font-family: 'DXSamgakGimbap light';
+    font-size: 20px;
 `;
 
 const RoleButton = ({ role, clicked, onClick }) => {
@@ -126,7 +134,7 @@ const IntroPage = () => {
                 </IntroRoleLayout>
             ) : (
                 <IntroInputBox>
-                    <SignUp />
+                    <TextBox>로그인/회원가입</TextBox>
                     <LoginButton />
                 </IntroInputBox>
             )}
