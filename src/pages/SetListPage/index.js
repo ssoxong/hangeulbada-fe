@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import SetCard from "./SetCard";
 import ContainedButton from "../../components/button/ContainedButton";
 import BlurModal from "../../components/modal/BlurModal";
+import { getSetList } from "../../utils/api/set";
 
 const SetListPageLayout = styled.div`
   display: flex;
@@ -35,24 +36,19 @@ const SetListButtonBox = styled.div`
 const SetListPage = () => {
   const [isRemoveClicked, setIsRemoveClicked] = useState(false);
 
-  const dummies = [
-    {
-      title: "title1",
-      desc: "desc1",
-    },
-    {
-      title: "title2",
-      desc: "desc2",
-    },
-    {
-      title: "title3",
-      desc: "desc3",
-    },
-    {
-      title: "title4",
-      desc: "desc4",
-    },
-  ];
+  const [setList, setSetList] = useState([]);
+
+  useEffect(() => {
+    const fetch = async () => {
+      await getSetList()
+        .then((res) => {
+          setSetList(res.data);
+        })
+    }
+
+    fetch();
+  }, [])
+
   const createOnClick = () => {
     window.location.href = "/classCreate";
   };
@@ -69,8 +65,8 @@ const SetListPage = () => {
         <BlurModal
           innerDatas={
             <>
-              {dummies.map((dummy) => (
-                  <SetCard key={dummy.title} title={dummy.title} desc={dummy.desc} code={dummy.code} isRemove />
+              {setList.map((set) => (
+                  <SetCard key={set.id} title={set.title} desc={set.description} isRemove />
               ))}
               <ContainedButton btnType="primary" size="mid" text="완료" onClick={submitOnClick}/>
             </>
@@ -96,8 +92,8 @@ const SetListPage = () => {
               />
             </SetListButtonBox>
           </SetListHeader>
-          {dummies.map((dummy, index) => (
-            <SetCard key={index} title={dummy.title} desc={dummy.desc} />
+          {setList.map((set) => (
+            <SetCard key={set.id} title={set.title} desc={set.description} />
           ))}
         </SetListBox>
       </SetListPageLayout>
