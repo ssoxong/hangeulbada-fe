@@ -15,3 +15,7 @@ export { default as listenNotDone } from './listenNotDone.svg';
 export { default as RemoveIcon } from './remove-icon.svg';
 export { default as stampGreen } from './stampGreen.svg';
 export { default as GoogleLoginIcon } from './google-login-icon.svg';
+export { default as CounterUp } from './counter-up.svg';
+export { default as CounterDown } from './counter-down.svg';
+export { default as StarGray } from './star-gray.svg';
+export { default as StarYellow } from './star-yellow.svg';
