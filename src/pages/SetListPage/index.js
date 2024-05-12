@@ -50,7 +50,7 @@ const SetListPage = () => {
   }, [])
 
   const createOnClick = () => {
-    window.location.href = "/classCreate";
+    window.location.href = "/setCreate";
   };
   const removeOnClick = () => {
     setIsRemoveClicked(true);
