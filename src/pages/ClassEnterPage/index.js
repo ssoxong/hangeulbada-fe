@@ -4,85 +4,101 @@ import { useState } from 'react';
 import ContainedButton from '../../components/button/ContainedButton';
 
 const ClassEnterPageLayout = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    min-height: 100vh;
-    position: relative;
-    //align-items: center;
-    background-color: rgba(74, 190, 255, 0.25);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  //align-items: center;
+  background-color: rgba(74, 190, 255, 0.25);
 `;
 
 const StyledForm = styled.form`
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 `;
 
 const SyltedInput = styled.input`
-    // background-color: yellow;
-    border-radius: 20px;
-    border-width: 0px;
-    width: 50%;
-    height: 100px;
-    padding: 20px;
-    font-size: 16px;
+  // background-color: yellow;
+  border-radius: 20px;
+  border-width: 0px;
+  width: 60%;
+  height: 50px;
+  padding: 20px;
+  font-size: 16px;
+  font-family: 'DXSamgakGimbap Light';
 `;
 
 const StyledLabel = styled.label`
-    padding: 30px;
+  padding: 30px;
 `;
 
-const StyledDone = styled.button`
-    appearance: none;
-    background-color: 
-// 값이 들어오면 파란색
-        ${(props) => props.inputcheck};
-    width: 150px;
-    height: 60px;
-    border-radius: 10px;
-    border-color: white;
-    margin: 0 180px;
-    font-size: 20px;
-    color: ${(props) => props.fontcolor};
+// const StyledDone = styled(ContainedButton)`
+//   appearance: none;
+//   background-color:
+// // 값이 들어오면 파란색
+//     ${(props) => props.inputcheck};
+//   width: 150px;
+//   height: 60px;
+//   border-radius: 10px;
+//   border-color: white;
+//   margin: 180px;
+//   font-size: 20px;
+//   color: ${(props) => props.fontcolor};
+// `;
+
+const StyledDone = styled(ContainedButton)`
+  display: flex;
+  padding: 200px;
 `;
+
 
 const ClassEnterPage = () => {
-    const [classcode, setClasscode] = useState('');
-    const [inputcheck, setInputcheck] = useState('white');
-    const [fontcolor, setfontcolor] = useState('black');
 
-    const handleChange = (e) => {
-        setClasscode(e.target.value);
-        setInputcheck('rgba(18, 127, 255)');
-        setfontcolor('white');
-    };
 
-    const handleSubmit = (e) => {
-        alert('입력한 코드: ' + classcode);
-        e.preventDefault();
-    };
-    return (
-        <div>
-            <ClassEnterPageLayout>
-                <StyledForm onSubmit={handleSubmit}>
-                    <StyledLabel>
-                        {' '}
-                        <SyltedInput
-                            type="text"
-                            placeholder="여기에 입력하세요."
-                            name="classcode"
-                            classcode={classcode}
-                            onChange={handleChange}
-                            inputcheck={inputcheck}
-                        />
-                    </StyledLabel>
-                    <StyledDone fontcolor={fontcolor} inputcheck={inputcheck} type="submit">
-                        완료
-                    </StyledDone>
-                </StyledForm>
-            </ClassEnterPageLayout>
-        </div>
-    );
+  
+  const [classcode, setClasscode] = useState('');
+  const [inputcheck, setInputcheck] = useState('white');
+  const [fontcolor, setfontcolor] = useState('black');
+
+  const handleChange = (e) => {
+    setClasscode(e.target.value);
+    setInputcheck('rgba(18, 127, 255)');
+    setfontcolor('white');
+  };
+
+  const handleSubmit = (e) => {
+    alert('입력한 코드: ' + classcode);
+    e.preventDefault();
+  };
+  return (
+    <div>
+      <ClassEnterPageLayout>
+        <StyledForm onSubmit={handleSubmit}>
+          <StyledLabel>
+            <SyltedInput
+              type="text"
+              placeholder="선생님의 클래스 코드를 입력하세요."
+              name="classcode"
+              classcode={classcode}
+              onChange={handleChange}
+              inputcheck={inputcheck}
+            />
+          </StyledLabel>
+          <StyledDone
+            btnType="primary"
+            size="large"
+            text="완료"
+            fontcolor={fontcolor}
+            inputcheck={inputcheck}
+            type="submit"
+          >
+            완료
+          </StyledDone>
+        </StyledForm>
+      </ClassEnterPageLayout>
+    </div>
+  );
 };
 
 export default ClassEnterPage;

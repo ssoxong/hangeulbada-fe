@@ -62,8 +62,9 @@ const Navbar = () => {
   const navigate = useNavigate();
   const onClickBackButton = () => {
     navigate(-1);
-  }
+  };
 
+  if (window.location.pathname === '/' && '/selectRole') return null;
   return (
     <NavbarLayout>
       <BackButton onClick={onClickBackButton}>
@@ -74,12 +75,8 @@ const Navbar = () => {
           <LogoIcon src={Logo1} />
         </Link>
         <UserInfoBox>
-          <UserRole>
-            {role === 'teacher' ? '선생님' : '학생'}
-          </UserRole>
-          <UserName>
-            {name}
-          </UserName>
+          <UserRole>{role === 'teacher' ? '선생님' : '학생'}</UserRole>
+          <UserName>{name}</UserName>
           <Link to="/">
             <LogoIcon src={UserIcon} />
           </Link>
