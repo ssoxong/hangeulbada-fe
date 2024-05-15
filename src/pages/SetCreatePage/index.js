@@ -4,6 +4,9 @@ import Counter from './components/Counter';
 import StarDiff from './components/StarDiff';
 import ContainedButton from '../../components/button/ContainedButton';
 import SelectButton from './components/SelectButton';
+import CreateQuestions from './CreateQuestions';
+import { createQuestions } from '../../utils/api/question';
+import { createSet } from '../../utils/api/set';
 
 const SetCreatePageLayout = styled.div`
   display: flex;
@@ -80,6 +83,7 @@ const CreateLayout = styled.div`
   flex-direction: column;
   .create-button {
     margin-right: 30px;
+    margin-bottom: 14px;
     align-self: flex-end;
   }
 `;
@@ -91,9 +95,29 @@ const SetCreatePage = () => {
   const [ steps, setSteps ] = useState(0);
   const [ count, setCount ] = useState(10);
   const [ diff, setDiff ] = useState(0);
+  const [ workbookId, setWorkbookId ] = useState(); 
   // steps === 1
   const [ action, setAction ] = useState();
+  //steps === 2
+  const [inputValue, setInputValue] = useState(['']);
 
+  const createSetOnClick = () => {
+    const createSetApi = async (setName, setDesc, diff, count, sDate, eDate) => {
+      await createSet(setName, setDesc, diff, count, sDate, eDate)
+        .then(res => {
+          console.log(res);
+          setWorkbookId(res.data.id)
+        })
+    }
+
+    createSetApi(
+      setName, 
+      setDesc, 
+      diff, 
+      count, 
+    );
+    setSteps(steps + 1);
+  }
 
   let bodyContent = (
     <>
@@ -127,7 +151,7 @@ const SetCreatePage = () => {
       </SetInformation>
       <ButtonContainer>
         <ContainedButton 
-          onClick={() => setSteps(steps+1)}
+          onClick={createSetOnClick}
           btnType='primary' 
           size='mid' 
           text='다음' 
@@ -152,6 +176,17 @@ const SetCreatePage = () => {
     )
   }
 
+  const createOnClick = () => {
+    const fetch = async (workbookId, inputValue) => {
+      await createQuestions(workbookId, inputValue)
+        .then(res => {
+          console.log(res.data);
+        })
+    }
+    console.log(inputValue);
+    fetch(workbookId, inputValue);
+  }
+
   if (steps === 2) {
     bodyContent = (
       action === 'load' ? (
@@ -162,12 +197,17 @@ const SetCreatePage = () => {
         <CreateLayout>
           <div className='create-button'>
             <ContainedButton 
-              onClick={() => setSteps(steps+1)}
+              onClick={createOnClick}
               btnType='primary' 
               size='mid' 
               text='생성' 
             />
           </div>
+          <CreateQuestions 
+            count={count}
+            inputValue={inputValue}
+            setInputValue={setInputValue} 
+          />
         </CreateLayout>
       )
     )

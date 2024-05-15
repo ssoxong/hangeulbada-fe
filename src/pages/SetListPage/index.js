@@ -66,7 +66,15 @@ const SetListPage = () => {
           innerDatas={
             <>
               {setList.map((set) => (
-                  <SetCard key={set.id} title={set.title} desc={set.description} isRemove />
+                  <SetCard 
+                    key={set.id} 
+                    id={set.id}
+                    title={set.title} 
+                    desc={set.description} 
+                    setList={setList}
+                    setSetList={setSetList}
+                    isRemove 
+                  />
               ))}
               <ContainedButton btnType="primary" size="mid" text="완료" onClick={submitOnClick}/>
             </>

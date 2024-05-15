@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { RemoveIcon } from '../../assets/icons';
+import { removeSet } from '../../utils/api/set';
 
 const SetCardLayout = styled.div`
   display: flex;
@@ -36,7 +37,23 @@ const RemoveButton = styled.button`
   }
 `;
 
-const SetCard = ({title, desc, onClick, isRemove }) => {
+const SetCard = ({ id, title, desc, onClick, setList, setSetList, isRemove }) => {
+
+  const removeOnClick = () => {
+    const requestRemove = async (workbookId) => {
+     await removeSet(workbookId)
+       .then((res) => {
+         const filtered = setList.filter((value, idx, arr) => {
+           return value.id !== workbookId;
+         })
+         setSetList(filtered);
+         console.log(setList)
+       })
+    }
+    requestRemove(id);
+
+ }
+
   return (
     <SetCardLayout onClick={onClick}>
       <SetCardInformation>
@@ -44,7 +61,7 @@ const SetCard = ({title, desc, onClick, isRemove }) => {
         <div className='desc'>{desc}</div>
       </SetCardInformation>
       {isRemove && (
-        <RemoveButton>
+        <RemoveButton onClick={removeOnClick}>
           <img src={RemoveIcon} alt="remove" />
         </RemoveButton>
       )}
