@@ -7,6 +7,8 @@ import SelectButton from './components/SelectButton';
 import CreateQuestions from './CreateQuestions';
 import { createQuestions } from '../../utils/api/question';
 import { createSet } from '../../utils/api/set';
+import LoadQuestions from './LoadQuestions';
+import UploadButton from '../../components/button/UploadButton';
 
 const SetCreatePageLayout = styled.div`
   display: flex;
@@ -190,9 +192,7 @@ const SetCreatePage = () => {
   if (steps === 2) {
     bodyContent = (
       action === 'load' ? (
-        <>
-          load
-        </>
+        <UploadButton studentId='studentId' workbookId='workbookId' />
       ) : (
         <CreateLayout>
           <div className='create-button'>

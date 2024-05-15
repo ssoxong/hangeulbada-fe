@@ -26,7 +26,7 @@ export const removeSet = async (workbookId) => {
   let returnValue;
 
   await client 
-    .delete(`/api/v1/group/${workbookId}`, {
+    .delete(`/api/v1/workbook/${workbookId}`, {
       headers: privateHeaders,
     })
     .then((res) => {

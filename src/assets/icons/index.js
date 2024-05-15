@@ -19,3 +19,4 @@ export { default as CounterUp } from './counter-up.svg';
 export { default as CounterDown } from './counter-down.svg';
 export { default as StarGray } from './star-gray.svg';
 export { default as StarYellow } from './star-yellow.svg';
+export { default as CameraIcon } from './camera.svg';
