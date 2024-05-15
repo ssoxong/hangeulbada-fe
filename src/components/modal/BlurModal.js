@@ -10,6 +10,7 @@ const BlurModalLayout = styled.div`
     bottom: 0;
     right: 0;
     background-color: rgba(168, 168, 168, 0.15);
+    -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
     animation: modal-bg-show 500ms;
     @keyframes modal-bg-show {
