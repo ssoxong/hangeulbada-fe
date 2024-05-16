@@ -29,6 +29,11 @@ const StyledRoleBox = styled.button`
       color: white;
       background-color: #127fff;
   }
+  &:hover {
+        border-color: #127fff;
+        color: white;
+        background-color: #127fff;
+    }
 `;
 
 const SelectButton = ({ action, setAction }) => {
