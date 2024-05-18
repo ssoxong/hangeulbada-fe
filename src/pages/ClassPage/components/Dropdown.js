@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { BottomTriangle } from '../../assets/icons';
+import { BottomTriangle } from '../../../assets/icons';
 
 const DropdownLayout = styled.div`
   position: relative;
@@ -54,6 +54,10 @@ const Dropdown = ({ text, items }) => {
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
+  const itemOnClick = (onClick) => {
+    onClick();
+    setIsOpen(false);
+  }
 
   return (
     <DropdownLayout>
@@ -63,7 +67,7 @@ const Dropdown = ({ text, items }) => {
       </DropdownButton>
       <DropdownContent isOpen={isOpen}>
         {items.map((item, index) => (
-          <DropdownItem key={index} href={item.link}>
+          <DropdownItem key={index} onClick={() =>itemOnClick(item.onClick)}>
             {item.text}
           </DropdownItem>
         ))}

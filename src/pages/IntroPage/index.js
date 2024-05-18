@@ -76,8 +76,9 @@ const RoleButton = ({ role, clicked, onClick }) => {
 };
 
 const IntroPage = () => {
-    const [ leftBtnClicked, setLeftBtnClicked ] = useState(false);
-    const [ rightBtnClicked, setRighttBtnClicked ] = useState(false);
+    const [leftBtnClicked, setLeftBtnClicked] = useState(false);
+    const [rightBtnClicked, setRighttBtnClicked] = useState(false);
+    const [active, setActive] = useState(false);
 
     const { isLogin, setLogin } = useLoginState();
     const { cid, name, email, role, setRole } = useOAuthState();
@@ -86,12 +87,14 @@ const IntroPage = () => {
         setLeftBtnClicked(true);
         setRighttBtnClicked(false);
         setRole('teacher');
+        setActive(true);
     }
     
     const rightBtnOnClick = () => {
         setLeftBtnClicked(false);
         setRighttBtnClicked(true);
         setRole('student');
+        setActive(true);
     }
 
     const submitOnClick = () => {
@@ -128,6 +131,7 @@ const IntroPage = () => {
                             btnType="secondary" 
                             size="mid" 
                             text="확인" 
+                            disabled={!active}
                             onClick={submitOnClick} 
                         />
                     </div>

@@ -21,7 +21,17 @@ const TeacherMainLayout = styled.div`
     font-size: 24px;
     margin-bottom: 3px;
     background-color: white;
+
+    transition: background 0.4s;
+    &:focus {
+      border-color: #127fff;
+      color: white;
+      background-color: #127fff;
+    }
     &:hover {
+      border-color: #127fff;
+      color: white;
+      background-color: #127fff;
       cursor: pointer;
     }
   }
@@ -41,7 +51,17 @@ const TeacherMainLayout = styled.div`
     font-size: 24px;
     margin-bottom: 3px;
     background-color: white;
+    
+    transition: background 0.4s;
+    &:focus {
+      border-color: #127fff;
+      color: white;
+      background-color: #127fff;
+    }
     &:hover {
+      border-color: #127fff;
+      color: white;
+      background-color: #127fff;
       cursor: pointer;
     }
   }
