@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import SetCard from './SetCard';
 import ContainedButton from '../../components/button/ContainedButton';
-import Dropdown from '../../components/button/Dropdown';
+import Dropdown from './components/Dropdown';
 import CopyButton from './components/CopyButton';
 import { useParams } from 'react-router-dom';
 import { getClass, getClassSet } from '../../utils/api/class';
@@ -85,9 +85,36 @@ const ClassPage = () => {
       submitDate: '',
     }
   ]
+  const dummies = [
+    {
+      no: '1',
+      name: 'name1',
+      set: 'set1',
+      score: '30',
+    },
+    {
+      no: '2',
+      name: 'name2',
+      set: 'set2',
+      score: '20',
+    },
+    {
+      no: '3',
+      name: 'name3',
+      set: 'set3',
+      score: '50',
+    },
+    {
+      no: '4',
+      name: 'name4',
+      set: 'set4',
+      score: '10',
+    },
+  ];
 
   const [classData, setClassData] = useState(classInitialState);
   const [classSetData, setClassSetData] = useState(setInitialState)
+  const [sortedData, setSortedData] = useState(dummies);
 
   const getClassData = async () => {
     await getClass(id)
@@ -104,36 +131,27 @@ const ClassPage = () => {
     getClassData();
   }, []);
 
-  // const dummies = [
-  //   {
-  //     no: '1',
-  //     name: 'name1',
-  //     set: 'set1',
-  //     score: 'score1',
-  //   },
-  //   {
-  //     no: '2',
-  //     name: 'name2',
-  //     set: 'set2',
-  //     score: 'score2',
-  //   },
-  //   {
-  //     no: '3',
-  //     name: 'name3',
-  //     set: 'set3',
-  //     score: 'score3',
-  //   },
-  //   {
-  //     no: '4',
-  //     name: 'name4',
-  //     set: 'set4',
-  //     score: 'score4',
-  //   },
-  // ];
   const items = [
-    { text: '이름순', link: '#' },
-    { text: '성적순', link: '#' },
+    { 
+      text: '이름순', 
+      onClick: () => {
+        const sortedByName = [...dummies].sort((a, b) => {
+          if (a.name < b.name) return -1;
+          if (a.name > b.name) return 1;
+          return 0;
+        });
+        setSortedData(sortedByName);
+      },
+    },
+    { 
+      text: '성적순', 
+      onClick: () => {
+        const sortedByScore = [...dummies].sort((a, b) => parseInt(a.score) - parseInt(b.score));
+        setSortedData(sortedByScore);
+      },
+    },
   ];
+
   return (
     <ClassPageLayout>
       <ClassHeader>
@@ -144,7 +162,10 @@ const ClassPage = () => {
         <HeaderButtonBox>
           <ContainedButton btnType="primary" size="large" text="이 클래스 세트 보기" />
 
-          <Dropdown text="정렬 옵션" items={items} />
+          <Dropdown 
+            text="정렬 옵션" 
+            items={items} 
+          />
         </HeaderButtonBox>
       </ClassHeader>
       <SetColums>
@@ -156,6 +177,9 @@ const ClassPage = () => {
       </SetColums>
       {classSetData.map((data, index) => (
         <SetCard key={data.index} no={data.index+1} name={data.name} set={data.workbookId} score={data.score} />
+      ))}
+      {sortedData.map((data, index) => (
+        <SetCard key={index} no={index+1} name={data.name} set={data.set} score={data.score} />
       ))}
     </ClassPageLayout>
   );
