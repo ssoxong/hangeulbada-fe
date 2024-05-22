@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useState } from 'react';
 import ContainedButton from '../../components/button/ContainedButton';
-
+import { enterClass } from '../../utils/api/student';
 const ClassEnterPageLayout = styled.div`
   display: flex;
   flex-direction: column;
@@ -52,25 +52,28 @@ const StyledDone = styled(ContainedButton)`
   padding: 200px;
 `;
 
-
 const ClassEnterPage = () => {
-
-
-  
-  const [classcode, setClasscode] = useState('');
+  const [groupCode, setGroupCode] = useState('');
   const [inputcheck, setInputcheck] = useState('white');
   const [fontcolor, setfontcolor] = useState('black');
 
+  const requestEnter = async (groupCode) => {
+    await enterClass(groupCode).then((res) => {});
+  };
+
   const handleChange = (e) => {
-    setClasscode(e.target.value);
+    setGroupCode(e.target.value);
     setInputcheck('rgba(18, 127, 255)');
     setfontcolor('white');
   };
 
   const handleSubmit = (e) => {
-    alert('입력한 코드: ' + classcode);
+    // alert('입력한 코드: ' + groupCode);
     e.preventDefault();
+    requestEnter(groupCode);
+    window.location.href = '/main';
   };
+
   return (
     <div>
       <ClassEnterPageLayout>
@@ -79,8 +82,8 @@ const ClassEnterPage = () => {
             <SyltedInput
               type="text"
               placeholder="선생님의 클래스 코드를 입력하세요."
-              name="classcode"
-              classcode={classcode}
+              name="groupCode"
+              groupCode={groupCode}
               onChange={handleChange}
               inputcheck={inputcheck}
             />

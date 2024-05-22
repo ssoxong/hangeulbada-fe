@@ -29,7 +29,7 @@ const ClassCardInformation = styled.div`
     font-family: 'DXSamgakGimbap Light';
     font-size: 16px;
   }
-`
+`;
 const RemoveButton = styled.button`
   display: flex;
   align-items: center;
@@ -46,68 +46,55 @@ const CustomToastLayout = styled.div`
   color: black;
 `;
 
-const CustomToast = () => (
-  <CustomToastLayout>
-    클래스 코드가 복사되었습니다.
-  </CustomToastLayout>
-);
-
+const CustomToast = () => <CustomToastLayout>클래스 코드가 복사되었습니다.</CustomToastLayout>;
 
 const ClassCard = ({ id, title, desc, code, isRemove, classList, setClassList }) => {
-
   const notify = () => toast(<CustomToast />);
 
   const onClick = (code) => {
     const copyClassCode = async (text) => {
-      var textarea = document.createElement("textarea");
-      textarea.value = text; 
+      var textarea = document.createElement('textarea');
+      textarea.value = text;
       document.body.appendChild(textarea);
       textarea.select();
-      textarea.setSelectionRange(0, 9999); 
-      document.execCommand("copy");
+      textarea.setSelectionRange(0, 9999);
+      document.execCommand('copy');
       document.body.removeChild(textarea);
-    }
+    };
     copyClassCode(code);
     notify();
-  }
+  };
 
   const removeOnClick = () => {
-     const requestRemove = async (groupId) => {
-      await removeClass(groupId)
-        .then((res) => {
-          const filtered = classList.filter((value, idx, arr) => {
-            return value.id !== groupId;
-          })
-          setClassList(filtered);
-          console.log(classList)
-        })
-     }
-     requestRemove(id);
-
-  }
+    const requestRemove = async (groupId) => {
+      await removeClass(groupId).then((res) => {
+        const filtered = classList.filter((value, idx, arr) => {
+          return value.id !== groupId;
+        });
+        setClassList(filtered);
+        console.log(classList);
+      });
+    };
+    requestRemove(id);
+  };
 
   const classOnClick = () => {
-    window.location.href=`/class/${id}`;
-  }
+    window.location.href = `/class/${id}`;
+  };
 
   return (
     <>
       <ClassCardLayout>
         <ClassCardInformation onClick={classOnClick}>
-          <div className='title'>{title}</div>
-          <div className='desc'>{desc}</div>
+          <div className="title">{title}</div>
+          <div className="desc">{desc}</div>
         </ClassCardInformation>
         {isRemove ? (
           <RemoveButton onClick={removeOnClick}>
             <img src={RemoveIcon} alt="remove" />
           </RemoveButton>
         ) : (
-          <ContainedButton
-            btnType="tertialy"
-            size="mid"
-            text='코드 복사'
-            onClick={() => onClick(code)}
-          >
+          <ContainedButton btnType="tertialy" size="mid" text="코드 복사" onClick={() => onClick(code)}>
             {code}
           </ContainedButton>
         )}

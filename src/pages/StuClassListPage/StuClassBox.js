@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { RemoveIcon } from '../../assets/icons';
+import { removeStuClass } from '../../utils/api/student';
 
 const ClassCardLayout = styled.div`
   display: flex;
@@ -35,7 +36,20 @@ const RemoveButton = styled.button`
   }
 `;
 
-const StuClassBox = ({title, desc, isRemove}) => {
+const StuClassBox = ({ id, title, desc, isRemove, classList, setClassList }) => {
+  const removeOnClick = () => {
+    const requestRemove = async (groupId) => {
+      await removeStuClass(groupId).then((res) => {
+        const filtered = classList.filter((value, idx, arr) => {
+          return value.id !== groupId;
+        });
+        setClassList(filtered);
+        console.log(classList);
+      });
+    };
+    requestRemove(id);
+  };
+
   return (
     <div>
       <ClassCardLayout>
@@ -43,8 +57,8 @@ const StuClassBox = ({title, desc, isRemove}) => {
           <div className="title">{title}</div>
           <div className="desc">{desc}</div>
         </ClassCardInformation>
-        {isRemove(
-          <RemoveButton>
+        {isRemove && (
+          <RemoveButton onClick={removeOnClick}>
             <img src={RemoveIcon} alt="removeIconImg" />
           </RemoveButton>
         )}

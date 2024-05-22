@@ -6,7 +6,6 @@ import ContainedButton from '../../components/button/ContainedButton';
 import BlurModal from '../../components/modal/BlurModal';
 import { getClassList } from '../../utils/api/class';
 
-
 const ClassListPageLayout = styled.div`
   display: flex;
   flex-direction: column;
@@ -36,49 +35,48 @@ const ClassListButtonBox = styled.div`
 
 const ClassListPage = () => {
   const [isRemoveClicked, setIsRemoveClicked] = useState(false);
-  
+
   const [classList, setClassList] = useState([]);
 
   useEffect(() => {
     const fetch = async () => {
-      await getClassList()
-        .then((res) => {
-          setClassList(res.data);
-        })
-    }
+      await getClassList().then((res) => {
+        setClassList(res.data);
+      });
+    };
 
     fetch();
-  }, [])
+  }, []);
 
   const createOnClick = () => {
-    window.location.href = "/classCreate";
-  }
+    window.location.href = '/classCreate';
+  };
   const removeOnClick = () => {
     setIsRemoveClicked(true);
-  }
+  };
   const submitOnClick = () => {
     setIsRemoveClicked(false);
-  }
+  };
 
   return (
     <>
       {isRemoveClicked && (
-        <BlurModal 
+        <BlurModal
           innerDatas={
             <>
               {classList.map((element) => (
-                <ClassCard 
-                  key={element.id} 
-                  id={element.id} 
-                  title={element.groupName} 
-                  desc={element.description} 
-                  code={element.groupCode} 
-                  isRemove 
+                <ClassCard
+                  key={element.id}
+                  id={element.id}
+                  title={element.groupName}
+                  desc={element.description}
+                  code={element.groupCode}
+                  isRemove
                   classList={classList}
                   setClassList={setClassList}
                 />
               ))}
-              <ContainedButton btnType="primary" size="mid" text="완료" onClick={submitOnClick}/>
+              <ContainedButton btnType="primary" size="mid" text="완료" onClick={submitOnClick} />
             </>
           }
         />
@@ -88,33 +86,23 @@ const ClassListPage = () => {
           <ClassListHeader>
             <ClassListTitle>나의 클래스</ClassListTitle>
             <ClassListButtonBox>
-              <ContainedButton 
-                btnType="primary" 
-                size="mid" 
-                text="생성" 
-                onClick={createOnClick}
-              />
-              <ContainedButton 
-                btnType="secondary" 
-                size="mid" 
-                text="삭제" 
-                onClick={removeOnClick}
-              />
+              <ContainedButton btnType="primary" size="mid" text="생성" onClick={createOnClick} />
+              <ContainedButton btnType="secondary" size="mid" text="삭제" onClick={removeOnClick} />
             </ClassListButtonBox>
           </ClassListHeader>
           {classList.map((element) => (
-            <ClassCard 
-              key={element.id} 
+            <ClassCard
+              key={element.id}
               id={element.id}
-              title={element.groupName} 
-              desc={element.description} 
-              code={element.groupCode} 
+              title={element.groupName}
+              desc={element.description}
+              code={element.groupCode}
             />
           ))}
         </ClassListBox>
       </ClassListPageLayout>
     </>
-    );
+  );
 };
 
 export default ClassListPage;

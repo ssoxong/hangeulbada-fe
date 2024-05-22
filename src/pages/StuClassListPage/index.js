@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import StuClassBox from './StuClassBox';
-import { getClassList } from '../../utils/api/class';
+// import { getClassList } from '../../utils/api/class';
 import ContainedButton from '../../components/button/ContainedButton';
 import BlurModal from '../../components/modal/BlurModal';
+import { getStuClass } from '../../utils/api/student';
 
 const SetListPageLayout = styled.div`
   display: flex;
@@ -32,7 +33,7 @@ const StuClassList = () => {
   const [classList, setClassList] = useState([]);
   useEffect(() => {
     const fetch = async () => {
-      await getClassList().then((res) => {
+      await getStuClass().then((res) => {
         setClassList(res.data);
       });
     };
@@ -60,10 +61,13 @@ const StuClassList = () => {
               {classList.map((element) => (
                 <StuClassBox
                   key={element.id}
+                  id={element.id}
                   title={element.groupName}
-                  desc={'desc'}
+                  desc={element.desc}
                   code={element.groupCode}
                   isRemove
+                  classList={classList}
+                  setClassList={setClassList}
                 />
               ))}
               <ContainedButton btnType="primary" size="mid" text="완료" onClick={submitOnClick} />
@@ -77,7 +81,7 @@ const StuClassList = () => {
         <ContainedButton btnType="secondary" size="mid" text="삭제" onClick={removeOnClick} />
       </ClassListButtonBox>
       {classList.map((element) => (
-        <StuClassBox key={element.id} title={element.groupName} desc={'desc'}></StuClassBox>
+        <StuClassBox key={element.id} title={element.groupName} desc={element.desc}></StuClassBox>
       ))}
     </SetListPageLayout>
   );
