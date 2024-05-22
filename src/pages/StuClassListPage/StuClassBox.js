@@ -15,6 +15,7 @@ const ClassCardLayout = styled.div`
 
 const ClassCardInformation = styled.div`
   padding: 8px 12px;
+  cursor: pointer;
   .title {
     font-family: 'DXSamgakGimbap Bold';
     font-size: 18px;
@@ -49,11 +50,13 @@ const StuClassBox = ({ id, title, desc, isRemove, classList, setClassList }) => 
     };
     requestRemove(id);
   };
-
+  const onClickClassBox = () => {
+    window.location.href = '/stuSetListPage';
+  };
   return (
     <div>
       <ClassCardLayout>
-        <ClassCardInformation>
+        <ClassCardInformation onClick={onClickClassBox}>
           <div className="title">{title}</div>
           <div className="desc">{desc}</div>
         </ClassCardInformation>
