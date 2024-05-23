@@ -1,106 +1,252 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import ProblemCard from './ProblemCard';
 import ContainedButton from '../../components/button/ContainedButton';
 import { StarIcon } from '../../assets/icons';
+import { useParams } from 'react-router-dom';
+import { getSet } from '../../utils/api/set';
+import BlurModal from '../../components/modal/BlurModal';
+import { addQuestion, getSetQuestions } from '../../utils/api/question';
 
 const SetPageLayout = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    min-height: 100vh;
-    position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
 `;
 const SetHeader = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 24px;
-    font-size: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 24px;
+  font-size: 24px;
 `;
 const SetInformation = styled.div`
-    display: flex;
-    flex-direction: column;
-    text-align: start;
+  display: flex;
+  flex-direction: column;
+  text-align: start;
 
-    .title {
-        font-family: 'DXSamgakGimbap Medium';
-        font-size: 24px;
-        margin-bottom: 8px;
+  .title {
+    font-family: 'DXSamgakGimbap Medium';
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+  .description {
+    font-family: 'DXSamgakGimbap Light';
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  .count {
+    font-family: 'DXSamgakGimbap Light';
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  .difficulty {
+    display: flex;
+    align-items: center;
+    .text {
+      margin-right: 12px;
     }
-    .description {
-        font-family: 'DXSamgakGimbap Light';
-        font-size: 16px;
-        margin-bottom: 8px;
-    }
-    .count {
-        font-family: 'DXSamgakGimbap Light';
-        font-size: 16px;
-        margin-bottom: 8px;
-    }
-    .difficulty {
-        display: flex;
-        align-items: center;
-        .text {
-            margin-right: 12px;
-        }
-        font-family: 'DXSamgakGimbap Light';
-        font-size: 16px;
-    }
+    font-family: 'DXSamgakGimbap Light';
+    font-size: 16px;
+  }
 `;
 const HeaderButtonBox = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 90px;
+`;
+const AddQuestionLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 14px;
+  font-family: 'DXSamgakGimbap Medium';
+  font-size: 24px;
+  background-color: #D0EEFF;
+  height: 25%;
+  .add-header {
+    margin-top: 15px;
+    align-self: flex-start;
+  }
+  .add-button {
+    align-self: flex-end;
+    margin-bottom: 19px;
+  }
+  .add-input {
+    align-self: center;
+    text-align: center;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    width: 379px;
+    height: 43px;
+
+    font-family: 'DXSamgakGimbap Light';
+    font-size: 15px;
+  }
 `;
 
+const Stars = ({ difficulty }) => {
+  
+  const stars = Array.from({ length: difficulty }, (_, index) => (
+    <img key={index} src={StarIcon} alt='star' />
+  ));
+
+  return (
+    <>{stars}</>
+  )
+}
+
 const SetPage = () => {
-    const dummies = [
-        {
-            idx: '1번',
-            text: 'text1',
-            sound: 'sound1',
-        },
-        {
-            idx: '2번',
-            text: 'text2',
-            sound: 'sound2',
-        },
-        {
-            idx: '3번',
-            text: 'text3',
-            sound: 'sound3',
-        },
-        {
-            idx: '4번',
-            text: 'text4',
-            sound: 'sound4',
-        },
-    ];
-    return (
-        <SetPageLayout>
-            <SetHeader>
-                <SetInformation>
-                    <div className="title">세트 1 {/*세트 명*/}</div>
-                    <div className="description">세트1에 대한 설명입니다.</div>
-                    <div className="count">문제 수 8 {/*문제 수*/}</div>
-                    <div className="difficulty">
-                        <div className="text">난이도</div>
-                        <img src={StarIcon} alt={'star'} />
-                    </div>
-                </SetInformation>
-                <HeaderButtonBox>
-                    <ContainedButton btnType="primary" size="mid" text="문장 추가" />
-                    <ContainedButton btnType="secondary" size="mid" text="문장 삭제" />
-                </HeaderButtonBox>
-            </SetHeader>
-            {dummies.map((dummy, index) => (
-                <ProblemCard key={index} idx={dummy.idx} text={dummy.text} sound={dummy.sound} />
-            ))}
-        </SetPageLayout>
-    );
+  const { id } = useParams();
+
+  const initialSetState = {
+    id: '',
+    title: '',
+    description: '',
+    difficulty: 0,
+    questionIds: [],
+    questionNum: '',
+  }
+
+  const [isAddClicked, setIsAddClicked] = useState(false);
+  const [isRemoveClicked, setIsRemoveClicked] = useState(false);
+  const [setData, setSetData] = useState(initialSetState);
+  const [questions, setQuestions] = useState([]);
+  const [inputValue, setInputValue] = useState();
+
+  useEffect(() => {
+    const getSetData = async () => {
+      await getSet(id)
+        .then((res) => {
+          setSetData(res.data);
+        })
+    }
+    const getQuestions = async () => {
+      await getSetQuestions(id)
+        .then((res) => {
+          setQuestions(res.data);
+        })
+    }
+    getSetData();
+    getQuestions();
+    console.log(setData);
+    console.log(questions);
+  }, [])
+
+  const handleInputChange = (value) => {
+    setInputValue(value);
+  };
+
+  const addOnClick = () => {
+    const fetch = async (id, inputValue) => {
+      await addQuestion(id, inputValue)
+        .then((res) => {
+          setIsAddClicked(false);
+          window.location.reload();
+        })
+    }
+    fetch(id, inputValue);
+  };
+
+  return (
+    <>
+      {isAddClicked && (
+        <BlurModal
+          innerDatas={
+            <AddQuestionLayout>
+              <div className='add-header'>문장 추가</div>
+              <div className='add-button'>
+                <ContainedButton 
+                  btnType="primary" 
+                  size="mid" 
+                  text="완료" 
+                  onClick={addOnClick}
+                />
+              </div>
+              <input
+                className='add-input' 
+                type='text'
+                value={inputValue || ''}
+                onChange={(e) => handleInputChange(e.target.value)}
+                placeholder='문장을 입력하세요'
+              />
+            </AddQuestionLayout>
+          }
+        />
+      )}
+      {isRemoveClicked && (
+        <BlurModal
+          innerDatas={
+            <>
+              {questions.map((question, idx) => (
+                <ProblemCard 
+                  key={idx}
+                  idx={idx+1} 
+                  content={question.content}
+                  isRemove
+                  questions={questions}
+                  setQuestions={setQuestions}
+                  id={question.id}
+                />
+              ))}
+              <ContainedButton 
+                btnType="primary" 
+                size="mid" 
+                text="완료" 
+                onClick={() => setIsRemoveClicked(false)}
+              />
+              <ContainedButton 
+                btnType="secondary" 
+                size="mid" 
+                text="취소" 
+                onClick={() => setIsRemoveClicked(false)}
+              />
+            </>
+          }
+        />
+      )}
+      <SetPageLayout>
+        <SetHeader>
+          <SetInformation>
+            <div className="title">{setData.title}</div>
+            <div className="description">{setData.description}</div>
+            <div className="count">문제 수 {setData.questionNum}</div>
+            <div className="difficulty">
+              <div className="text">난이도</div>
+              <Stars difficulty={setData.difficulty} />
+            </div>
+          </SetInformation>
+          <HeaderButtonBox>
+            <ContainedButton 
+              btnType="primary" 
+              size="mid" 
+              text="문장 추가" 
+              onClick={() => setIsAddClicked(true)}
+            />
+            <ContainedButton 
+              btnType="secondary" 
+              size="mid" 
+              text="문장 삭제" 
+              onClick={() => setIsRemoveClicked(true)}
+            />
+          </HeaderButtonBox>
+        </SetHeader>
+        {questions.map((question, idx) => (
+          <ProblemCard 
+            key={idx}
+            idx={idx+1} 
+            content={question.content}
+            sound={''}
+          />
+        ))}
+      </SetPageLayout>
+    </>
+  );
 };
 
 export default SetPage;

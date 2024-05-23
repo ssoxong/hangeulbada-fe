@@ -22,6 +22,24 @@ export const getSetList = async () => {
   return returnValue;
 }
 
+export const getSet = async (workbookId) => {
+  let returnValue;
+
+  await client
+    .get(`/api/v1/workbook/${workbookId}`,
+      {
+        headers: privateHeaders
+      }
+    )
+    .then((res) => {
+      returnValue = res;
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    return returnValue;
+}
+
 export const removeSet = async (workbookId) => {
   let returnValue;
 

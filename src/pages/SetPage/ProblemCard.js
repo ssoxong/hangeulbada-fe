@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { RightTriangle } from '../../assets/icons';
+import { RemoveIcon, RightTriangle } from '../../assets/icons';
+import { removeQuestion } from '../../utils/api/question';
 
 const ProblemCardLayout = styled.div`
   display: flex;
@@ -24,11 +25,12 @@ const ProblemCardInformation = styled.div`
   .item-idx {
     margin-right: 30px;
   }
-  .item-text {
+  .item-content {
     text-align: start;
-    flex-basis: 80%;
+    flex-basis: 75%;
   }
   .item-button {
+    margin-left: 20px;
     white-space: pre-line;
     flex-basis: 5%;
 
@@ -37,14 +39,43 @@ const ProblemCardInformation = styled.div`
     }
   }
 `;
+const RemoveButton = styled.button`
+  display: flex;
+  align-items: center;
+  border-width: 0;
+  background-color: transparent;
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
-const ProblemCard = ({ idx, text, sound }) => {
+const ProblemCard = ({ idx, content, sound, isRemove, id, questions, setQuestions }) => {
+
+  const removeOnClick = () => {
+    const requestRemove = async (workbookId) => {
+     await removeQuestion(workbookId)
+       .then((res) => {
+         const filtered = questions.filter((value, idx, arr) => {
+           return value.id !== workbookId;
+         })
+         setQuestions(filtered);
+       })
+    }
+    requestRemove(id);
+  }
+
   return (
     <ProblemCardLayout>
       <ProblemCardInformation>
-        <div className='item-idx'>{idx}</div>
-        <div className='item-text'>{text}</div>
-        <img className='item-button' src={RightTriangle} alt='button' />
+        <div className='item-idx'>{idx}번</div>
+        <div className='item-content'>{content}</div>
+        {isRemove ? (
+          <RemoveButton onClick={removeOnClick}>
+            <img src={RemoveIcon} alt="remove" />
+          </RemoveButton>
+        ) : (
+          <img className='item-button' src={RightTriangle} alt='button' />
+        )}
       </ProblemCardInformation>
     </ProblemCardLayout>
   );

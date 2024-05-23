@@ -37,7 +37,7 @@ const RemoveButton = styled.button`
   }
 `;
 
-const SetCard = ({ id, title, desc, onClick, setList, setSetList, isRemove }) => {
+const SetCard = ({ id, title, desc, setList, setSetList, isRemove }) => {
 
   const removeOnClick = () => {
     const requestRemove = async (workbookId) => {
@@ -51,12 +51,15 @@ const SetCard = ({ id, title, desc, onClick, setList, setSetList, isRemove }) =>
        })
     }
     requestRemove(id);
+  }
 
- }
+  const setOnClick = () => {
+    window.location.href = `/set/${id}`;
+  }
 
   return (
-    <SetCardLayout onClick={onClick}>
-      <SetCardInformation>
+    <SetCardLayout>
+      <SetCardInformation onClick={setOnClick}>
         <div className='title'>{title}</div>
         <div className='desc'>{desc}</div>
       </SetCardInformation>
