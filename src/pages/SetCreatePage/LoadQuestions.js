@@ -13,8 +13,16 @@ const LoadQuestionsLayout = styled.div`
   
   border-radius: 10px;
   background-color: rgba(18, 127, 255, 0.1);
-
+  height: 600px;
   overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 5px; 
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #3B6596;
+    border-radius: 4px;
+  }
 `;
 
 const QuestionCardLayout = styled.div`
@@ -22,6 +30,8 @@ const QuestionCardLayout = styled.div`
   align-items: center;
   width: 375px;
   height: 40px;
+  padding-top: 7px;
+  padding-bottom: 7px;
   border-radius: 10px;
   margin-bottom: 11px;
   background-color: white;
@@ -31,6 +41,10 @@ const QuestionCardLayout = styled.div`
 
   .card-index {
     width: 15%;
+  }
+  .card-content {
+    text-align: start;
+    flex-basis: 75%;
   }
 `;
 
@@ -46,13 +60,8 @@ const QuestionCard = ({ idx, content, onChange }) => {
 }
 
 const LoadQuestions = ({ inputValue, setInputValue }) => {
-  const initialState = [
-    {
-      id: '',
-      content: ' ',
-    }
-  ]
-  const [questions, setQuestions] = useState(initialState);
+
+  const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
     const getQuestions = async () => {
