@@ -24,6 +24,10 @@ const ClassCardInformation = styled.div`
     font-family: 'DXSamgakGimbap Light';
     font-size: 16px;
   }
+
+  &:hover {
+    cursor: 
+  }
 `;
 
 const RemoveButton = styled.button`

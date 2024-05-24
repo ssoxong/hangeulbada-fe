@@ -81,7 +81,7 @@ const StuClassList = () => {
         <ContainedButton btnType="secondary" size="mid" text="삭제" onClick={removeOnClick} />
       </ClassListButtonBox>
       {classList.map((element) => (
-        <StuClassBox key={element.id} title={element.groupName} desc={element.desc}></StuClassBox>
+        <StuClassBox key={element.id} title={element.groupName} desc={element.description}></StuClassBox>
       ))}
     </SetListPageLayout>
   );
