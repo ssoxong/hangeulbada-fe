@@ -151,6 +151,10 @@ const ClassPage = () => {
       },
     },
   ];
+  
+  const btnOnClick = () => {
+    window.location.href=`/classSetList/${id}`;
+  }
 
   return (
     <ClassPageLayout>
@@ -160,8 +164,12 @@ const ClassPage = () => {
           <CopyButton code={classData.groupCode} />
         </ClassTitleBox>
         <HeaderButtonBox>
-          <ContainedButton btnType="primary" size="large" text="이 클래스 세트 보기" />
-
+          <ContainedButton 
+            btnType="primary" 
+            size="large" 
+            text="이 클래스 세트 보기" 
+            onClick={btnOnClick}
+          />
           <Dropdown 
             text="정렬 옵션" 
             items={items} 
