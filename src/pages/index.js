@@ -14,3 +14,4 @@ export { default as StuResultPage } from './StuResultPage';
 export { default as ShowPastTestPage } from './ShowPastTestPage';
 export { default as IntroSelectRolePage } from './IntroSelectRolePage';
 export { default as SetCreatePage } from './SetCreatePage';
+export { default as ClassSetListPage } from './ClassSetListPage';

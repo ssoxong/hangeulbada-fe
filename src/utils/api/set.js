@@ -81,3 +81,24 @@ export const createSet = async (title, description, difficulty, questionNum, sta
   })
   return returnValue;
 }
+
+export const addSetToClass = async (groupId, workbookIds) => {
+  let returnValue;
+
+  await client 
+    .post(`/api/v1/workbook/group/${groupId}/workbooks`, 
+    {
+      workbookIds: workbookIds
+    },
+    {
+      headers: privateHeaders
+    }
+  )
+  .then((res) => {
+    returnValue = res;
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+  return returnValue;
+}
