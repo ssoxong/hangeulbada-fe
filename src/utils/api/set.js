@@ -1,26 +1,22 @@
-import { client } from "./base";
-import { privateHeaders } from "./base";
+import { client } from './base';
+import { privateHeaders } from './base';
 
 export const getSetList = async () => {
   let returnValue;
 
   await client
-    .get(`/api/v1/workbook`, 
-      {
-        params: {
-
-        },
-        headers: privateHeaders
-      }
-    )
+    .get(`/api/v1/workbook`, {
+      params: {},
+      headers: privateHeaders,
+    })
     .then((res) => {
-      returnValue = res
+      returnValue = res;
     })
     .catch((err) => {
       console.log(err);
-    })
+    });
   return returnValue;
-}
+};
 
 export const getSet = async (workbookId) => {
   let returnValue;
@@ -43,7 +39,7 @@ export const getSet = async (workbookId) => {
 export const removeSet = async (workbookId) => {
   let returnValue;
 
-  await client 
+  await client
     .delete(`/api/v1/workbook/${workbookId}`, {
       headers: privateHeaders,
     })
@@ -52,33 +48,52 @@ export const removeSet = async (workbookId) => {
     })
     .catch((err) => {
       console.log(err);
-    })
-    return returnValue;
-}
+    });
+  return returnValue;
+};
 
 export const createSet = async (title, description, difficulty, questionNum, startDate, endDate) => {
   let returnValue;
 
-  await client 
-    .post(`/api/v1/workbook`, 
-    {
-      title: title,
-      description: description,
-      difficulty: difficulty,
-      questionNum: questionNum,
-      startDate: startDate,
-      endDate: endDate,
-    },
-    {
-      headers: privateHeaders
-    }
-  )
-  .then((res) => {
-    returnValue = res;
-  })
-  .catch((err) => {
-    console.log(err);
-  })
+  await client
+    .post(
+      `/api/v1/workbook`,
+      {
+        title: title,
+        description: description,
+        difficulty: difficulty,
+        questionNum: questionNum,
+        startDate: startDate,
+        endDate: endDate,
+      },
+      {
+        headers: privateHeaders,
+      }
+    )
+    .then((res) => {
+      returnValue = res;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  return returnValue;
+};
+
+export const getSetListByWBId = async ({ workbookId }) => {
+  let returnValue;
+  await client
+    .get(`/api/v1/workbook`, {
+      params: {
+        workbookId: workbookId,
+      },
+      headers: privateHeaders,
+    })
+    .then((res) => {
+      returnValue = res;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   return returnValue;
 }
 
