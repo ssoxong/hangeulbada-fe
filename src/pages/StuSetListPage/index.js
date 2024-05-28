@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import SetBox from './SetBox';
-
+import { useState, useEffect } from 'react';
+import { getSetListByWBId } from '../../utils/api/set';
+import { getSetByClass } from '../../utils/api/student';
 const ClassListHeader = styled.div`
   display: flex;
   flex-direction: row;
@@ -15,6 +17,7 @@ const ClassListTitle = styled.div`
   font-weight: 500;
   display: flex;
   margin: 30px 0 0 30px;
+  font-family: 'DXSamgakGimbap Medium';
 `;
 const ClassEnterPageLayout = styled.div`
   display: flex;
@@ -31,43 +34,40 @@ const StyledBoxLayout = styled.div`
   margin: 10px;
 `;
 
-const dummy_set = [
-  {
-    setId: 1,
-    title: '세트1',
-    desc: '세트1에 관한 설명입니다.',
-    quesCnt: 8,
-    deadline: '2024-08-08',
-  },
-  {
-    setId: 2,
-    title: '세트2',
-    desc: '세트2에 관한 설명입니다.',
-    quesCnt: 9,
-    deadline: '2024-08-08',
-  },
-  {
-    setId: 3,
-    title: '세트3',
-    desc: '세트3에 관한 설명입니다.',
-    quesCnt: 10,
-    deadline: '2024-12-08',
-  },
-];
-
 const StuSetListPage = () => {
+  const [setList, setSetList] = useState([]);
+
+  // 학생이 속한 클래스로 세트를 조회해서 id 가져오기
+  // 클래스명도 가져오기
+  const groupId = '';
+  useEffect(() => {
+    const fetch = async (groupId) => {
+      try {
+        const res = await getSetByClass(groupId);
+
+        setSetList(res.data);
+        console.log('gorupId로 받아온 set 정보', setList);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetch();
+  }, [groupId]);
+
   return (
     <ClassEnterPageLayout>
       <ClassListTitle>클래스명</ClassListTitle>
       {/* <StyledSetBox> */}
       <StyledBoxLayout>
-        {dummy_set.map((data) => (
+        {setList.map((data) => (
           <SetBox
             key={data.setId}
             title={data.title}
-            desc={data.desc}
-            quesCnt={data.quesCnt}
-            deadline={data.deadline}
+            desc={data.description}
+            quesCnt={data.questionNum}
+            difficulty={data.difficulty}
+            groupId={groupId}
           />
         ))}
       </StyledBoxLayout>

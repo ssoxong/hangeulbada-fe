@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { RemoveIcon } from '../../assets/icons';
 import { removeStuClass } from '../../utils/api/student';
+import { useNavigate } from 'react-router-dom';
 
 const ClassCardLayout = styled.div`
   display: flex;
@@ -15,6 +16,7 @@ const ClassCardLayout = styled.div`
 
 const ClassCardInformation = styled.div`
   padding: 8px 12px;
+  cursor: pointer;
   .title {
     font-family: 'DXSamgakGimbap Bold';
     font-size: 18px;
@@ -41,6 +43,7 @@ const RemoveButton = styled.button`
 `;
 
 const StuClassBox = ({ id, title, desc, isRemove, classList, setClassList }) => {
+  const navigate = useNavigate();
   const removeOnClick = () => {
     const requestRemove = async (groupId) => {
       await removeStuClass(groupId).then((res) => {
@@ -53,11 +56,13 @@ const StuClassBox = ({ id, title, desc, isRemove, classList, setClassList }) => 
     };
     requestRemove(id);
   };
-
+  const onClickClassBox = () => {
+    navigate('/StuSetListPage', { state: id });
+  };
   return (
     <div>
       <ClassCardLayout>
-        <ClassCardInformation>
+        <ClassCardInformation onClick={onClickClassBox}>
           <div className="title">{title}</div>
           <div className="desc">{desc}</div>
         </ClassCardInformation>

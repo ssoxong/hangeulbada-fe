@@ -5,6 +5,7 @@ import ContainedButton from '../../components/button/ContainedButton';
 import { ImgSubmit } from '..';
 import { useNavigate } from 'react-router-dom';
 import AWS from 'aws-sdk';
+import UploadButton from '../../components/button/UploadButton';
 
 const SetListPageLayout = styled.div`
   display: flex;
@@ -22,7 +23,7 @@ const ClassListTitle = styled.div`
 `;
 
 const StyledWarningText = styled.div`
-font-family: "DXSamgakGimbap Light";
+  font-family: 'DXSamgakGimbap Light';
   padding: 10px;
   color: red;
 `;
@@ -43,7 +44,7 @@ const StyledQuestCol = styled.div`
   }
 `;
 
-const StyledSubmitBtn = styled(ContainedButton)`
+const StyledSubmitBtn = styled(UploadButton)`
   margin: 20px;
 `;
 

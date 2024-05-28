@@ -5,6 +5,7 @@ import StuClassBox from './StuClassBox';
 import ContainedButton from '../../components/button/ContainedButton';
 import BlurModal from '../../components/modal/BlurModal';
 import { getStuClass } from '../../utils/api/student';
+import { useNavigate } from 'react-router-dom';
 
 const SetListPageLayout = styled.div`
   display: flex;
@@ -81,7 +82,12 @@ const StuClassList = () => {
         <ContainedButton btnType="secondary" size="mid" text="삭제" onClick={removeOnClick} />
       </ClassListButtonBox>
       {classList.map((element) => (
-        <StuClassBox key={element.id} title={element.groupName} desc={element.description}></StuClassBox>
+        <StuClassBox
+          key={element.id}
+          id={element.id}
+          title={element.groupName}
+          desc={element.description}
+        ></StuClassBox>
       ))}
     </SetListPageLayout>
   );

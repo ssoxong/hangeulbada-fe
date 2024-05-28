@@ -21,24 +21,34 @@ const StyledSetBox = styled.div`
 
 const StyledSetBoxTitle = styled.div`
   display: flex;
-  margin: 2% 5% 0 5%;
-  font-size: 20px;
+  margin: 3% 2% 0 2%;
+  font-size: 18px;
+  font-family: 'DXSamgakGimbap Medium';
 `;
 
 const StyledSetBoxDescript = styled.div`
   display: flex;
-  margin: 2% 5%;
+  margin: 2% 2%;
+  font-family: 'DXSamgakGimbap Light';
+  font-size: 14px;
 `;
 
 const StyledSetOptions = styled.div`
   display: flex;
-  margin: 0% 5%;
+  margin: 1% 2%;
+  font-family: 'DXSamgakGimbap Light';
+  font-size: 16px;
 `;
 
 const StyledButton = styled.div`
   padding: 10px;
 `;
-const SetBox = ({ title, desc, quesCnt, deadline }) => {
+
+const SetBox = ({ title, desc, quesCnt, difficulty }) => {
+  const onTestClicked = () => {
+    window.location.href = '/testPage';
+  };
+
   SetBox.propTypes = {
     title: PropTypes.string.isRequired,
     desc: PropTypes.string.isRequired,
@@ -47,12 +57,20 @@ const SetBox = ({ title, desc, quesCnt, deadline }) => {
   };
   return (
     <StyledSetBox>
-      <StyledSetBoxTitle>{title}</StyledSetBoxTitle>
-      <StyledSetBoxDescript>{desc}</StyledSetBoxDescript>
-      <StyledSetOptions>문제 수 {quesCnt}</StyledSetOptions>
-      <StyledSetOptions>마감일 {deadline}</StyledSetOptions>
+      <StyledSetBoxTitle>
+        {title}
+        <StyledSetBoxDescript>{desc}</StyledSetBoxDescript>
+      </StyledSetBoxTitle>
+
+      <StyledSetOptions>문제 수&nbsp;&nbsp;&nbsp;{quesCnt}</StyledSetOptions>
+      <StyledSetOptions>난이도&nbsp;&nbsp;&nbsp;&nbsp;{difficulty}</StyledSetOptions>
       <StyledButton>
-        <ContainedButton btnType="primary" size="large" text="받아쓰기 시작하기"></ContainedButton>
+        <ContainedButton
+          btnType="primary"
+          size="large"
+          text="받아쓰기 시작하기"
+          onClick={onTestClicked}
+        ></ContainedButton>
       </StyledButton>
     </StyledSetBox>
   );
