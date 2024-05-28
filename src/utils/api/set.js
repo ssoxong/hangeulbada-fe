@@ -18,6 +18,24 @@ export const getSetList = async () => {
   return returnValue;
 };
 
+export const getSet = async (workbookId) => {
+  let returnValue;
+
+  await client
+    .get(`/api/v1/workbook/${workbookId}`,
+      {
+        headers: privateHeaders
+      }
+    )
+    .then((res) => {
+      returnValue = res;
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    return returnValue;
+}
+
 export const removeSet = async (workbookId) => {
   let returnValue;
 
@@ -77,4 +95,25 @@ export const getSetListByWBId = async ({ workbookId }) => {
       console.log(err);
     });
   return returnValue;
-};
+}
+
+export const addSetToClass = async (groupId, workbookIds) => {
+  let returnValue;
+
+  await client 
+    .post(`/api/v1/workbook/group/${groupId}/workbooks`, 
+    {
+      workbookIds: workbookIds
+    },
+    {
+      headers: privateHeaders
+    }
+  )
+  .then((res) => {
+    returnValue = res;
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+  return returnValue;
+}

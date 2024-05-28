@@ -94,3 +94,54 @@ export const getClassSet = async (groupId) => {
     })
     return returnValue;
 }
+
+export const getClassSetList = async (groupId) => {
+  let returnValue;
+
+  await client
+    .get(`/api/v1/workbook/group/${groupId}/workbook`, {
+      headers: privateHeaders,
+    })
+    .then((res) => {
+      returnValue = res;
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    return returnValue;
+}
+
+export const addClassSet = async (groupId, workbookId) => {
+  let returnValue;
+
+  await client
+    .get(`/api/v1/workbook/group/${groupId}/workbook/${workbookId}`,
+      {
+        headers: privateHeaders
+      })
+    .then((res) => {
+      console.log(res);
+      returnValue = res;
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  return returnValue;
+}
+
+export const removeClassSet = async (groupId, workbookId) => {
+  let returnValue;
+
+  await client 
+    .delete(`/api/v1/workbook/group/${groupId}/workbook/${workbookId}`, 
+    {
+      headers: privateHeaders,
+    })
+    .then((res) => {
+      returnValue = res;
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  return returnValue;
+}

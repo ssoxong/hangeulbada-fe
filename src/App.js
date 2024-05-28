@@ -18,6 +18,7 @@ import {
   ShowPastTestPage,
   IntroSelectRolePage,
   SetCreatePage,
+  ClassSetListPage
 } from './pages';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -73,7 +74,7 @@ function App() {
               <Route path="/classEnter" element={<ClassEnterPage />} />
               <Route path="/class/:id" element={<ClassPage />} />
               <Route path="/setList" element={<SetListPage />} />
-              <Route path="/set" element={<SetPage />} />
+              <Route path="/set/:id" element={<SetPage />} />
               <Route path="/setResultPage" element={<SetResultPage />} />
               <Route path="/classCreate" element={<ClassCreatePage />} />
               <Route path="/StuSetListPage" element={<StuSetListPage />} />
@@ -82,6 +83,7 @@ function App() {
               <Route path="/stuResult" element={<StuResultPage />} />
               <Route path="/showPastTestPage" element={<ShowPastTestPage />} />
               <Route path="/setCreate" element={<SetCreatePage />} />
+              <Route path="/classSetList/:id" element={<ClassSetListPage />} />
             </Routes>
           </WebAppContainer>
         </BodyInner>

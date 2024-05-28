@@ -38,10 +38,17 @@ const SetCardInformation = styled.div`
   .item-button {
     white-space: pre-line;
     flex-basis: 5%;
+    &:hover {
+      cursor: pointer;
+    }
   }
 `;
 
 const SetCard = ({ no, name, set, score }) => {
+  
+  const buttonOnClick = () => {
+
+  }
   return (
     <SetCardLayout>
       <SetCardInformation>
@@ -49,7 +56,12 @@ const SetCard = ({ no, name, set, score }) => {
         <div className='item-name'>{name}</div>
         <div className='item-set'>{set}</div>
         <div className='item-score'>{score}</div>
-        <img className='item-button' src={ButtonIcon} alt='button' />
+        <img 
+          className='item-button' 
+          src={ButtonIcon}
+          onClick={buttonOnClick} 
+          alt='button' 
+        />
       </SetCardInformation>
     </SetCardLayout>
   );

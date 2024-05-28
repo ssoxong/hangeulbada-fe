@@ -8,7 +8,6 @@ import CreateQuestions from './CreateQuestions';
 import { createQuestions } from '../../utils/api/question';
 import { createSet } from '../../utils/api/set';
 import LoadQuestions from './LoadQuestions';
-import UploadButton from '../../components/button/UploadButton';
 
 const SetCreatePageLayout = styled.div`
   display: flex;
@@ -19,6 +18,7 @@ const SetCreatePageLayout = styled.div`
 `;
 const HeaderBox = styled.div`
   display: flex;
+  flex-direction: column;
   text-align: start;
   margin-left: 24px;
   margin-right: 24px;
@@ -89,7 +89,23 @@ const CreateLayout = styled.div`
     align-self: flex-end;
   }
 `;
-
+const LoadLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  .load-button {
+    margin-right: 30px;
+    margin-bottom: 14px;
+    align-self: flex-end;
+  }
+`;
+const TextBox = styled.div`
+  .selected {
+    margin-top: 8px;
+    font-family: 'DXSamgakGimbap Light';
+    font-size: 15px;
+    color: #515151;
+  }
+`;
 const SetCreatePage = () => {
   // steps === 0
   const [ setName, setSetName ]  = useState();
@@ -101,7 +117,7 @@ const SetCreatePage = () => {
   // steps === 1
   const [ action, setAction ] = useState();
   //steps === 2
-  const [inputValue, setInputValue] = useState(['']);
+  const [inputValue, setInputValue] = useState([]);
 
   const createSetOnClick = () => {
     const createSetApi = async (setName, setDesc, diff, count, sDate, eDate) => {
@@ -182,17 +198,29 @@ const SetCreatePage = () => {
     const fetch = async (workbookId, inputValue) => {
       await createQuestions(workbookId, inputValue)
         .then(res => {
-          console.log(res.data);
+          window.location.href='/setList';
         })
     }
-    console.log(inputValue);
     fetch(workbookId, inputValue);
   }
 
   if (steps === 2) {
     bodyContent = (
       action === 'load' ? (
-        <UploadButton studentId='studentId' workbookId='workbookId' />
+        <LoadLayout>
+          <div className='load-button'>
+            <ContainedButton 
+              onClick={createOnClick}
+              btnType='primary' 
+              size='mid' 
+              text='생성' 
+            />
+          </div>
+          <LoadQuestions 
+            inputValue={inputValue}
+            setInputValue={setInputValue}
+          />
+        </LoadLayout>
       ) : (
         <CreateLayout>
           <div className='create-button'>
@@ -200,7 +228,7 @@ const SetCreatePage = () => {
               onClick={createOnClick}
               btnType='primary' 
               size='mid' 
-              text='생성' 
+              text='완료' 
             />
           </div>
           <CreateQuestions 
@@ -216,7 +244,17 @@ const SetCreatePage = () => {
   return (
     <SetCreatePageLayout>
       <HeaderBox>
-        새로운 세트 만들기
+        {action === 'load' ? 
+          (
+            <TextBox>
+              <div>기존 문장에서 가져오기</div>
+              <div className='selected'>현재 1개 선택됨</div>
+            </TextBox>
+          ) : (
+            <div>
+              새로운 세트 만들기
+            </div>
+          )}
       </HeaderBox>
       {bodyContent}
     </SetCreatePageLayout>

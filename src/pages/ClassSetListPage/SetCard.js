@@ -1,14 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import { RemoveIcon } from '../../assets/icons';
-import { removeSet } from '../../utils/api/set';
+import { removeClassSet } from '../../utils/api/class';
+import CheckButton from '../../components/button/CheckButton';
 
 const SetCardLayout = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 16px 22px;
-  margin: 12px 15px;
+  margin: 6px 15px;
   border-radius: 14px;
   background-color: white;
 
@@ -17,6 +18,7 @@ const SetCardLayout = styled.div`
   }
 `;
 const SetCardInformation = styled.div`
+  text-align: start;
   .title {
     font-family: 'DXSamgakGimbap Bold';
     font-size: 18px;
@@ -37,11 +39,21 @@ const RemoveButton = styled.button`
   }
 `;
 
-const SetCard = ({ id, title, desc, setList, setSetList, isRemove }) => {
+const SetCard = ({ 
+  id,
+  classId,
+  title, 
+  desc,
+  setList, 
+  setSetList,
+  isRemove,
+  isAdd,
+  onChange
+}) => {
 
   const removeOnClick = () => {
     const requestRemove = async (workbookId) => {
-     await removeSet(workbookId)
+     await removeClassSet(workbookId, classId)
        .then((res) => {
          const filtered = setList.filter((value, idx, arr) => {
            return value.id !== workbookId;
@@ -67,6 +79,9 @@ const SetCard = ({ id, title, desc, setList, setSetList, isRemove }) => {
         <RemoveButton onClick={removeOnClick}>
           <img src={RemoveIcon} alt="remove" />
         </RemoveButton>
+      )}
+      {isAdd && (
+        <CheckButton onChange={onChange} />
       )}
     </SetCardLayout>
   );
