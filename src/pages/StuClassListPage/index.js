@@ -5,6 +5,7 @@ import StuClassBox from './StuClassBox';
 import ContainedButton from '../../components/button/ContainedButton';
 import BlurModal from '../../components/modal/BlurModal';
 import { getStuClass } from '../../utils/api/student';
+import { useNavigate } from 'react-router-dom';
 
 const SetListPageLayout = styled.div`
   display: flex;
@@ -52,7 +53,6 @@ const StuClassList = () => {
     setIsRemoveClicked(false);
   };
 
-
   return (
     <SetListPageLayout>
       {isRemoveClicked && (
@@ -84,9 +84,9 @@ const StuClassList = () => {
       {classList.map((element) => (
         <StuClassBox
           key={element.id}
+          id={element.id}
           title={element.groupName}
           desc={element.description}
-
         ></StuClassBox>
       ))}
     </SetListPageLayout>

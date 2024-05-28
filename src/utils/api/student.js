@@ -38,7 +38,7 @@ export const getStuClass = async () => {
       returnValue = res;
     })
     .catch((err) => {
-      console.log(err);
+      console.log('err', err);
     });
   return returnValue;
 };
@@ -46,15 +46,29 @@ export const getStuClass = async () => {
 export const removeStuClass = async (groupId) => {
   let returnValue;
   await client
-  .delete(
-    `/api/v1/student/group/${groupId}`, {
+    .delete(`/api/v1/student/group/${groupId}`, {
       headers: privateHeaders,
-    }
-  )
-  .then((res)=>{
-    returnValue = res;
-  }).catch((err)=>{
-    console.log(err);
-  })
-  return returnValue
-}
+    })
+    .then((res) => {
+      returnValue = res;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  return returnValue;
+};
+
+export const getSetByClass = async (groupId) => {
+  let returnValue;
+  await client
+    .get(`/api/v1/student/group/${groupId}/assignment`, {
+      headers: privateHeaders,
+    })
+    .then((res) => {
+      returnValue = res;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  return returnValue;
+};
