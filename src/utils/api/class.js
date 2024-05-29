@@ -83,7 +83,7 @@ export const getClassSet = async (groupId) => {
   let returnValue;
 
   await client
-    .get(`/api/v1/group/${groupId}/submit`, {
+    .get(`/api/v1/group/${groupId}/recent`, {
       headers: privateHeaders,
     })
     .then((res) => {
