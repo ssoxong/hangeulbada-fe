@@ -4,6 +4,7 @@ import SetBox from './SetBox';
 import { useState, useEffect } from 'react';
 import { getSetListByWBId } from '../../utils/api/set';
 import { getSetByClass } from '../../utils/api/student';
+import { useLocation } from 'react-router-dom';
 const ClassListHeader = styled.div`
   display: flex;
   flex-direction: row;
@@ -36,28 +37,33 @@ const StyledBoxLayout = styled.div`
 
 const StuSetListPage = () => {
   const [setList, setSetList] = useState([]);
+  const location = useLocation();
+  const { id, title } = location.state || {};
 
-  // 학생이 속한 클래스로 세트를 조회해서 id 가져오기
-  // 클래스명도 가져오기
-  const groupId = '';
+  console.log('setlist의id: ', id);
+  console.log('setList의 title', title);
+
+  const groupId = id;
+
   useEffect(() => {
-    const fetch = async (groupId) => {
-      try {
-        const res = await getSetByClass(groupId);
+    const fetchSetList = async () => {
+      if (groupId) {
+        try {
+          const res = await getSetByClass(groupId);
+          setSetList(res.data);
 
-        setSetList(res.data);
-        console.log('gorupId로 받아온 set 정보', setList);
-      } catch (err) {
-        console.log(err);
+        } catch (err) {
+          console.error('Error: ', err);
+        }
       }
     };
 
-    fetch();
+    fetchSetList();
   }, [groupId]);
 
   return (
     <ClassEnterPageLayout>
-      <ClassListTitle>클래스명</ClassListTitle>
+      <ClassListTitle>{title}</ClassListTitle>
       {/* <StyledSetBox> */}
       <StyledBoxLayout>
         {setList.map((data) => (
@@ -68,6 +74,7 @@ const StuSetListPage = () => {
             quesCnt={data.questionNum}
             difficulty={data.difficulty}
             groupId={groupId}
+            workbookId={data.id}
           />
         ))}
       </StyledBoxLayout>

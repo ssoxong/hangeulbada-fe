@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import ContainedButton from '../../components/button/ContainedButton';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
 const StyledSetTitle = styled.div`
   width: 100px;
@@ -44,9 +45,10 @@ const StyledButton = styled.div`
   padding: 10px;
 `;
 
-const SetBox = ({ title, desc, quesCnt, difficulty }) => {
+const SetBox = ({ workbookId, title, desc, quesCnt, difficulty }) => {
+  const navigate = useNavigate();
   const onTestClicked = () => {
-    window.location.href = '/testPage';
+    navigate('/testPage', { state: { workbookId, title, quesCnt } });
   };
 
   SetBox.propTypes = {
