@@ -17,6 +17,8 @@ const SetCardLayout = styled.div`
   }
 `;
 const SetCardInformation = styled.div`
+  text-align: start;
+  
   .title {
     font-family: 'DXSamgakGimbap Bold';
     font-size: 18px;

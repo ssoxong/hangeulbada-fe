@@ -16,7 +16,8 @@ const ClassCardLayout = styled.div`
 `;
 const ClassCardInformation = styled.div`
   padding: 8px 12px;
-
+  text-align: start;
+  
   &:hover {
     cursor: pointer;
   }
