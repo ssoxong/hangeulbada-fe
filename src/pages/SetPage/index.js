@@ -241,7 +241,7 @@ const SetPage = () => {
             key={idx}
             idx={idx+1} 
             content={question.content}
-            sound={''}
+            soundUrl={question.audioFilePath}
           />
         ))}
       </SetPageLayout>

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { RemoveIcon, RightTriangle } from '../../assets/icons';
-import { removeQuestion } from '../../utils/api/question';
+import { getSoundUrl, removeQuestion } from '../../utils/api/question';
+import AudioButton from '../../components/button/AudioButton';
 
 const ProblemCardLayout = styled.div`
   display: flex;
@@ -49,7 +50,15 @@ const RemoveButton = styled.button`
   }
 `;
 
-const ProblemCard = ({ idx, content, sound, isRemove, id, questions, setQuestions }) => {
+const ProblemCard = ({ 
+  idx, 
+  content, 
+  isRemove, 
+  id,
+  soundUrl, 
+  questions, 
+  setQuestions 
+}) => {
 
   const removeOnClick = () => {
     const requestRemove = async (workbookId) => {
@@ -74,7 +83,7 @@ const ProblemCard = ({ idx, content, sound, isRemove, id, questions, setQuestion
             <img src={RemoveIcon} alt="remove" />
           </RemoveButton>
         ) : (
-          <img className='item-button' src={RightTriangle} alt='button' />
+          <AudioButton url={soundUrl} />
         )}
       </ProblemCardInformation>
     </ProblemCardLayout>
