@@ -57,7 +57,7 @@ const StuClassBox = ({ id, title, desc, isRemove, classList, setClassList }) => 
     requestRemove(id);
   };
   const onClickClassBox = () => {
-    navigate('/StuSetListPage', { state: id });
+    navigate('/StuSetListPage', { state: {id, title} });
   };
   return (
     <div>

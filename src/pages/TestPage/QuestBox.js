@@ -11,19 +11,21 @@ const StyledQuestBox = styled.div`
   font-family: 'DXSamgakGimbap Medium';
   // font-size: 18px;
   display: flex;
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: white;
-  height: 80px;
-  width: 100%;
+  height: 50px;
+  width: 80%;
   margin: 10px;
   align-items: center;
 `;
 
 const StyledBoxContent = styled.div`
+  display: flex;
   height: 80px;
-  width: 80px;
-  margin: 0px;
-  font-size: 24px;
+  width: 100%;
+  margin-top: 20px;
+  margin-left: 20px;
+  font-size: 18px;
   text-align: center;
 `;
 
@@ -35,6 +37,9 @@ const QuestBox = ({ num }) => {
   const [listen, setListen] = useState('false');
   // 상태에 따라 바뀌기
 
+  const onListenClicked = () => {
+    setListen(!listen);
+  };
   return (
     <div>
       <StyledQuestBox>
@@ -44,7 +49,7 @@ const QuestBox = ({ num }) => {
         <StyledBoxContent>
           <StyledBoxText>
             <StyledImgBox>
-              <img src={listenNotDone} alt="listenDone" />
+              <img src={listen ? listenNotDone : listenInProgress} alt="listenDone" onClick={onListenClicked} />
             </StyledImgBox>
           </StyledBoxText>
         </StyledBoxContent>

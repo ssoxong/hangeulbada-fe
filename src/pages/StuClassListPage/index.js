@@ -32,6 +32,7 @@ const ClassListButtonBox = styled.div`
 const StuClassList = () => {
   const [isRemoveClicked, setIsRemoveClicked] = useState(false);
   const [classList, setClassList] = useState([]);
+  
   useEffect(() => {
     const fetch = async () => {
       await getStuClass().then((res) => {

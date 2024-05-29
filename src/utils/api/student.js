@@ -58,17 +58,46 @@ export const removeStuClass = async (groupId) => {
   return returnValue;
 };
 
+// 클래스에 있는 문제집 조회
 export const getSetByClass = async (groupId) => {
   let returnValue;
   await client
-    .get(`/api/v1/student/group/${groupId}/assignment`, {
+    .get(`/api/v1/workbook/group/${groupId}/workbook`, {
       headers: privateHeaders,
     })
+    .then((res) => {
+      console.log('res:', res);
+      returnValue = res;
+    })
+    .catch((err) => {
+      console.log('err', err);
+    });
+  return returnValue;
+};
+
+//OCR 요청
+
+export const requestOCR = async (workbookId, imageName) => {
+  let returnValue;
+
+  await client
+    .post(
+      `/api/v1/assignment/submit`,
+
+      {
+        workbookId: workbookId,
+        imageName: imageName,
+      },
+      {
+        headers: privateHeaders,
+      }
+    )
     .then((res) => {
       returnValue = res;
     })
     .catch((err) => {
       console.log(err);
+      throw err;
     });
   return returnValue;
 };

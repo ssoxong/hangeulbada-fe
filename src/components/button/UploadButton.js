@@ -1,10 +1,12 @@
-import React from 'react';
-import AWS from "aws-sdk";
-import { useState } from "react";
+import React, { useEffect } from 'react';
+import AWS from 'aws-sdk';
+import { useState } from 'react';
 import ContainedButton from './ContainedButton';
 import styled from 'styled-components';
 import { CameraIcon } from '../../assets/icons';
 import BlurModal from '../modal/BlurModal';
+import { requestOCR } from '../../utils/api/student';
+import { useNavigate } from 'react-router-dom';
 
 const BlurContainer = styled.div`
   display: flex;
@@ -37,7 +39,7 @@ const AttachButton = styled.div`
   font-family: 'DXSamgakGimbap Light';
   font-size: 18px;
   color: white;
-  background-color: #127FFF;
+  background-color: #127fff;
 
   .camera {
     margin-right: 10px;
@@ -47,30 +49,37 @@ const Input = styled.input`
   display: none;
 `;
 
-
 const UploadButton = ({ studentId, workbookId }) => {
+  const requestOCRdata = async (workbookId, imageName) => {
+    await requestOCR(workbookId, imageName).then((res) => {
+      console.log('workbookId', workbookId);
+      console.log('imageName', imageName);
+      // window.location.href = '/setResultPage';
+    });
+  };
 
   const [file, setFile] = useState(null);
   const [fileImage, setFileImage] = useState(null);
   const [imageCaptured, setImageCaptured] = useState(false);
+  const navigate = useNavigate();
 
   const uploadFile = async () => {
-    const S3_BUCKET = "bada-static-bucket";
-    const REGION = "ap-northeast-2";
+    const S3_BUCKET = 'bada-static-bucket';
+    const REGION = 'ap-northeast-2';
 
     AWS.config.update({
       accessKeyId: process.env.REACT_APP_ACCESS_KEY,
       secretAccessKey: process.env.REACT_APP_SECRET_KEY,
     });
-    
+
     const s3 = new AWS.S3({
       params: { Bucket: S3_BUCKET },
       region: REGION,
     });
 
     // Files Parameters
-    const fileFormat = file.type.substring(6);  // image/~~~
-    const imageName = studentId+'_'+workbookId+'.'+fileFormat;  // stId_wbId.~~
+    const fileFormat = file.type.substring(6); // image/~~~
+    const imageName = studentId + '_' + workbookId + '.' + fileFormat; // stId_wbId.~~
     const params = {
       Bucket: S3_BUCKET,
       Key: imageName,
@@ -81,11 +90,9 @@ const UploadButton = ({ studentId, workbookId }) => {
 
     var upload = s3
       .putObject(params)
-      .on("httpUploadProgress", (evt) => {
+      .on('httpUploadProgress', (evt) => {
         // File uploading progress
-        console.log(
-          "Uploading " + parseInt((evt.loaded * 100) / evt.total) + "%"
-        );
+        console.log('Uploading ' + parseInt((evt.loaded * 100) / evt.total) + '%');
         console.log(file);
       })
       .promise();
@@ -93,7 +100,9 @@ const UploadButton = ({ studentId, workbookId }) => {
     await upload.then((err, data) => {
       console.log(err);
       // Fille successfully uploaded
-      alert("File uploaded successfully.");
+      alert('File uploaded successfully.');
+      requestOCRdata(workbookId, imageName);
+      navigate('/stuResult', {state: {workbookId}})
     });
     setImageCaptured(false);
   };
@@ -107,7 +116,7 @@ const UploadButton = ({ studentId, workbookId }) => {
   };
   const cancleOnClick = () => {
     setImageCaptured(false);
-  }
+  };
   return (
     <div>
       {imageCaptured && (
@@ -115,47 +124,33 @@ const UploadButton = ({ studentId, workbookId }) => {
           <BlurModal
             innerDatas={
               <>
-                <img className='blur-image' src={fileImage} alt='userImage' />
+                <img className="blur-image" src={fileImage} alt="userImage" />
                 <ButtonContainer>
-                  <ContainedButton 
-                    btnType='primary'
-                    size='mid'
-                    text='제출' 
-                    onClick={uploadFile} 
-                  />
-                  <ContainedButton 
-                    btnType='primary'
-                    size='mid'
-                    text='다시 찍기' 
-                    onClick={cancleOnClick} 
-                  />
+                  <ContainedButton btnType="primary" size="mid" text="제출" onClick={uploadFile} />
+                  <ContainedButton btnType="primary" size="mid" text="다시 찍기" onClick={cancleOnClick} />
                 </ButtonContainer>
               </>
             }
           />
         </BlurContainer>
       )}
-      <label htmlFor='file'>
+      <label htmlFor="file">
         <StyledInputContainer>
           <AttachButton>
-            <img 
-              className='camera' 
-              src={CameraIcon} 
-              alt='camera' 
-            />
+            <img className="camera" src={CameraIcon} alt="camera" />
             사진 찍어 제출하기
           </AttachButton>
-          <Input 
+          <Input
             type="file"
-            id='file'
+            id="file"
             capture="environment"
             accept="image/jpg, image/png, image/jpeg"
-            onChange={handleFileChange} 
+            onChange={handleFileChange}
           />
         </StyledInputContainer>
       </label>
     </div>
   );
-}
+};
 
 export default UploadButton;
