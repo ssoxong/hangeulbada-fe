@@ -102,3 +102,19 @@ export const requestOCR = async (workbookId, imageName) => {
     });
   return returnValue;
 };
+
+export const getWBOfStudent = async (groupId) => {
+  let returnValue;
+  await client
+    .get(`/api/v1/student/group/${groupId}/assignment`, {
+      headers: privateHeaders,
+    })
+    .then((res) => {
+      returnValue = res;
+      // console.log('res: ', res);
+    })
+    .catch((err) => {
+      console.log('err', err);
+    });
+  return returnValue;
+};
