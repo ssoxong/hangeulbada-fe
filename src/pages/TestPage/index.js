@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import QuestBox from './QuestBox';
 import ContainedButton from '../../components/button/ContainedButton';
@@ -7,6 +7,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import UploadButton from '../../components/button/UploadButton';
 import { useOAuthState } from '../../utils/store/useLoginStore';
+import { getSetQuestions } from '../../utils/api/question';
 
 const SetListPageLayout = styled.div`
   display: flex;
@@ -56,11 +57,23 @@ const TestPage = () => {
   const location = useLocation();
   const { workbookId, title, quesCnt } = location.state || {};
   const { cid } = useOAuthState();
+  const [audioArray, setAudioArray] = useState([]);
   // console.log('cid', cid);
   console.log('wbId', workbookId);
   // console.log('title: ', title);
   // console.log('quesCnt', quesCnt);
 
+  // questionID만 뽑은 배열
+  useEffect(() => {
+    const getQuestionByWBId = async () => {
+      await getSetQuestions(workbookId).then((res) => {
+        setAudioArray(res.data);
+      });
+    };
+    getQuestionByWBId();
+  }, [workbookId]);
+
+  console.log('audioarray', audioArray);
   return (
     <div>
       <SetListPageLayout>
@@ -68,8 +81,8 @@ const TestPage = () => {
         <StyledWarningText>반드시 문제 앞에 번호를 써 주세요.</StyledWarningText>
         <StyledQuestLayout>
           <StyledQuestCol>
-            {Array.from({ length: quesCnt }, (_, index) => (
-              <QuestBox key={index} num={index + 1} />
+            {audioArray.map((data, index) => (
+              <QuestBox key={index} num={index + 1} audioPath={data.audioFilePath} />
             ))}
           </StyledQuestCol>
         </StyledQuestLayout>

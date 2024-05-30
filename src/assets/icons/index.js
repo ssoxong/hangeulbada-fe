@@ -21,3 +21,4 @@ export { default as StarGray } from './star-gray.svg';
 export { default as StarYellow } from './star-yellow.svg';
 export { default as CameraIcon } from './camera.svg';
 export { default as CheckOn } from './check-on.svg';
+export { default as playing } from './playing.svg';

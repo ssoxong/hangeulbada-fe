@@ -4,8 +4,12 @@ import styled from 'styled-components';
 import useSound from 'use-sound';
 
 import { RightTriangle } from '../../assets/icons';
+import { playing } from '../../assets/icons';
+import { useState } from 'react';
 
 const AudioButtonLayout = styled.div`
+  width: 30px;
+  height: 30px;
   .item-button {
     margin-left: 20px;
     white-space: pre-line;
@@ -18,15 +22,25 @@ const AudioButtonLayout = styled.div`
 `;
 
 const AudioButton = ({ url }) => {
-  const [play] = useSound(url);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [play, { stop }] = useSound(url, {
+    onend: () => {
+      setIsPlaying(false);
+    },
+  });
 
+  const handleButtonClick = () => {
+    if (isPlaying) {
+      stop();
+      setIsPlaying(false);
+    } else {
+      play();
+      setIsPlaying(true);
+    }
+  };
   return (
-    <AudioButtonLayout onClick={play}>
-      <img 
-        className='item-button' 
-        src={RightTriangle} 
-        alt='button'
-      />
+    <AudioButtonLayout onClick={handleButtonClick}>
+      <img className="item-button" src={isPlaying ? playing : RightTriangle} alt="button" />
     </AudioButtonLayout>
   );
 };

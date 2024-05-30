@@ -124,7 +124,7 @@ const StuResultPage = () => {
   const trueCount = combinedData.reduce((count, item) => {
     return count + (item.correct === true ? 1 : 0);
   }, 0);
-  console.log('treuCO', trueCount);
+
   const totalScore = (trueCount / setInfo.questionNum) * 100;
 
   return (
