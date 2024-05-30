@@ -50,18 +50,25 @@ const Input = styled.input`
 `;
 
 const UploadButton = ({ studentId, workbookId }) => {
-  const requestOCRdata = async (workbookId, imageName) => {
-    await requestOCR(workbookId, imageName).then((res) => {
-      console.log('workbookId', workbookId);
-      console.log('imageName', imageName);
-      // window.location.href = '/setResultPage';
-    });
-  };
-
   const [file, setFile] = useState(null);
   const [fileImage, setFileImage] = useState(null);
   const [imageCaptured, setImageCaptured] = useState(false);
+  const [OCRres, setOCRres] = useState([]);
   const navigate = useNavigate();
+
+  const requestOCRdata = async (workbookId, imageName) => {
+    try {
+      const res = await requestOCR(workbookId, imageName);
+      setOCRres(res.data);
+      console.log('OCR result:', res); // Debug: Log the OCR result
+    } catch (error) {
+      console.error('Error requesting OCR:', error);
+    }
+  };
+
+  // useEffect(() => {
+  //   console.log('OCRres:!!', OCRres);
+  // }, [OCRres]);
 
   const uploadFile = async () => {
     const S3_BUCKET = 'bada-static-bucket';
@@ -102,7 +109,7 @@ const UploadButton = ({ studentId, workbookId }) => {
       // Fille successfully uploaded
       alert('File uploaded successfully.');
       requestOCRdata(workbookId, imageName);
-      navigate('/stuResult', {state: {workbookId}})
+      // navigate('/stuResult', { state: { workbookId, OCRres } });
     });
     setImageCaptured(false);
   };
@@ -117,6 +124,14 @@ const UploadButton = ({ studentId, workbookId }) => {
   const cancleOnClick = () => {
     setImageCaptured(false);
   };
+
+  useEffect(() => {
+    if (OCRres.length > 0) {
+      console.log('Navigating with OCR results:', OCRres);
+      navigate('/stuResult', { state: { workbookId, OCRres } });
+    }
+  }, [OCRres, navigate, workbookId]);
+
   return (
     <div>
       {imageCaptured && (

@@ -1,16 +1,17 @@
-import { client } from "./base";
-import { privateHeaders } from "./base";
+import { client } from './base';
+import { privateHeaders } from './base';
 
 export const createQuestions = async (workbookId, content) => {
   let returnValue;
 
   await client
-    .post(`/api/v1/workbook/${workbookId}/questions/new`,
+    .post(
+      `/api/v1/workbook/${workbookId}/questions/new`,
       {
         content: content,
       },
       {
-        headers: privateHeaders
+        headers: privateHeaders,
       }
     )
     .then((res) => {
@@ -18,20 +19,19 @@ export const createQuestions = async (workbookId, content) => {
     })
     .catch((err) => {
       console.log(err);
-    })
+    });
   return returnValue;
-}
+};
 
 export const getAllQuestions = async () => {
   let returnValue;
 
   await client
-    .post(`/api/v1/questions`,
+    .post(
+      `/api/v1/questions`,
+      {},
       {
-
-      },
-      {
-        headers: privateHeaders
+        headers: privateHeaders,
       }
     )
     .then((res) => {
@@ -39,38 +39,37 @@ export const getAllQuestions = async () => {
     })
     .catch((err) => {
       console.log(err);
-    })
-    return returnValue;
-}
+    });
+  return returnValue;
+};
 
 export const getSetQuestions = async (workbookId) => {
   let returnValue;
 
   await client
-    .get(`/api/v1/workbook/${workbookId}/questions`,
-      {
-        headers: privateHeaders
-      }
-    )
+    .get(`/api/v1/workbook/${workbookId}/questions`, {
+      headers: privateHeaders,
+    })
     .then((res) => {
       returnValue = res;
     })
     .catch((err) => {
       console.log(err);
-    })
-    return returnValue;
-}
+    });
+  return returnValue;
+};
 
 export const addQuestion = async (workbookId, content) => {
   let returnValue;
 
   await client
-    .post(`/api/v1/workbook/${workbookId}/questions`,
+    .post(
+      `/api/v1/workbook/${workbookId}/questions`,
       {
         content: content,
       },
       {
-        headers: privateHeaders
+        headers: privateHeaders,
       }
     )
     .then((res) => {
@@ -78,14 +77,14 @@ export const addQuestion = async (workbookId, content) => {
     })
     .catch((err) => {
       console.log(err);
-    })
-    return returnValue;
-}
+    });
+  return returnValue;
+};
 
 export const removeQuestion = async (questionId) => {
   let returnValue;
 
-  await client 
+  await client
     .delete(`/api/v1/questions/${questionId}`, {
       headers: privateHeaders,
     })
@@ -94,6 +93,23 @@ export const removeQuestion = async (questionId) => {
     })
     .catch((err) => {
       console.log(err);
+    });
+  return returnValue;
+};
+
+export const getQuestionsInSet = async (workbookId, questionId) => {
+  let returnValue;
+
+  await client
+    .get(`/api/v1/workbook/${workbookId}/questions/${questionId}`, {
+      headers: privateHeaders,
     })
-    return returnValue;
-}
+    .then((res) => {
+      returnValue = res;
+    })
+    .catch((err) => {
+      console.log('err: ', err);
+    });
+
+  return returnValue;
+};

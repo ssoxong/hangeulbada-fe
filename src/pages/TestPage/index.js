@@ -57,7 +57,7 @@ const TestPage = () => {
   const { workbookId, title, quesCnt } = location.state || {};
   const { cid } = useOAuthState();
   // console.log('cid', cid);
-  // console.log('wbId', workbookId);
+  console.log('wbId', workbookId);
   // console.log('title: ', title);
   // console.log('quesCnt', quesCnt);
 
