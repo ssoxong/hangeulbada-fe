@@ -78,9 +78,15 @@ const Navbar = () => {
         <UserInfoBox>
           <UserRole>{role === 'teacher' ? '선생님' : '학생'}</UserRole>
           <UserName>{name}</UserName>
-          <Link to="/">
-            <LogoIcon src={UserIcon} />
-          </Link>
+          {role === 'teacher' ? (
+            <Link to="/">
+              <LogoIcon src={UserIcon} />
+            </Link>
+          ) : (
+            <Link to="/MyPage">
+              <LogoIcon src={UserIcon} />{' '}
+            </Link>
+          )}
         </UserInfoBox>
       </HeaderBox>
     </NavbarLayout>
