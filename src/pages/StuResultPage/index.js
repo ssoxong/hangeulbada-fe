@@ -121,6 +121,12 @@ const StuResultPage = () => {
     }
   }, [stuSet, OCRres]);
 
+  const trueCount = combinedData.reduce((count, item) => {
+    return count + (item.correct === true ? 1 : 0);
+  }, 0);
+  console.log('treuCO', trueCount);
+  const totalScore = (trueCount / setInfo.questionNum) * 100;
+
   return (
     <SetResultPageLayout>
       <SetInformation key={setInfo.id}>
@@ -139,7 +145,7 @@ const StuResultPage = () => {
         </NameAndButtonBox>
         <ScoreBox>
           <div className="text">총점</div>
-          <div className="score">80</div>
+          <div className="score">{totalScore}</div>
         </ScoreBox>
       </SetHeader>
       {combinedData.map((res, index) => (
