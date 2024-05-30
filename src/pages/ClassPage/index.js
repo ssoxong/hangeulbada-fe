@@ -23,7 +23,7 @@ const ClassHeader = styled.div`
   font-family: 'DXSamgakGimbap Medium';
   font-size: 24px;
   .title {
-      text-align: start;
+    text-align: start;
   }
 `;
 const ClassTitleBox = styled.div`
@@ -48,21 +48,21 @@ const SetColums = styled.div`
   font-size: 15px;
 
   .item-no {
-      flex-basis: 7%;
+    flex-basis: 7%;
   }
   .item-name {
-      flex-basis: 15%;
+    flex-basis: 15%;
   }
   .item-set {
-      flex-basis: 20%;
+    flex-basis: 20%;
   }
   .item-score {
-      white-space: pre-line;
-      flex-basis: 20%;
+    white-space: pre-line;
+    flex-basis: 20%;
   }
   .item-blank {
-      white-space: pre-line;
-      flex-basis: 5%;
+    white-space: pre-line;
+    flex-basis: 5%;
   }
 `;
 
@@ -75,7 +75,7 @@ const ClassPage = () => {
     id: '',
     studentIds: '',
     teacherId: '',
-  }
+  };
   const setInitialState = [
     {
       name: '',
@@ -83,8 +83,8 @@ const ClassPage = () => {
       assignmentId: '',
       score: '',
       submitDate: '',
-    }
-  ]
+    },
+  ];
   const dummies = [
     {
       no: '1',
@@ -113,27 +113,25 @@ const ClassPage = () => {
   ];
 
   const [classData, setClassData] = useState(classInitialState);
-  const [classSetData, setClassSetData] = useState(setInitialState)
+  const [classSetData, setClassSetData] = useState(setInitialState);
   const [sortedData, setSortedData] = useState(dummies);
 
   const getClassData = async () => {
-    await getClass(id)
-      .then((res) => {
-        setClassData(res.data);
-      })
-    await getClassSet(id)
-      .then((res) => {
-        setClassSetData(res.data);
-      })
-  }
+    await getClass(id).then((res) => {
+      setClassData(res.data);
+    });
+    await getClassSet(id).then((res) => {
+      setClassSetData(res.data);
+    });
+  };
 
   useEffect(() => {
     getClassData();
   }, []);
 
   const items = [
-    { 
-      text: '이름순', 
+    {
+      text: '이름순',
       onClick: () => {
         const sortedByName = [...dummies].sort((a, b) => {
           if (a.name < b.name) return -1;
@@ -143,18 +141,18 @@ const ClassPage = () => {
         setSortedData(sortedByName);
       },
     },
-    { 
-      text: '성적순', 
+    {
+      text: '성적순',
       onClick: () => {
         const sortedByScore = [...dummies].sort((a, b) => parseInt(a.score) - parseInt(b.score));
         setSortedData(sortedByScore);
       },
     },
   ];
-  
+
   const btnOnClick = () => {
-    window.location.href=`/classSetList/${id}`;
-  }
+    window.location.href = `/classSetList/${id}`;
+  };
 
   return (
     <ClassPageLayout>
@@ -164,16 +162,8 @@ const ClassPage = () => {
           <CopyButton code={classData.groupCode} />
         </ClassTitleBox>
         <HeaderButtonBox>
-          <ContainedButton 
-            btnType="primary" 
-            size="large" 
-            text="이 클래스 세트 보기" 
-            onClick={btnOnClick}
-          />
-          <Dropdown 
-            text="정렬 옵션" 
-            items={items} 
-          />
+          <ContainedButton btnType="primary" size="large" text="이 클래스 세트 보기" onClick={btnOnClick} />
+          <Dropdown text="정렬 옵션" items={items} />
         </HeaderButtonBox>
       </ClassHeader>
       <SetColums>
@@ -184,10 +174,10 @@ const ClassPage = () => {
         <div className="item-blank"></div>
       </SetColums>
       {classSetData.map((data, index) => (
-        <SetCard key={data.index} no={data.index+1} name={data.name} set={data.workbookId} score={data.score} />
+        <SetCard key={data.index} no={data.index + 1} name={data.name} set={data.workbookId} score={data.score} />
       ))}
       {sortedData.map((data, index) => (
-        <SetCard key={index} no={index+1} name={data.name} set={data.set} score={data.score} />
+        <SetCard key={index} no={index + 1} name={data.name} set={data.set} score={data.score} />
       ))}
     </ClassPageLayout>
   );
