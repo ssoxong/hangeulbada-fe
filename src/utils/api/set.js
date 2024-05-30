@@ -22,19 +22,17 @@ export const getSet = async (workbookId) => {
   let returnValue;
 
   await client
-    .get(`/api/v1/workbook/${workbookId}`,
-      {
-        headers: privateHeaders
-      }
-    )
+    .get(`/api/v1/workbook/${workbookId}`, {
+      headers: privateHeaders,
+    })
     .then((res) => {
       returnValue = res;
     })
     .catch((err) => {
       console.log(err);
-    })
-    return returnValue;
-}
+    });
+  return returnValue;
+};
 
 export const removeSet = async (workbookId) => {
   let returnValue;
@@ -79,15 +77,35 @@ export const createSet = async (title, description, difficulty, questionNum, sta
   return returnValue;
 };
 
-export const getSetListByWBId = async ({ workbookId }) => {
+export const getSetListByWBId = async (workbookId) => {
   let returnValue;
   await client
-    .get(`/api/v1/workbook`, {
-      params: {
-        workbookId: workbookId,
-      },
+    .get(`/api/v1/workbook/${workbookId}/questions`, {
       headers: privateHeaders,
     })
+    .then((res) => {
+      returnValue = res;
+      // console.log('getsetListByWBId: ', res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  return returnValue;
+};
+
+export const addSetToClass = async (groupId, workbookIds) => {
+  let returnValue;
+
+  await client
+    .post(
+      `/api/v1/workbook/group/${groupId}/workbooks`,
+      {
+        workbookIds: workbookIds,
+      },
+      {
+        headers: privateHeaders,
+      }
+    )
     .then((res) => {
       returnValue = res;
     })
@@ -95,25 +113,4 @@ export const getSetListByWBId = async ({ workbookId }) => {
       console.log(err);
     });
   return returnValue;
-}
-
-export const addSetToClass = async (groupId, workbookIds) => {
-  let returnValue;
-
-  await client 
-    .post(`/api/v1/workbook/group/${groupId}/workbooks`, 
-    {
-      workbookIds: workbookIds
-    },
-    {
-      headers: privateHeaders
-    }
-  )
-  .then((res) => {
-    returnValue = res;
-  })
-  .catch((err) => {
-    console.log(err);
-  })
-  return returnValue;
-}
+};

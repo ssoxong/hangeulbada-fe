@@ -94,6 +94,7 @@ export const requestOCR = async (workbookId, imageName) => {
     )
     .then((res) => {
       returnValue = res;
+      // console.log('OCR RES:', res);
     })
     .catch((err) => {
       console.log(err);

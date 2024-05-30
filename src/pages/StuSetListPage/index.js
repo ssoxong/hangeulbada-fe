@@ -51,7 +51,6 @@ const StuSetListPage = () => {
         try {
           const res = await getSetByClass(groupId);
           setSetList(res.data);
-
         } catch (err) {
           console.error('Error: ', err);
         }
@@ -61,6 +60,7 @@ const StuSetListPage = () => {
     fetchSetList();
   }, [groupId]);
 
+  
   return (
     <ClassEnterPageLayout>
       <ClassListTitle>{title}</ClassListTitle>
@@ -76,6 +76,7 @@ const StuSetListPage = () => {
             groupId={groupId}
             workbookId={data.id}
           />
+          
         ))}
       </StyledBoxLayout>
       {/* </StyledSetBox> */}
