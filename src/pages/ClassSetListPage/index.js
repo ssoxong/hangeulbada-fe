@@ -81,13 +81,15 @@ const ClassSetListPage = () => {
                   isRemove 
                 />
               ))}
-              <ContainedButton 
-                btnType="primary" 
-                size="mid" 
-                text="완료" 
-                onClick={() => setIsRemoveClicked(false)}
-              />
             </>
+          }
+          footerDatas={
+            <ContainedButton 
+              btnType="primary" 
+              size="mid" 
+              text="완료" 
+              onClick={() => setIsRemoveClicked(false)}
+            />
           }
         />
       )}

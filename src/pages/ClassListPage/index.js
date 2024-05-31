@@ -76,8 +76,10 @@ const ClassListPage = () => {
                   setClassList={setClassList}
                 />
               ))}
-              <ContainedButton btnType="primary" size="mid" text="완료" onClick={submitOnClick} />
             </>
+          }
+          footerDatas={
+            <ContainedButton btnType="primary" size="mid" text="완료" onClick={submitOnClick} />
           }
         />
       )}
