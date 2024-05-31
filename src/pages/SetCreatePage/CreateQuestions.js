@@ -39,6 +39,7 @@ const CreateQuestions = ({ count, inputValue, setInputValue }) => {
     const newInputValue = [...inputValue]; 
     newInputValue[index] = value; 
     setInputValue(newInputValue); 
+    console.log(inputValue);
   };
 
   return (

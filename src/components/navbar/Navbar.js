@@ -34,9 +34,9 @@ const LogoIcon = styled.img`
 
 const UserInfoBox = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  width: 35%;
+  width: 70%;
 `;
 const UserRole = styled.div`
   display: flex;
@@ -45,6 +45,7 @@ const UserRole = styled.div`
   border-radius: 6px;
   width: 52px;
   height: 28px;
+  margin-right: 6px;
   font-family: 'DXSamgakGimbap Light';
   font-size: 15px;
   background-color: white;
@@ -53,6 +54,7 @@ const UserName = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: 12px;
   font-family: 'DXSamgakGimbap Light';
   font-size: 20px;
 `;

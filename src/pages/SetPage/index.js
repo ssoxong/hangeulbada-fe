@@ -63,20 +63,11 @@ const HeaderButtonBox = styled.div`
 const AddQuestionLayout = styled.div`
   display: flex;
   flex-direction: column;
-  border-radius: 10px;
+  margin-top: 10%;
   padding: 14px;
   font-family: 'DXSamgakGimbap Medium';
   font-size: 24px;
-  background-color: #D0EEFF;
-  height: 25%;
-  .add-header {
-    margin-top: 15px;
-    align-self: flex-start;
-  }
-  .add-button {
-    align-self: flex-end;
-    margin-bottom: 19px;
-  }
+
   .add-input {
     align-self: center;
     text-align: center;
@@ -149,15 +140,6 @@ const SetPage = () => {
         <BlurModal
           innerDatas={
             <AddQuestionLayout>
-              <div className='add-header'>문장 추가</div>
-              <div className='add-button'>
-                <ContainedButton 
-                  btnType="primary" 
-                  size="mid" 
-                  text="완료" 
-                  onClick={addOnClick}
-                />
-              </div>
               <input
                 className='add-input' 
                 type='text'
@@ -166,6 +148,22 @@ const SetPage = () => {
                 placeholder='문장을 입력하세요'
               />
             </AddQuestionLayout>
+          }
+          footerDatas={
+            <>
+              <ContainedButton 
+                btnType="primary" 
+                size="mid" 
+                text="완료" 
+                onClick={addOnClick}
+              />
+              <ContainedButton 
+                btnType="secondary" 
+                size="mid" 
+                text="취소" 
+                onClick={() => setIsAddClicked(false)}
+              />
+            </>
           }
         />
       )}
