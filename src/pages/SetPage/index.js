@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 import { getSet } from '../../utils/api/set';
 import BlurModal from '../../components/modal/BlurModal';
 import { addQuestion, getSetQuestions } from '../../utils/api/question';
+import Stars from '../../components/banner/Stars';
 
 const SetPageLayout = styled.div`
   display: flex;
@@ -89,17 +90,6 @@ const AddQuestionLayout = styled.div`
     font-size: 15px;
   }
 `;
-
-const Stars = ({ difficulty }) => {
-  
-  const stars = Array.from({ length: difficulty }, (_, index) => (
-    <img key={index} src={StarIcon} alt='star' />
-  ));
-
-  return (
-    <>{stars}</>
-  )
-}
 
 const SetPage = () => {
   const { id } = useParams();
