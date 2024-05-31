@@ -44,10 +44,16 @@ const SetCardInformation = styled.div`
   }
 `;
 
-const SetCard = ({ no, name, set, score }) => {
+const SetCard = ({ 
+  no, 
+  name, 
+  set, 
+  setId,
+  score 
+}) => {
   
   const buttonOnClick = () => {
-
+    window.location.href=`/setResultPage/${setId}`;
   }
   return (
     <SetCardLayout>

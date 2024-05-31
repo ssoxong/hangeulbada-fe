@@ -118,3 +118,20 @@ export const getWBOfStudent = async (groupId) => {
     });
   return returnValue;
 };
+
+export const getStudentAnswer = async (workbookId) => {
+  let returnValue;
+
+  await client.
+    get(`/api/v1/assignment/${workbookId}`,
+    {
+      headers: privateHeaders,
+    })
+    .then(res => {
+      returnValue = res;
+    })
+    .catch(err => {
+      console.log(err);
+    })
+    return returnValue;
+}

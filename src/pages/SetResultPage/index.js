@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ProblemCard from './ProblemCard';
 import { StarIcon } from '../../assets/icons';
 import ContainedButton from '../../components/button/ContainedButton';
 import BlurModal from '../../components/modal/BlurModal';
+import { useParams } from 'react-router-dom';
+import { getSet } from '../../utils/api/set';
+import { getStudentAnswer } from '../../utils/api/student';
+import Stars from '../../components/banner/Stars';
 
 const SetResultPageLayout = styled.div`
   display: flex;
@@ -26,18 +30,27 @@ const SetInformation = styled.div`
   .title {
     font-family: 'DXSamgakGimbap Medium';
     font-size: 24px;
+    margin-bottom: 8px;
   }
   .description {
     font-family: 'DXSamgakGimbap Light';
     font-size: 16px;
+    margin-bottom: 8px;
   }
   .count {
     font-family: 'DXSamgakGimbap Light';
     font-size: 16px;
+    margin-bottom: 8px;
   }
   .difficulty {
+    display: flex;
+    align-items: center;
+    .text {
+      margin-right: 12px;
+    }
     font-family: 'DXSamgakGimbap Light';
     font-size: 16px;
+    margin-bottom: 8px;
   }
 `;
 const SetHeader = styled.div`
@@ -76,59 +89,88 @@ const ScoreBox = styled.div`
 `;
 
 const SetResultPage = () => {
-  const [openImage, setOpenImage] = useState(false);
+  const { id } = useParams();
 
-  const dummies = [
-    {
-      studentAnswer: 'studentAnswer1',
-      answer: 'answer1',
-      correct: 'correct1',
-    },
-    {
-      studentAnswer: 'studentAnswer2',
-      answer: 'answer2',
-      correct: 'correct2',
-    },
-    {
-      studentAnswer: 'studentAnswer3',
-      answer: 'answer3',
-      correct: 'correct3',
-    },
-    {
-      studentAnswer: 'studentAnswer4',
-      answer: 'answer4',
-      correct: 'correct4',
-    },
-  ];
+  const setInitialState = {
+    title: '',
+    description: '',
+    questionNum: '',
+  }
+  const answerInitialState = {
+    imgS3Url: '',
+    answers: [],
+    score: '',
+  }
+
+  const [openImage, setOpenImage] = useState(false);
+  const [setData, setSetData] = useState(setInitialState);
+  const [answerData, setAnswerData] = useState(answerInitialState);
+
+  useEffect(() => {
+    const getSetData = async () => {
+      await getSet(id)
+        .then((res) => {
+          setSetData(res.data);
+        })
+      await getStudentAnswer(id)
+        .then(res => {
+          setAnswerData(res.data);
+          console.log(res.data.imgS3Url);
+        })
+    }
+    getSetData();
+  }, [])
+
   return (
-    <SetResultPageLayout>
-      <SetInformation>
-        <div className="title">세트명 {/*세트 명*/}</div>
-        <div className="description">세트에 대한 설명</div>
-        <div className="count">문제 수 {/*문제 수*/}</div>
-        <div className="difficulty">
-          난이도 <img src={StarIcon} alt={'star'} />
-        </div>
-      </SetInformation>
-      <SetHeader>
-        <NameAndButtonBox>
-          <div className="name">학생 명</div>
-          <ContainedButton btnType="primary" size="large" text="제출한 이미지 보기" onClick={() => {}} />
-        </NameAndButtonBox>
-        <ScoreBox>
-          <div className="text">총점</div>
-          <div className="score">80</div>
-        </ScoreBox>
-      </SetHeader>
-      {dummies.map((dummy) => (
-        <ProblemCard
-          studentAnswer={dummy.studentAnswer}
-          key={dummy.studentAnswer}
-          answer={dummy.answer}
-          correct={dummy.correct}
+    <>
+      {openImage && (
+        <BlurModal
+          innerDatas={
+            <div onClick={() => setOpenImage(false)}>
+              <img 
+                className="blur-image" 
+                src={process.env.REACT_APP_S3_URL + answerData.imgS3Url} 
+                alt="answerImage" 
+              />
+            </div>
+          }
         />
-      ))}
-    </SetResultPageLayout>
+      )}
+      <SetResultPageLayout>
+        <SetInformation>
+          <div className="title">{setData.title}</div>
+          <div className="description">{setData.description}</div>
+          <div className="count">문제 수 {setData.questionNum}</div>
+          <div className="difficulty">
+            <div className="text">난이도</div>
+            <Stars difficulty={setData.difficulty} />
+          </div>
+        </SetInformation>
+        <SetHeader>
+          <NameAndButtonBox>
+            <div className="name">학생 명</div>
+            <ContainedButton 
+              btnType="primary" 
+              size="large" 
+              text="제출한 이미지 보기" 
+              onClick={() => setOpenImage(true)} 
+            />
+          </NameAndButtonBox>
+          <ScoreBox>
+            <div className="text">총점</div>
+            <div className="score">{answerData.score}</div>
+          </ScoreBox>
+        </SetHeader>
+        {answerData.answers.map((answer, idx) => (
+          <ProblemCard
+            key={idx}
+            studentAnswer={answer.studentAnswer}
+            answer={answer.answer}
+            correct={answer.correct}
+          />
+        ))}
+      </SetResultPageLayout>
+    </>
   );
 };
 

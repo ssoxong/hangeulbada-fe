@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Circle } from '../../assets/icons';
+import { Circle, XMark } from '../../assets/icons';
 
 const ProblemCardLayout = styled.div`
   display: flex;
@@ -45,7 +45,11 @@ const ProblemCard = ({ studentAnswer, answer, correct }) => {
         <div className='text-answer'>{studentAnswer}</div>
         <div className='text-student'>{answer}</div>
       </AnswerBox>
-      <CorrectWrapper src={Circle}/>
+      {correct ? (
+        <CorrectWrapper src={Circle}/>
+      ) : (
+        <CorrectWrapper src={XMark} />
+      )}
     </ProblemCardLayout>
   );
 };
