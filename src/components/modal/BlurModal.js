@@ -42,18 +42,35 @@ const ModalInner = styled.div`
     border-radius: 15px;
     width: 100%;
     max-width: 500px;
-    height: 100%;
+    max-height: 500px;
     margin: 0 auto;
     margin-top: 20vh;
     border: none;
     background-color: transparent;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+    width: 5px; 
+    }
+    &::-webkit-scrollbar-thumb {
+    background: #3B6596;
+    border-radius: 4px;
+    }
+
+    .blur-image {
+        width: 400px;
+        height: 400px;
+    }
+`;
+const ModalFooter = styled.div`
 `;
 
-const BlurModal = ({ innerDatas }) => {
+const BlurModal = ({ innerDatas, footerDatas }) => {
     return (
         <BlurModalLayout>
             <ModalLayout>
                 <ModalInner>{innerDatas}</ModalInner>
+                <ModalFooter>{footerDatas}</ModalFooter>
             </ModalLayout>
         </BlurModalLayout>
     );

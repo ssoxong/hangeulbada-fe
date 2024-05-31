@@ -75,7 +75,7 @@ function App() {
               <Route path="/class/:id" element={<ClassPage />} />
               <Route path="/setList" element={<SetListPage />} />
               <Route path="/set/:id" element={<SetPage />} />
-              <Route path="/setResultPage" element={<SetResultPage />} />
+              <Route path="/setResultPage/:id" element={<SetResultPage />} />
               <Route path="/classCreate" element={<ClassCreatePage />} />
               <Route path="/StuSetListPage" element={<StuSetListPage />} />
               <Route path="/testPage" element={<TestPage />} />

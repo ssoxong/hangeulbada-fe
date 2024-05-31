@@ -80,41 +80,15 @@ const ClassPage = () => {
     {
       name: '',
       workbookId: '',
+      workbookTitle: '',
       assignmentId: '',
       score: '',
       submitDate: '',
     },
   ];
-  const dummies = [
-    {
-      no: '1',
-      name: 'name1',
-      set: 'set1',
-      score: '30',
-    },
-    {
-      no: '2',
-      name: 'name2',
-      set: 'set2',
-      score: '20',
-    },
-    {
-      no: '3',
-      name: 'name3',
-      set: 'set3',
-      score: '50',
-    },
-    {
-      no: '4',
-      name: 'name4',
-      set: 'set4',
-      score: '10',
-    },
-  ];
 
   const [classData, setClassData] = useState(classInitialState);
   const [classSetData, setClassSetData] = useState(setInitialState);
-  const [sortedData, setSortedData] = useState(dummies);
 
   const getClassData = async () => {
     await getClass(id).then((res) => {
@@ -133,19 +107,20 @@ const ClassPage = () => {
     {
       text: '이름순',
       onClick: () => {
-        const sortedByName = [...dummies].sort((a, b) => {
+        const sortedByName = [...classSetData].sort((a, b) => {
           if (a.name < b.name) return -1;
           if (a.name > b.name) return 1;
           return 0;
         });
-        setSortedData(sortedByName);
+        setClassSetData(sortedByName);
       },
     },
     {
       text: '성적순',
       onClick: () => {
-        const sortedByScore = [...dummies].sort((a, b) => parseInt(a.score) - parseInt(b.score));
-        setSortedData(sortedByScore);
+        const sortedByScore = [...classSetData].sort((a, b) => 
+          parseInt(a.score) - parseInt(b.score));
+        setClassSetData(sortedByScore);
       },
     },
   ];
@@ -174,10 +149,14 @@ const ClassPage = () => {
         <div className="item-blank"></div>
       </SetColums>
       {classSetData.map((data, index) => (
-        <SetCard key={data.index} no={data.index + 1} name={data.name} set={data.workbookId} score={data.score} />
-      ))}
-      {sortedData.map((data, index) => (
-        <SetCard key={index} no={index + 1} name={data.name} set={data.set} score={data.score} />
+        <SetCard 
+          key={data.index} 
+          no={index + 1} 
+          name={data.name} 
+          set={data.workbookTitle} 
+          setId={data.workbookId}
+          score={data.score} 
+        />
       ))}
     </ClassPageLayout>
   );
