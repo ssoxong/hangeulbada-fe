@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Counter from './components/Counter';
 import StarDiff from './components/StarDiff';
@@ -107,17 +107,47 @@ const TextBox = styled.div`
   }
 `;
 const SetCreatePage = () => {
+  const [steps, setSteps] = useState(0);
   // steps === 0
-  const [ setName, setSetName ]  = useState();
-  const [ setDesc, setSetDesc ] = useState();
-  const [ steps, setSteps ] = useState(0);
-  const [ count, setCount ] = useState(10);
-  const [ diff, setDiff ] = useState(0);
-  const [ workbookId, setWorkbookId ] = useState(); 
+  const [setName, setSetName]  = useState();
+  const [setDesc, setSetDesc] = useState();
+  const [count, setCount] = useState(10);
+  const [diff, setDiff] = useState(0);
+  const [zeroFulfilled, setZeroFulfilled] = useState(false);
   // steps === 1
-  const [ action, setAction ] = useState();
+  const [action, setAction] = useState();
   //steps === 2
+  const [workbookId, setWorkbookId] = useState(); 
   const [inputValue, setInputValue] = useState([]);
+  const [selectFulfilled, setSelectFulfilled] = useState(false);
+  const [writeFulfilled, setWriteFulfiiled] = useState(false);
+
+  useEffect(() => {
+    if (setName && setDesc && diff !== 0) {
+      setZeroFulfilled(true);
+    }
+    else {
+      setZeroFulfilled(false);
+    }
+  }, [setName, setDesc, diff])
+
+  useEffect(() => {
+    if (inputValue.length === count) {
+      setSelectFulfilled(true);
+    }
+    else {
+      setSelectFulfilled(false);
+    }
+  }, [inputValue])
+
+  useEffect(() => {
+    if (inputValue.includes('') || inputValue.length !== count) {
+      setWriteFulfiiled(false);
+    }
+    else {
+      setWriteFulfiiled(true);
+    }
+  }, [inputValue])
 
   const createSetOnClick = () => {
     const createSetApi = async (setName, setDesc, diff, count, sDate, eDate) => {
@@ -173,6 +203,7 @@ const SetCreatePage = () => {
           btnType='primary' 
           size='mid' 
           text='다음' 
+          disabled={!zeroFulfilled}
         />
       </ButtonContainer>
     </>
@@ -187,7 +218,8 @@ const SetCreatePage = () => {
             onClick={() => setSteps(steps+1)}
             btnType='primary' 
             size='mid' 
-            text='다음' 
+            text='다음'
+            disabled={!action}
           />
       </ButtonContainer>
       </>
@@ -213,7 +245,8 @@ const SetCreatePage = () => {
               onClick={createOnClick}
               btnType='primary' 
               size='mid' 
-              text='생성' 
+              text='생성'
+              disabled={!selectFulfilled} 
             />
           </div>
           <LoadQuestions 
@@ -229,6 +262,7 @@ const SetCreatePage = () => {
               btnType='primary' 
               size='mid' 
               text='완료' 
+              disabled={!writeFulfilled}
             />
           </div>
           <CreateQuestions 
@@ -244,11 +278,11 @@ const SetCreatePage = () => {
   return (
     <SetCreatePageLayout>
       <HeaderBox>
-        {action === 'load' ? 
+        {action === 'load' && steps === 2 ? 
           (
             <TextBox>
               <div>기존 문장에서 가져오기</div>
-              <div className='selected'>현재 1개 선택됨</div>
+              <div className='selected'>현재 {inputValue.length}개 선택됨</div>
             </TextBox>
           ) : (
             <div>
