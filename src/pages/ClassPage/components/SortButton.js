@@ -24,7 +24,6 @@ const SortButton = ({ items }) => {
 
   const onClickButton = () => {
     setIsOpen(!isOpen);
-    console.log(isOpen)
   }
 
   return (

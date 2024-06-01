@@ -115,8 +115,6 @@ const SetPage = () => {
     }
     getSetData();
     getQuestions();
-    console.log(setData);
-    console.log(questions);
   }, [])
 
   const handleInputChange = (value) => {

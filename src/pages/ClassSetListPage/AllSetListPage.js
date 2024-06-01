@@ -60,7 +60,6 @@ const AllSetListPage = ({ classData, setIsAddClicked }) => {
       newInputValue = [...inputValue, id];
     }
     setInputValue(newInputValue); 
-    console.log(inputValue)
   };
 
   const addOnClick = () => {

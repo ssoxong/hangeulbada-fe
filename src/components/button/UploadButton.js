@@ -60,15 +60,10 @@ const UploadButton = ({ studentId, workbookId }) => {
     try {
       const res = await requestOCR(workbookId, imageName);
       setOCRres(res.data);
-      console.log('OCR result:', res); // Debug: Log the OCR result
     } catch (error) {
       console.error('Error requesting OCR:', error);
     }
   };
-
-  // useEffect(() => {
-  //   console.log('OCRres:!!', OCRres);
-  // }, [OCRres]);
 
   const uploadFile = async () => {
     const S3_BUCKET = 'bada-static-bucket';
@@ -98,18 +93,12 @@ const UploadButton = ({ studentId, workbookId }) => {
     var upload = s3
       .putObject(params)
       .on('httpUploadProgress', (evt) => {
-        // File uploading progress
-        console.log('Uploading ' + parseInt((evt.loaded * 100) / evt.total) + '%');
-        console.log(file);
       })
       .promise();
 
     await upload.then((err, data) => {
       console.log(err);
-      // Fille successfully uploaded
-      alert('File uploaded successfully.');
       requestOCRdata(workbookId, imageName);
-      // navigate('/stuResult', { state: { workbookId, OCRres } });
     });
     setImageCaptured(false);
   };

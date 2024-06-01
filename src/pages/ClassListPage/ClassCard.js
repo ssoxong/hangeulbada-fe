@@ -73,7 +73,6 @@ const ClassCard = ({ id, title, desc, code, isRemove, classList, setClassList })
           return value.id !== groupId;
         });
         setClassList(filtered);
-        console.log(classList);
       });
     };
     requestRemove(id);

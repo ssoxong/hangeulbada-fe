@@ -99,10 +99,8 @@ const IntroPage = () => {
 
     const submitOnClick = () => {
         const requestGoogleLogin = async (cid, name, email) => {
-            console.log(cid, name, email, role);
             await requestLogin(cid, name, email, role)
                 .then(res => {
-                    console.log(res);
                     window.location.href='/main';
                 })
         }
