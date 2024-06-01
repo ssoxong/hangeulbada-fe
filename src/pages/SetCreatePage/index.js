@@ -153,7 +153,6 @@ const SetCreatePage = () => {
     const createSetApi = async (setName, setDesc, diff, count, sDate, eDate) => {
       await createSet(setName, setDesc, diff, count, sDate, eDate)
         .then(res => {
-          console.log(res);
           setWorkbookId(res.data.id)
         })
     }

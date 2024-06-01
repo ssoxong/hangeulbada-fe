@@ -37,7 +37,7 @@ const TertiaryButton = styled.button`
   width: ${({ size }) =>
     size === "large" ? "170px" : size === "mid" ? "90px" : "28px"};
   font-family: 'DXSamgakGimbap Light';
-  font-size: 16px;
+  font-size: 14px;
   border-radius: 6px;
   border: hidden;
   color: ${({ disabled }) => (disabled ? 'white' : 'black')};;

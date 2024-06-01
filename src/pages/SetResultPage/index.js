@@ -89,7 +89,7 @@ const ScoreBox = styled.div`
 `;
 
 const SetResultPage = () => {
-  const { id } = useParams();
+  const { wid, sid } = useParams();
 
   const setInitialState = {
     title: '',
@@ -97,6 +97,7 @@ const SetResultPage = () => {
     questionNum: '',
   }
   const answerInitialState = {
+    studentName: '',
     imgS3Url: '',
     answers: [],
     score: '',
@@ -108,14 +109,13 @@ const SetResultPage = () => {
 
   useEffect(() => {
     const getSetData = async () => {
-      await getSet(id)
+      await getSet(wid)
         .then((res) => {
           setSetData(res.data);
         })
-      await getStudentAnswer(id)
+      await getStudentAnswer(wid, sid)
         .then(res => {
           setAnswerData(res.data);
-          console.log(res.data.imgS3Url);
         })
     }
     getSetData();
@@ -148,7 +148,7 @@ const SetResultPage = () => {
         </SetInformation>
         <SetHeader>
           <NameAndButtonBox>
-            <div className="name">학생 명</div>
+            <div className="name">{answerData.studentName}</div>
             <ContainedButton 
               btnType="primary" 
               size="large" 

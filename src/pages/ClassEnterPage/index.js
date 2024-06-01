@@ -82,10 +82,8 @@ const ClassEnterPage = () => {
             <SyltedInput
               type="text"
               placeholder="선생님의 클래스 코드를 입력하세요."
-              name="groupCode"
-              groupCode={groupCode}
-              onChange={handleChange}
-              inputcheck={inputcheck}
+              value={groupCode}
+              onChange={(e) => setGroupCode(e.target.value)}
             />
           </StyledLabel>
           <StyledDone
@@ -94,7 +92,7 @@ const ClassEnterPage = () => {
             text="완료"
             fontcolor={fontcolor}
             inputcheck={inputcheck}
-            type="submit"
+            type="button"
           >
             완료
           </StyledDone>

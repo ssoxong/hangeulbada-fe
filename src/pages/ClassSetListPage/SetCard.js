@@ -59,7 +59,6 @@ const SetCard = ({
            return value.id !== workbookId;
          })
          setSetList(filtered);
-         console.log(setList)
        })
     }
     requestRemove(id);

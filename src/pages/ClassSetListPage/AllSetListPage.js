@@ -39,6 +39,7 @@ const AllSetListPage = ({ classData, setIsAddClicked }) => {
 
   const [setList, setSetList] = useState([]);
   const [inputValue, setInputValue] = useState([]);
+  const [btnDisable, setBtnDisable] = useState(true);
 
   useEffect(() => {
     const fetch = async () => {
@@ -51,6 +52,15 @@ const AllSetListPage = ({ classData, setIsAddClicked }) => {
     fetch();
   }, [])
 
+  useEffect(() => {
+    if (inputValue.length === 0) {
+      setBtnDisable(true);
+    }
+    else {
+      setBtnDisable(false);
+    }
+  }, [inputValue])
+
   const handleCheckboxChange = (id) => {
     let newInputValue;
     if (inputValue.includes(id)) {
@@ -60,7 +70,6 @@ const AllSetListPage = ({ classData, setIsAddClicked }) => {
       newInputValue = [...inputValue, id];
     }
     setInputValue(newInputValue); 
-    console.log(inputValue)
   };
 
   const addOnClick = () => {
@@ -85,6 +94,7 @@ const AllSetListPage = ({ classData, setIsAddClicked }) => {
           size="mid"
           text="추가"
           onClick={addOnClick}
+          disabled={btnDisable}
         />
       </ClassHeader>
       {setList.map((set) => (

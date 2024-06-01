@@ -67,7 +67,6 @@ const LoadQuestions = ({ inputValue, setInputValue }) => {
     const getQuestions = async () => {
       await getAllQuestions()
         .then(res => {
-          console.log(res);
           setQuestions(res);
         })
     }
@@ -83,7 +82,6 @@ const LoadQuestions = ({ inputValue, setInputValue }) => {
       newInputValue = [...inputValue, content];
     }
     setInputValue(newInputValue); 
-    console.log(inputValue)
   };
 
   return (

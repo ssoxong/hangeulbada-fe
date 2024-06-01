@@ -49,7 +49,6 @@ const SetCard = ({ id, title, desc, setList, setSetList, isRemove }) => {
            return value.id !== workbookId;
          })
          setSetList(filtered);
-         console.log(setList)
        })
     }
     requestRemove(id);

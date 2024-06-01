@@ -6,6 +6,8 @@ import { StarGray, StarYellow } from '../../../assets/icons';
 const StarDiffLayout = styled.div`
 `;
 const StarButton = styled.button`
+  padding-right: 0px;
+  padding-left: 0px;
   border-width: 0;
   background-color: transparent;
   &:hover {

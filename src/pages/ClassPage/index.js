@@ -79,6 +79,7 @@ const ClassPage = () => {
   const setInitialState = [
     {
       name: '',
+      studentId: '',
       workbookId: '',
       workbookTitle: '',
       assignmentId: '',
@@ -155,6 +156,7 @@ const ClassPage = () => {
           name={data.name} 
           set={data.workbookTitle} 
           setId={data.workbookId}
+          studentId={data.studentId}
           score={data.score} 
         />
       ))}

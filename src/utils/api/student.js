@@ -119,11 +119,11 @@ export const getWBOfStudent = async (groupId) => {
   return returnValue;
 };
 
-export const getStudentAnswer = async (workbookId) => {
+export const getStudentAnswer = async (workbookId, studentId) => {
   let returnValue;
 
   await client.
-    get(`/api/v1/assignment/${workbookId}`,
+    get(`/api/v1/assignment/${workbookId}/${studentId}`,
     {
       headers: privateHeaders,
     })
