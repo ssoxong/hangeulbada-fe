@@ -89,7 +89,7 @@ const ScoreBox = styled.div`
 `;
 
 const SetResultPage = () => {
-  const { id } = useParams();
+  const { wid, sid } = useParams();
 
   const setInitialState = {
     title: '',
@@ -108,14 +108,13 @@ const SetResultPage = () => {
 
   useEffect(() => {
     const getSetData = async () => {
-      await getSet(id)
+      await getSet(wid)
         .then((res) => {
           setSetData(res.data);
         })
-      await getStudentAnswer(id)
+      await getStudentAnswer(wid, sid)
         .then(res => {
           setAnswerData(res.data);
-          console.log(res.data.imgS3Url);
         })
     }
     getSetData();

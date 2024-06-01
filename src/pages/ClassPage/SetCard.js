@@ -49,11 +49,12 @@ const SetCard = ({
   name, 
   set, 
   setId,
-  score 
+  studentId,
+  score
 }) => {
   
   const buttonOnClick = () => {
-    window.location.href=`/setResultPage/${setId}`;
+    window.location.href=`/setResultPage/${setId}/${studentId}`;
   }
   return (
     <SetCardLayout>
