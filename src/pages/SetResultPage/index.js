@@ -97,6 +97,7 @@ const SetResultPage = () => {
     questionNum: '',
   }
   const answerInitialState = {
+    studentName: '',
     imgS3Url: '',
     answers: [],
     score: '',
@@ -147,7 +148,7 @@ const SetResultPage = () => {
         </SetInformation>
         <SetHeader>
           <NameAndButtonBox>
-            <div className="name">학생 명</div>
+            <div className="name">{answerData.studentName}</div>
             <ContainedButton 
               btnType="primary" 
               size="large" 
