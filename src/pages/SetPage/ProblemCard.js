@@ -24,6 +24,7 @@ const ProblemCardInformation = styled.div`
   font-size: 16px;
   
   .item-idx {
+    width: 10%;
     margin-right: 30px;
   }
   .item-content {
