@@ -6,7 +6,7 @@ const PrimaryButton = styled.button`
     height: ${({ size }) => (size === 'large' ? '40px' : size === 'mid' ? '40px' : '28px')};
     width: ${({ size }) => (size === 'large' ? '170px' : size === 'mid' ? '90px' : '28px')};
     font-family: 'DXSamgakGimbap Light';
-    font-size: 16px;
+    font-size: ${({ size }) => (size === 'large' ? '16px' : size === 'mid' ? '14px' : '12px')};
     border-radius: 6px;
     border: hidden;
     color: ${({ disabled }) => (disabled ? 'white' : 'white')};
@@ -20,7 +20,7 @@ const SecondaryButton = styled.button`
     height: ${({ size }) => (size === 'large' ? '40px' : size === 'mid' ? '40px' : '28px')};
     width: ${({ size }) => (size === 'large' ? '170px' : size === 'mid' ? '90px' : '28px')};
     font-family: 'DXSamgakGimbap Light';
-    font-size: 16px;
+    font-size: ${({ size }) => (size === 'large' ? '16px' : size === 'mid' ? '14px' : '12px')};
     border-radius: 6px;
     border: ${({ outline }) => (outline ? '2px #127FFF solid' : 'hidden')};
     color: ${({ disabled }) => (disabled ? 'white' : 'black')};
@@ -37,7 +37,7 @@ const TertiaryButton = styled.button`
   width: ${({ size }) =>
     size === "large" ? "170px" : size === "mid" ? "90px" : "28px"};
   font-family: 'DXSamgakGimbap Light';
-  font-size: 14px;
+  font-size: ${({ size }) => (size === 'large' ? '16px' : size === 'mid' ? '14px' : '12px')};
   border-radius: 6px;
   border: hidden;
   color: ${({ disabled }) => (disabled ? 'white' : 'black')};;
