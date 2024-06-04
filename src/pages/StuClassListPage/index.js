@@ -25,14 +25,14 @@ const ClassListTitle = styled.div`
 const ClassListButtonBox = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 45%;
+  width: 40%;
   margin: 0 0 0 50%;
 `;
 
 const StuClassList = () => {
   const [isRemoveClicked, setIsRemoveClicked] = useState(false);
   const [classList, setClassList] = useState([]);
-  
+
   useEffect(() => {
     const fetch = async () => {
       await getStuClass().then((res) => {

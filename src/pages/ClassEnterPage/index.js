@@ -47,10 +47,12 @@ const StyledLabel = styled.label`
 //   color: ${(props) => props.fontcolor};
 // `;
 
-const StyledDone = styled(ContainedButton)`
-  display: flex;
-  padding: 200px;
-`;
+// const StyledDone = styled(ContainedButton)`
+//   display: flex;
+//   padding: 200px;
+// `;
+
+const StyledBtn = styled.div``;
 
 const ClassEnterPage = () => {
   const [groupCode, setGroupCode] = useState('');
@@ -86,16 +88,16 @@ const ClassEnterPage = () => {
               onChange={(e) => setGroupCode(e.target.value)}
             />
           </StyledLabel>
-          <StyledDone
-            btnType="primary"
-            size="large"
-            text="완료"
-            fontcolor={fontcolor}
-            inputcheck={inputcheck}
-            type="button"
-          >
-            완료
-          </StyledDone>
+          <StyledBtn>
+            <ContainedButton
+              btnType="primary"
+              size="mid"
+              text="완료"
+              fontcolor={fontcolor}
+              inputcheck={inputcheck}
+              type="button"
+            ></ContainedButton>
+          </StyledBtn>
         </StyledForm>
       </ClassEnterPageLayout>
     </div>
