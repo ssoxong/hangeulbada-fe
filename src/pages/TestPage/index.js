@@ -55,7 +55,7 @@ const StyledBtnSection = styled.div`
 
 const TestPage = () => {
   const location = useLocation();
-  const { workbookId, title, quesCnt } = location.state || {};
+  const { workbookId, title, quesCnt, groupId } = location.state || {};
   const { cid } = useOAuthState();
   const [audioArray, setAudioArray] = useState([]);
   // console.log('cid', cid);
@@ -87,7 +87,7 @@ const TestPage = () => {
           </StyledQuestCol>
         </StyledQuestLayout>
         <StyledBtnSection>
-          <UploadButton studentId={cid} workbookId={workbookId}></UploadButton>
+          <UploadButton studentId={cid} workbookId={workbookId} groupId={groupId}></UploadButton>
           {/* {userImg && <img src={userImg} alt="userPaper" />} */}
         </StyledBtnSection>
       </SetListPageLayout>

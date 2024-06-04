@@ -45,10 +45,10 @@ const StyledButton = styled.div`
   padding: 10px;
 `;
 
-const SetBox = ({ workbookId, title, desc, quesCnt, difficulty }) => {
+const SetBox = ({ workbookId, title, desc, quesCnt, difficulty, groupId }) => {
   const navigate = useNavigate();
   const onTestClicked = () => {
-    navigate('/testPage', { state: { workbookId, title, quesCnt } });
+    navigate('/testPage', { state: { workbookId, title, quesCnt, groupId } });
   };
 
   SetBox.propTypes = {

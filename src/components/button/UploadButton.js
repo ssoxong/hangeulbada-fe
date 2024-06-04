@@ -49,7 +49,7 @@ const Input = styled.input`
   display: none;
 `;
 
-const UploadButton = ({ studentId, workbookId }) => {
+const UploadButton = ({ studentId, workbookId, groupId }) => {
   const [file, setFile] = useState(null);
   const [fileImage, setFileImage] = useState(null);
   const [imageCaptured, setImageCaptured] = useState(false);
@@ -117,7 +117,7 @@ const UploadButton = ({ studentId, workbookId }) => {
   useEffect(() => {
     if (OCRres.length > 0) {
       console.log('Navigating with OCR results:', OCRres);
-      navigate('/stuResult', { state: { workbookId, OCRres } });
+      navigate('/stuResult', { state: { workbookId, OCRres, groupId } });
     }
   }, [OCRres, navigate, workbookId]);
 

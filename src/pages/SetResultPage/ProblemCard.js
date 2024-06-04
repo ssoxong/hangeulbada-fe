@@ -23,33 +23,31 @@ const TextBox = styled.div`
 const AnswerBox = styled.div`
   flex-basis: 65%;
   text-align: start;
-  font-family: 'DXSamgakGimbap Light';
+  font-family: 'DXSamgakGimbap Medium';
   font-size: 16px;
 
   .text-answer {
     margin-bottom: 6px;
   }
-`
-const CorrectWrapper = styled.img`
-  
 `;
+const CorrectWrapper = styled.img``;
 
 const ProblemCard = ({ studentAnswer, answer, correct }) => {
   return (
     <ProblemCardLayout>
       <TextBox>
-        <div className='text-answer'>정답</div>
-        <div className='text-student'>학생 답안</div>
+        <div className="text-answer" style={{ color: '#127FFF' }}>
+          정답
+        </div>
+        <div className="text-student">학생 답안</div>
       </TextBox>
       <AnswerBox>
-        <div className='text-answer'>{studentAnswer}</div>
-        <div className='text-student'>{answer}</div>
+        <div className="text-answer" style={{ color: '#127FFF' }}>
+          {studentAnswer}
+        </div>
+        <div className="text-student">{answer}</div>
       </AnswerBox>
-      {correct ? (
-        <CorrectWrapper src={Circle}/>
-      ) : (
-        <CorrectWrapper src={XMark} />
-      )}
+      {correct ? <CorrectWrapper src={Circle} /> : <CorrectWrapper src={XMark} />}
     </ProblemCardLayout>
   );
 };
