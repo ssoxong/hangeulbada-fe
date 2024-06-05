@@ -133,7 +133,7 @@ export const removeClassSet = async (groupId, workbookId) => {
   let returnValue;
 
   await client 
-    .delete(`/api/v1/workbook/group/${groupId}/workbook/${workbookId}`, 
+    .delete(`/api/v1/workbook/group/${groupId}/workbooks/${workbookId}`, 
     {
       headers: privateHeaders,
     })
