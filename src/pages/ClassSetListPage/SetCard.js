@@ -53,7 +53,7 @@ const SetCard = ({
 
   const removeOnClick = () => {
     const requestRemove = async (workbookId) => {
-     await removeClassSet(workbookId, classId)
+     await removeClassSet(classId, workbookId)
        .then((res) => {
          const filtered = setList.filter((value, idx, arr) => {
            return value.id !== workbookId;
