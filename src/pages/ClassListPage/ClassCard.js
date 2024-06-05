@@ -47,9 +47,14 @@ const CustomToastLayout = styled.div`
   color: black;
 `;
 
-const CustomToast = () => <CustomToastLayout>클래스 코드가 복사되었습니다.</CustomToastLayout>;
-
 const ClassCard = ({ id, title, desc, code, isRemove, classList, setClassList }) => {
+
+  const CustomToast = () => 
+  <CustomToastLayout>
+    <div>코드가 복사되었습니다.</div> 
+    <div>{`(코드: ${code})`}</div>
+  </CustomToastLayout>;
+
   const notify = () => toast(<CustomToast />);
 
   const onClick = (code) => {
