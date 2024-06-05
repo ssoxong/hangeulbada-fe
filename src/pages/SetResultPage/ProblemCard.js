@@ -43,9 +43,9 @@ const ProblemCard = ({ studentAnswer, answer, correct }) => {
       </TextBox>
       <AnswerBox>
         <div className="text-answer" style={{ color: '#127FFF' }}>
-          {studentAnswer}
+          {answer}
         </div>
-        <div className="text-student">{answer}</div>
+        <div className="text-student">{studentAnswer}</div>
       </AnswerBox>
       {correct ? <CorrectWrapper src={Circle} /> : <CorrectWrapper src={XMark} />}
     </ProblemCardLayout>
