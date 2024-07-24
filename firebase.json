@@ -1,17 +1,11 @@
 {
   "hosting": {
-    "site": "hangulbada",
-    "public": "build",
+    "site": "hangeulbada",
+    "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
     ]
   }
 }
